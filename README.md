@@ -3,3 +3,5 @@ https://github.com/palovpet/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.
 
 
 https://github.com/palovpet/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt
+
+Olen muutos paikallisessa repositoriossa :(

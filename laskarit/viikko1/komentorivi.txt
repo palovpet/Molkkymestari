@@ -1,0 +1,53 @@
+palovpet@lx1-fuxi093:~$ tree kurssit
+kurssit
+├── JYM
+│   ├── Johdatus yliopistomatematiikkaan.pdf
+│   ├── Mallivastaukset
+│   │   ├── JYM_mallit1.pdf
+│   │   ├── JYM_mallit2_korjattu.pdf
+│   │   ├── JYM_mallit3.pdf
+│   │   ├── JYM_mallit4.pdf
+│   │   ├── JYM_mallit5.pdf
+│   │   └── JYM_mallit6.pdf
+│   ├── Omat palautukset
+│   │   ├── Draftit
+│   │   │   ├── jym_2_7.odt
+│   │   │   ├── JYM - viikko 1.odt
+│   │   │   ├── JYM - viikko 2.odt
+│   │   │   ├── JYM - viikko 3.odt
+│   │   │   └── JYM - viikko 6.odt
+│   │   ├── JYM_tentti.pdf
+│   │   ├── Viikko 1.pdf
+│   │   ├── Viikko 2.pdf
+│   │   ├── Viikko 3.pdf
+│   │   ├── Viikko 4.pdf
+│   │   ├── Viikko 5.pdf
+│   │   └── Viikko 6.pdf
+│   └── vastauksia_ja_vihjeita2.pdf
+├── Matematiikkaa kaikkialla
+│   ├── matematiikkaa kaikkialla.odt
+│   ├── matematiikka arjessa.odt
+│   ├── neliöt_palautus.png
+│   ├── neliöt.png
+│   └── pallot ja kylläei.odt
+└── ot2021
+    └── viikko1
+        └── Unicafe
+            ├── pom.xml
+            └── src
+                ├── main
+                │   └── java
+                │       └── com
+                │           └── mycompany
+                │               └── unicafe
+                │                   ├── Kassapaate.java
+                │                   ├── Maksukortti.java
+                │                   └── Paaohjelma.java
+                └── test
+                    └── java
+                        └── com
+                            └── mycompany
+                                └── unicafe
+                                    └── MaksukorttiTest.java
+
+19 directories, 30 files

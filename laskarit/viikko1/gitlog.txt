@@ -1,0 +1,105 @@
+palovpet@lx1-fuxi093:~/kurssit/ot2021/viikko1/ot_viikko1$ git log --stat | cat
+commit 7900164d9a9b90f4d616c779478adaf06cee852a
+Author: Petra Palovaara <petra.palovaara@outlook.com>
+Date:   Tue Nov 2 19:24:45 2021 +0200
+
+    temput tehty
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 2be977b7124bedf8acf56e4346117f3114f49f59
+Author: Petra Palovaara <petra.palovaara@outlook.com>
+Date:   Tue Nov 2 19:18:21 2021 +0200
+
+    tiedostot luotu
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 4d4347e79a88b0f5358f0b6323a7523cca585022
+Author: Petra Palovaara <petra.palovaara@outlook.com>
+Date:   Mon Nov 1 17:42:38 2021 +0200
+
+    muutoksia
+
+ eka.txt    | 4 ++--
+ kolmas.txt | 3 ++-
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+commit 73d8208908f1cc94fc3a382e092fa0faf201c6e2
+Author: Petra Palovaara <petra.palovaara@outlook.com>
+Date:   Mon Nov 1 17:40:53 2021 +0200
+
+    uudelleen nimetty
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5e01269d4578f7f2639688398c76c30999e54483
+Author: Petra Palovaara <petra.palovaara@outlook.com>
+Date:   Mon Nov 1 17:38:53 2021 +0200
+
+    poistettu
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 98e9fb4ffcd00ae812af50dc8f2143d9baf3f0b9
+Author: Petra Palovaara <petra.palovaara@outlook.com>
+Date:   Mon Nov 1 17:35:34 2021 +0200
+
+    hieman poistettu ja hieman lisätty
+
+ tiedosto.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 55330011c60bce82e1e63ad45e968591ef559da0
+Author: Petra Palovaara <petra.palovaara@outlook.com>
+Date:   Mon Nov 1 17:34:02 2021 +0200
+
+    paljon tekstiä
+
+ tiedosto.txt | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+commit 87e4dda7279503efeb572492fc85dc3e8d69aaa6
+Author: Petra Palovaara <petra.palovaara@outlook.com>
+Date:   Mon Nov 1 17:30:24 2021 +0200
+
+    stuff ja tiedosto
+
+ stuff/jokintiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a17994580e7ba8e9e5effb3fd3eaa667709dd8a1
+Author: Petra Palovaara <petra.palovaara@outlook.com>
+Date:   Mon Nov 1 17:28:48 2021 +0200
+
+    muutoksia
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 3271941ee9474d63a437e534add4daf2a0d4e1a2
+Author: Petra Palovaara <petra.palovaara@outlook.com>
+Date:   Mon Nov 1 17:24:48 2021 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 2030e8283e10683a15fa404d012e8b43fd6a9fc0
+Author: Petra Palovaara <petra.palovaara@outlook.com>
+Date:   Mon Nov 1 17:22:19 2021 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)

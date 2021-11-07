@@ -11,4 +11,5 @@ Viikko 1
 * [komentorivi.txt](https://github.com/palovpet/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
 Viikko 2
+* [jacoco-raportti](https://github.com/palovpet/ot-harjoitustyo/blob/master/laskarit/viikko2/jacoco-raportti.png)
 

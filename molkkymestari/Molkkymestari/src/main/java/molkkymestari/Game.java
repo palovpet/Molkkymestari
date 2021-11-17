@@ -11,6 +11,8 @@ import java.util.ArrayList;
  */
 public class Game {
     ArrayList<Player> players;
+    ArrayList<int> playerPoints;
+    ArrayList<int> playerMissedThrows;
     int whosTurn;
     int pointLimit;
     boolean pointsToZeroWhenPointLimitPassed;
@@ -23,6 +25,8 @@ public class Game {
     
     public Game(int pointLimit){
         this.players = new ArrayList<>();
+        this.playerPoints = new ArrayList<>();
+        this playerMissedThrows = new ArrayList<>();
         this.whosTurn = 0;  
         this.pointLimit = pointLimit;
         this.pointsToZeroWhenPointLimitPassed = false;      
@@ -46,7 +50,15 @@ public class Game {
     
     public void addPlayer(Player player){
         players.add(player);
+/* lisää pelaajalle pelikohtainen indeksi, jolla
+Voidaan tunnistaa pelaaja pelin aikana, hakea pisteet ym */
     }
+
+/* Metodi joka hakee pelaajan pisteet pelissä*/
+/* Metodi joka asettaa uudet pisteet, paitsi jos raja ylittyy, 
+niin toimii määrittelyjen mukaan, tai jos huti niin tarkistaa
+ hudit ja päivittää */
+/* Metodi joka tarkistaa hutien määrän*/
     
     public ArrayList<Player> getPlayers(){
         return this.players;

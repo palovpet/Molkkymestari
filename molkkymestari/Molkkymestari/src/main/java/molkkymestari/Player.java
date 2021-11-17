@@ -11,11 +11,15 @@ package molkkymestari;
  */
 public class Player {
     String name;
-    int points;
+   /* int points; 
+Siirrä pisteiden muistaminen eri paikkaan, 
+pelaaja luokka voisi muistaa statistiikkaan liittyviä tietoja */
+
+/* Laajennusidea: pelaajalla joukkue */
     
     public Player(String name){
         this.name = name;
-        this.points = 0;
+        
     }
             
     

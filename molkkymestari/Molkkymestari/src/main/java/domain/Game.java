@@ -19,6 +19,7 @@ public class Game {
     boolean pointsToZeroWhenPointLimitPassed;
     /*Täydennä tietoihin: oletus siitä että pisteet palaa puoleenväliin, 
     mutta voi asettaa että menee nollaan.*/
+    boolean winnerFound;
     
     public Game(){
         this(50);
@@ -30,11 +31,20 @@ public class Game {
         this.playerMissedThrows = new ArrayList<>();
         this.whosTurn = 0;  
         this.pointLimit = pointLimit;
-        this.pointsToZeroWhenPointLimitPassed = false;      
+        this.pointsToZeroWhenPointLimitPassed = false;  
+        this.winnerFound = false;        
     }
     
+    //Peliasetukset   
     public void setPointsToZeroWhenPointLimitPassedWithValue(boolean value){
         this.pointsToZeroWhenPointLimitPassed = value;
+    }
+    public void setPointsToZeroWhenPointLimitPassedWithTrue(){
+        setPointsToZeroWhenPointLimitPassedWithValue(true);
+    }
+    
+    public void setPointsToZeroWhenPointLimitPassedWithFalse(){
+        setPointsToZeroWhenPointLimitPassedWithValue(false);
     }
     
     public boolean getPointsToZeroWhenPointLimitPassedWithValue(){
@@ -49,18 +59,56 @@ public class Game {
         this.pointLimit = limit;
     }
     
+    public void winnerFound(){
+        this.winnerFound = true;
+        //Lisää jotain pelin päättämiseen ja voittajaan liittyen
+    }
+    
+    //Pelaajat    
     public void addPlayer(Player player){
         players.add(player);
-/* lisää pelaajalle pelikohtainen indeksi, jolla
-Voidaan tunnistaa pelaaja pelin aikana, hakea pisteet ym */
+        player.setIndexInThisGame(this.players.size()+1);
+        player.setPointsInThisGame(0);
+        player.setMissedThrowsInThisGame(0);
     }
-
-/* Metodi joka hakee pelaajan pisteet pelissä*/
-/* Metodi joka asettaa uudet pisteet, paitsi jos raja ylittyy, 
-niin toimii määrittelyjen mukaan, tai jos huti niin tarkistaa
- hudit ja päivittää */
-/* Metodi joka tarkistaa hutien määrän*/
     
+    public void setPointsFromThrow(Player player, int points){
+        
+        if(points == 0){
+            if(player.getMissedThrowsInThisGame()== 2){
+                //peli päättyy pelaajan osalta, pois listalta jne
+            } else {
+                player.setMissedThrowsInThisGame((player.getMissedThrowsInThisGame() + 1));
+            }
+            
+        }
+        
+        if((player.getPointsInThisGame() + points)<this.pointLimit){
+            player.addPointsInThisGame(points);
+        } 
+        else if ((player.getPointsInThisGame() + points) == this.pointLimit){
+            winnerFound();
+            
+        } else if ((player.getPointsInThisGame() + points) > this.pointLimit){
+            if(getPointsToZeroWhenPointLimitPassedWithValue()== false){
+                int pointsToHalf = (player.getPointsInThisGame() / 2);
+                //tee jotain parittomien lukujen käsittelylle
+                player.setPointsInThisGame(pointsToHalf);
+            }
+            else {
+                player.setPointsInThisGame(0);
+            }
+        }    
+    }
+    
+    public int getHowManyPointDoesPlayerHave(Player player){
+        return player.getPointsInThisGame();
+    }
+    
+    public int getPlayersIndex(Player player){
+        return player.indexInThisGame;
+    }
+        
     public ArrayList<Player> getPlayers(){
         return this.players;
     } 

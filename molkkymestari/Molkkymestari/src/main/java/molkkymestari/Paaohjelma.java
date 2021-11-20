@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package molkkymestari;
+import domain.Game;
 import java.util.Scanner;
+import static javafx.application.Application.launch;
+import ui.MolkkyApplication;
 
 
 /**
@@ -13,8 +16,12 @@ import java.util.Scanner;
  */
 public class Paaohjelma {
     
+    public static void main(String[] args){
+        launch(MolkkyApplication.class);
+    }
+    
        
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Scanner reader = new Scanner(System.in);
         mainMenu(reader);
                
@@ -97,7 +104,7 @@ public class Paaohjelma {
     public static void addPlayers(){
         System.out.println("lisää pelajat");
     
-    }
+    }*/
     
 }
     

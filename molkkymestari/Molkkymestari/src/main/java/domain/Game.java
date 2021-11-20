@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package molkkymestari;
+package domain;
+import domain.Player;
 import java.util.ArrayList;
 /**
  *
@@ -11,8 +12,8 @@ import java.util.ArrayList;
  */
 public class Game {
     ArrayList<Player> players;
-    ArrayList<int> playerPoints;
-    ArrayList<int> playerMissedThrows;
+    ArrayList<Integer> playerPoints;
+    ArrayList<Integer> playerMissedThrows;
     int whosTurn;
     int pointLimit;
     boolean pointsToZeroWhenPointLimitPassed;
@@ -26,7 +27,7 @@ public class Game {
     public Game(int pointLimit){
         this.players = new ArrayList<>();
         this.playerPoints = new ArrayList<>();
-        this playerMissedThrows = new ArrayList<>();
+        this.playerMissedThrows = new ArrayList<>();
         this.whosTurn = 0;  
         this.pointLimit = pointLimit;
         this.pointsToZeroWhenPointLimitPassed = false;      

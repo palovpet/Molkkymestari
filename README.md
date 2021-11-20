@@ -1,15 +1,8 @@
 ## Projekti
 
+Mölkkymestarin avulla voidaan pitää kirjaa mölkkyturnauksen etenemisestä. Mölkkymestariin kirjataan heittojen pisteet yksilöittäin. Kun voittava pisteraja on saavutettu, Mölkkymestari ilmoittaa voittajan.
+
 Työaikakirjanpito: [tuntikirjanpito.md](https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
 Alustava määrittelydokumentti: [vaatimusmäärittely.md](https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
-
-## Laskarit
-
-Viikko 1
-* [gitlog.txt](https://github.com/palovpet/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
-* [komentorivi.txt](https://github.com/palovpet/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
-
-Viikko 2
-* [jacoco-raportti](https://github.com/palovpet/ot-harjoitustyo/blob/master/laskarit/viikko2/jacoco-raportti.png)
 

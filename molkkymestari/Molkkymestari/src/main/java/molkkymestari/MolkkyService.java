@@ -1,3 +1,5 @@
+package molkkymestari;
+
 
 import domain.Game;
 

@@ -5,7 +5,7 @@
  */
 package molkkymestari;
 import domain.Game;
-import java.util.Scanner;
+import domain.Player;
 import static javafx.application.Application.launch;
 import ui.MolkkyApplication;
 
@@ -15,6 +15,11 @@ import ui.MolkkyApplication;
  * @author palovpet
  */
 public class Paaohjelma {
+    
+    Game molkky = new Game();
+    Player player = new Player("Placeholder");
+    
+    
     
     public static void main(String[] args){
         launch(MolkkyApplication.class);

@@ -5,118 +5,242 @@
  */
 package ui;
 
+
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
-import javafx.scene.text.TextAlignment;
+
+
 
 /**
  *
  * @author palovpet
  */
 public class MolkkyApplication extends Application{
+
+
     
     @Override
     public void start(Stage window){
         window.setTitle("Mölkkymestari");
         
 
-        //Ensimmäinen näkymä
-        VBox firstLayout = new VBox();     
-        firstLayout.setPrefSize(500, 500);
-        firstLayout.setSpacing(30);
+        // *1 Ensimmäinen näkymä ja scene
+        VBox firstLayout = new VBox();  
+        vBoxLayoutSettings(firstLayout); 
+        Scene welcomeView = new Scene(firstLayout);
         
-        //Infoteksti ja pelaajan nimikenttä
-        Label infotext = new Label("Tervetuloa! Syötä pelaajan nimi "
+        // ** Luo ja lisää infotekstin ja nimimerkkikentän 
+        firstLayout.getChildren().add(createInfoTextAndField());
+        
+        // ** Luo ja lisää painikkeet
+        Button newPlayer = createGrayButton("Syötä lisää pelaajia");        
+        Button newGame = createPinkButton("Aloita peli");
+     
+        firstLayout.getChildren().add(createHBoxWithButtons(newPlayer, newGame));
+
+        // *2 Uusi peli + asetukset -näkymä 
+        VBox startGameLayout = new VBox();    
+        
+        // ** Näkymän otsikko   
+        Label newGameText = createLabelWithSettings("UUSI PELI - asetukset");
+         
+        // ** Asetusten otsikot
+        Label pointLimitLabel = createLabelWithSettings("Pisteraja");
+        Label pointLimitBrokenLabel = createLabelWithSettings("Pisterajan ylittyessä");
+
+        HBox gameSettingsLabels = createHBoxWithLabels(pointLimitLabel, pointLimitBrokenLabel);  
+        
+        // ** Asetusten painikkeet
+        Button pointLimitButton = createGrayButton("30");
+        Button pointLimitBrokenButton = createGrayButton("Pisteet puolitetaan");
+        
+        HBox gameSettingsButtons = createHBoxWithButtons(pointLimitButton, pointLimitBrokenButton);
+        
+        // **Aloita peli-painike
+        Button startGameButton = createPinkButton ("Aloita peli");
+        
+        // ** Lisää rompe näkymään ja luo scene
+        createStartGameLayout(startGameLayout, newGameText, gameSettingsLabels, gameSettingsButtons, startGameButton);       
+        
+        Scene startGameView = new Scene(startGameLayout);       
+        
+        // *3 Pelinäkymä 
+        VBox GameLayout = new VBox();  
+        vBoxLayoutSettings(GameLayout);
+        
+        // ** Pelivuoron tiedot 
+        Label whosTurn = createLabelWithSettings("Pelivuorossa");
+        Label whosTurnTemp = createLabelWithSettings("*tässä lukisi pelaaja*");
+        Label whosTurnPointsTemp = createLabelWithSettings("*tässä lukisi pelaajan pisteet*");
+               
+        // ** Pisteiden kirjaaminen
+        addLabelToVBox(GameLayout, createLabelWithSettings("Kirjaa heitto:"));   
+        TextField pointsToDocument = createTextFieldWithSettings();
+
+//      String pointsToDocumentString = pointsToDocument.getText();
+//      int pointsToDocumentInteger = Integer.valueOf(pointsToDocumentString);
+        Button documentButton = createGrayButton("Kirjaa");
+        
+        //** Pelinäkymän rompe lisätty ja uusi scene
+        addLabelToVBox(GameLayout, whosTurn, whosTurnTemp, whosTurnPointsTemp);
+        addTextFieldToVBox(GameLayout, pointsToDocument);
+        addButtonsToVBox(GameLayout, documentButton);
+
+        Scene GameView = new Scene(GameLayout);
+        
+        // * Painikkeiden toiminnot
+        newGame.setOnAction((event) -> {
+            window.setScene(startGameView);
+        });
+        
+        startGameButton.setOnAction((event) -> {
+            window.setScene(GameView);
+        });
+
+        window.setScene(welcomeView);
+        window.show();       
+        
+    }
+    
+    public void addButtonsToVBox(VBox VBox, Button button1){
+        VBox.getChildren().add(button1);     
+    }
+    
+    public void addButtonsToVBox(VBox VBox, Button button1, Button button2){
+        this.addButtonsToVBox(VBox, button1);
+        this.addButtonsToVBox(VBox, button2);     
+    }
+    
+    public void addButtonsToVBox(VBox VBox, Button button1, Button button2, Button button3){
+        this.addButtonsToVBox(VBox, button1);
+        this.addButtonsToVBox(VBox, button2);
+        this.addButtonsToVBox(VBox, button3);    
+    }
+    
+    public void addButtonsToHBox(HBox HBox, Button button1){
+        HBox.getChildren().add(button1);     
+    }
+    
+    public void addButtonsToHBox(HBox HBox, Button button1, Button button2){
+        this.addButtonsToHBox(HBox, button1);
+        this.addButtonsToHBox(HBox, button2);     
+    }
+    
+    public void addButtonsToHBox(HBox HBox, Button button1, Button button2, Button button3){
+        this.addButtonsToHBox(HBox, button1);
+        this.addButtonsToHBox(HBox, button2);
+        this.addButtonsToHBox(HBox, button3);    
+    }
+    
+    public void addLabelToVBox(VBox VBox, Label label1){
+        VBox.getChildren().add(label1);        
+    }
+    
+    public void addLabelToVBox(VBox VBox, Label label1, Label label2){
+        this.addLabelToVBox(VBox, label1);
+        this.addLabelToVBox(VBox, label2); 
+    }
+    
+    public void addLabelToVBox(VBox VBox, Label label1, Label label2, Label label3){
+        this.addLabelToVBox(VBox, label1);
+        this.addLabelToVBox(VBox, label2);
+        this.addLabelToVBox(VBox, label3);     
+    }
+    public void addLabelToHBox(HBox HBox, Label label1){
+        HBox.getChildren().add(label1);        
+    }
+    
+    public void addLabelToHBox(HBox HBox, Label label1, Label label2){
+        this.addLabelToHBox(HBox, label1);
+        this.addLabelToHBox(HBox, label2); 
+    }
+    
+    public void addLabelToHBox(HBox HBox, Label label1, Label label2, Label label3){
+        this.addLabelToHBox(HBox, label1);
+        this.addLabelToHBox(HBox, label2);
+        this.addLabelToHBox(HBox, label3);     
+    }    
+    
+    public void addTextFieldToVBox(VBox VBox, TextField field){
+        VBox.getChildren().add(field);
+    }
+    
+    public void vBoxLayoutSettings(VBox VBox){
+        VBox.setPrefSize(500, 500);
+        VBox.setSpacing(30);
+    }
+    public void labelSettings(Label label){
+        label.setMinWidth(50); 
+    }
+    public TextField createTextFieldWithSettings(){
+        TextField textField = new TextField();
+        textField.setPrefSize(50, 80);
+        return textField;
+    }
+    
+    public Label createLabelWithSettings(String text){
+        Label label = new Label(text);
+        return label;
+    }
+    
+    public void hBoxSettins(HBox HBox){
+        HBox.setSpacing(100);
+    }
+    
+    public Button createGrayButton(String text){
+        Button button = new Button(text);
+        button.setStyle("-fx-background-color: #BBBBBB; ");
+        return button;
+    }
+    public Button createPinkButton(String text){
+        Button button = new Button(text);
+        button.setStyle("-fx-background-color: #D76FB0; ");
+        return button;
+    }
+    
+    public VBox createInfoTextAndField(){
+        Label infotext = createLabelWithSettings("Tervetuloa! Syötä pelaajan nimi "
                 + "kenttään ja aletaan pelaamaan :-)");
-        infotext.setMinWidth(50);       
         
-        TextField nameField = new TextField();
-        nameField.setPrefSize(50, 80);
+        TextField nameField = createTextFieldWithSettings();
         
         VBox infoAndField = new VBox();
         infoAndField.setSpacing(50);
         
-        infoAndField.getChildren().add(infotext);
-        infoAndField.getChildren().add(nameField);  
+        addLabelToVBox(infoAndField, infotext);
+        addTextFieldToVBox(infoAndField, nameField);
         
-        //Painikkeet            
-        Button newPlayer = new Button("Syötä lisää pelaajia");
-        newPlayer.setStyle("-fx-background-color: #D76FB0; ");
-        
-        Button startGame = new Button("Aloita peli");
-        startGame.setStyle("-fx-background-color: #D76FB0; ");
-        
-        HBox buttons = new HBox();
-        buttons.getChildren().add(newPlayer);
-        buttons.getChildren().add(startGame);
-        buttons.setSpacing(100);
-        
-        firstLayout.getChildren().add(infoAndField);
-        firstLayout.getChildren().add(buttons);
+        return infoAndField;
+    }
+    
+    public HBox createHBoxWithButtons(Button button1, Button button2){
+        HBox HBox = new HBox();
+        addButtonsToHBox(HBox, button1, button2);
+        hBoxSettins(HBox);
+        return HBox;
+    }
+    
+    public HBox createHBoxWithLabels(Label label1, Label label2){
+        HBox HBox = new HBox();
+        addLabelToHBox(HBox, label1, label2);
+        hBoxSettins(HBox);
+        return HBox;
+    }
+    
+    public void createStartGameLayout(VBox vBox, Label label, HBox HBox1, HBox HBox2, Button button){           
+        vBoxLayoutSettings(vBox);
+        addLabelToVBox(vBox, label);
+        vBox.getChildren().add(HBox1);
+        vBox.getChildren().add(HBox2);
+        addButtonsToHBox(HBox2, button);
 
-        
-        //Tehdään näkymä uuden pelin aloitukseen
-        VBox startGameLayout = new VBox();     
-        startGameLayout.setPrefSize(500, 500);
-        startGameLayout.setSpacing(30);
-        
-        //Otsikko
-        Label newGameText = new Label("Uusi peli");
-        newGameText.setMinWidth(50); 
-        
-        //Painikkeet
-        Button pointLimitButton = new Button("30");
-        pointLimitButton.setStyle("-fx-background-color: #D76FB0; ");
-        Button pointLimitBrokenButton = new Button("Pisteet puolitetaan");
-        pointLimitBrokenButton.setStyle("-fx-background-color: #D76FB0; ");
-        
-        HBox gameSettingsButtons = new HBox();
-        gameSettingsButtons.getChildren().add(pointLimitButton);
-        gameSettingsButtons.getChildren().add(pointLimitBrokenButton);  
-        gameSettingsButtons.setSpacing(10);
-        
-        //Labelit
-        Label pointLimitLabel = new Label("Pisteraja");
-        pointLimitLabel.setMinWidth(50);
-        Label pointLimitBrokenLabel = new Label("Pisterajan ylittyessä");
-        pointLimitBrokenLabel.setMinWidth(50);
-
-        HBox gameSettingsLabels = new HBox();
-        gameSettingsLabels.getChildren().add(pointLimitLabel);
-        gameSettingsLabels.getChildren().add(pointLimitBrokenLabel);
-        gameSettingsLabels.setSpacing(10);
-      
-        startGameLayout.getChildren().add(newGameText);
-        startGameLayout.getChildren().add(gameSettingsLabels);
-        startGameLayout.getChildren().add(gameSettingsButtons);
-        
-        
-        Scene startGameView = new Scene(startGameLayout);
-        
-                      
-        //Näytetään ensimmäinen näkymä
-        Scene welcomeView = new Scene(firstLayout);
-        
-        //Lisätään uuden pelin aloitus nappiin
-        startGame.setOnAction((event) -> {
-            window.setScene(startGameView);
-        });
-        
-
-        window.setScene(welcomeView);
-        window.show();
-        
-        
     }
     
     

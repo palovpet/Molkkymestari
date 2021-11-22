@@ -17,6 +17,10 @@ import domain.Game;
 // */
 public class MolkkyService {
     Game molkky;
+    
+    public MolkkyService(){
+        this.molkky = new Game();
+    }
 
     
     public void changePointLimitToFifty(){
@@ -35,8 +39,11 @@ public class MolkkyService {
         molkky.setPointsToZeroWhenPointLimitPassedWithFalse();
     }
     
-    public void addPlayers(){
-        //lisä uuden pelaajan
+    public void addNewPlayer(String name){
+        molkky.addNewPlayer(name);
+    }
+    public String getPlayersToPrint(){
+        return molkky.getPlayersString();
     }
     
     public void documentThrow(){

@@ -7,6 +7,7 @@ package ui;
 
 
 
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,6 +16,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
+import molkkymestari.MolkkyService;
+
 
 
 
@@ -25,10 +28,11 @@ import javafx.scene.control.TextField;
 public class MolkkyApplication extends Application{
 
 
-    
+
     @Override
     public void start(Stage window){
         window.setTitle("Mölkkymestari");
+        MolkkyService service = new MolkkyService();
         
 
         // *1 Ensimmäinen näkymä ja scene
@@ -37,13 +41,28 @@ public class MolkkyApplication extends Application{
         Scene welcomeView = new Scene(firstLayout);
         
         // ** Luo ja lisää infotekstin ja nimimerkkikentän 
-        firstLayout.getChildren().add(createInfoTextAndField());
         
+        Label infotext = createLabelWithSettings("Tervetuloa! Syötä pelaajan nimi "
+                + "kenttään ja aletaan pelaamaan :-)" + "\n" + "Pelaajat:");
+        Label playersAdded = new Label();
+        
+        playersAdded.setText(service.getPlayersToPrint());
+        
+        TextField nameField = createTextFieldWithSettings();
+        nameField.setStyle("-fx-background-color: #e6d0dc;");
+               
+        VBox infoAndField = new VBox();
+        infoAndField.setSpacing(50);
+        
+        addLabelToVBox(infoAndField, infotext, playersAdded);
+        addTextFieldToVBox(infoAndField, nameField);
+        firstLayout.getChildren().add(infoAndField);
+       
         // ** Luo ja lisää painikkeet
-        Button newPlayer = createGrayButton("Syötä lisää pelaajia");        
+        Button newPlayer = createPinkButton("Tallenna pelaaja");        
         Button newGame = createPinkButton("Aloita peli");
      
-        firstLayout.getChildren().add(createHBoxWithButtons(newPlayer, newGame));
+        firstLayout.getChildren().add(createHBoxWithButtons(newPlayer, newGame));        
 
         // *2 Uusi peli + asetukset -näkymä 
         VBox startGameLayout = new VBox();    
@@ -58,8 +77,17 @@ public class MolkkyApplication extends Application{
         HBox gameSettingsLabels = createHBoxWithLabels(pointLimitLabel, pointLimitBrokenLabel);  
         
         // ** Asetusten painikkeet
-        Button pointLimitButton = createGrayButton("30");
-        Button pointLimitBrokenButton = createGrayButton("Pisteet puolitetaan");
+        Button pointLimitButtonThirty = createGrayButton("30");
+        Button pointLimitButtonFifty = createGrayButton("50");
+        
+        Button pointLimitBrokenToHalf = createGrayButton("Pisteet puolitetaan");
+        Button pointLimitBrokenToZero = createGrayButton("Pisteet nollataan");
+        
+        Button pointLimitButton = new Button();
+        Button pointLimitBrokenButton = new Button();
+        
+        pointLimitButton = pointLimitButtonFifty;
+        pointLimitBrokenButton = pointLimitBrokenToHalf;
         
         HBox gameSettingsButtons = createHBoxWithButtons(pointLimitButton, pointLimitBrokenButton);
         
@@ -67,6 +95,7 @@ public class MolkkyApplication extends Application{
         Button startGameButton = createPinkButton ("Aloita peli");
         
         // ** Lisää rompe näkymään ja luo scene
+        
         createStartGameLayout(startGameLayout, newGameText, gameSettingsLabels, gameSettingsButtons, startGameButton);       
         
         Scene startGameView = new Scene(startGameLayout);       
@@ -101,8 +130,17 @@ public class MolkkyApplication extends Application{
         });
         
         startGameButton.setOnAction((event) -> {
+            
             window.setScene(GameView);
         });
+        
+        newPlayer.setOnAction((event) -> {
+            String name = nameField.getText();
+            service.addNewPlayer(name);
+            nameField.clear();
+            playersAdded.setText(service.getPlayersToPrint());
+        });
+        
 
         window.setScene(welcomeView);
         window.show();       
@@ -205,21 +243,6 @@ public class MolkkyApplication extends Application{
         return button;
     }
     
-    public VBox createInfoTextAndField(){
-        Label infotext = createLabelWithSettings("Tervetuloa! Syötä pelaajan nimi "
-                + "kenttään ja aletaan pelaamaan :-)");
-        
-        TextField nameField = createTextFieldWithSettings();
-        
-        VBox infoAndField = new VBox();
-        infoAndField.setSpacing(50);
-        
-        addLabelToVBox(infoAndField, infotext);
-        addTextFieldToVBox(infoAndField, nameField);
-        
-        return infoAndField;
-    }
-    
     public HBox createHBoxWithButtons(Button button1, Button button2){
         HBox HBox = new HBox();
         addButtonsToHBox(HBox, button1, button2);
@@ -234,9 +257,10 @@ public class MolkkyApplication extends Application{
         return HBox;
     }
     
-    public void createStartGameLayout(VBox vBox, Label label, HBox HBox1, HBox HBox2, Button button){           
+    public void createStartGameLayout(VBox vBox, Label label1, HBox HBox1, HBox HBox2, Button button){           
         vBoxLayoutSettings(vBox);
-        addLabelToVBox(vBox, label);
+        addLabelToVBox(vBox, label1);
+        
         vBox.getChildren().add(HBox1);
         vBox.getChildren().add(HBox2);
         addButtonsToHBox(HBox2, button);

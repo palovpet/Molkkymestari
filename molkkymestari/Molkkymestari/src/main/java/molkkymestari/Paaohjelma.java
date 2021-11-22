@@ -16,11 +16,7 @@ import ui.MolkkyApplication;
  */
 public class Paaohjelma {
     
-    Game molkky = new Game();
-    Player player = new Player("Placeholder");
-    
-    
-    
+       
     public static void main(String[] args){
         launch(MolkkyApplication.class);
     }

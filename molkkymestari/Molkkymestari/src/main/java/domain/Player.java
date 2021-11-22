@@ -59,6 +59,11 @@ pelaaja luokka voisi muistaa statistiikkaan liittyviä tietoja */
         this.missedThrowsInThisGame = missedThrowsInThisGame;
     }
     
+    @Override
+    public String toString(){
+        return this.name;
+    }
+    
     
     
             

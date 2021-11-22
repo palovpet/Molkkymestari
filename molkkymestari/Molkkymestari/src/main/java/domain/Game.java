@@ -6,12 +6,14 @@
 package domain;
 import domain.Player;
 import java.util.ArrayList;
+import java.util.HashMap;
 /**
  *
  * @author palovpet
  */
 public class Game {
     ArrayList<Player> players;
+    HashMap<Integer, String> playersWithNames;
     ArrayList<Integer> playerPoints;
     ArrayList<Integer> playerMissedThrows;
     int whosTurn;
@@ -27,6 +29,7 @@ public class Game {
     
     public Game(int pointLimit){
         this.players = new ArrayList<>();
+        this.playersWithNames = new HashMap<>();
         this.playerPoints = new ArrayList<>();
         this.playerMissedThrows = new ArrayList<>();
         this.whosTurn = 0;  
@@ -64,15 +67,61 @@ public class Game {
         //Lisää jotain pelin päättämiseen ja voittajaan liittyen
     }
     
-    //Pelaajat    
-    public void addPlayer(Player player){
-        players.add(player);
-        player.setIndexInThisGame(this.players.size()+1);
-        player.setPointsInThisGame(0);
-        player.setMissedThrowsInThisGame(0);
+    //Pelaajat
+    public Player getPlayerWithIndex(int index){
+        Player player = getPlayers().get(index);
+        return player;
+    }
+    public boolean chechIfListContainsPlayerWithName(String name){
+        if(this.players.contains(name)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public Integer getPlayersIndexWithName(String name){
+        int index = 0;
+        if (!(this.players.contains(name))){
+            index = -1;
+            return index;
+        }
+        while(index < this.players.size()){
+            this.players.get(index);
+            if(this.players.get(index).equals(name)){
+                return index;
+                
+            }
+            index++;
+        }       
+        return index;
+    }
+    public Player getPlayerWithName(String name){
+        /*if(this.chechIfListContainsPlayerWithName(name)== false){
+            Pelaajaa ei löydy, tee jotain
+        }*/
+        int index = this.getPlayersIndexWithName(name);
+        Player player = this.getPlayerWithIndex(index);
+        return player;
+    }   
+    
+    public void addNewPlayer(String name){
+        /*if(this.chechIfListContainsPlayerWithName(name)){
+            Pelaaja on jo lisätty
+        }*/
+        Player newPlayer = new Player(name);
+        this.players.add(newPlayer);
+        
+        int playersIndex = this.getPlayersIndex(newPlayer);
+        newPlayer.setIndexInThisGame(playersIndex);
+        
+        newPlayer.setPointsInThisGame(0);
+        newPlayer.setMissedThrowsInThisGame(0);
     }
     
     public void setPointsFromThrow(Player player, int points){
+        
+        this.whosTurn += 1;
         
         if(points == 0){
             if(player.getMissedThrowsInThisGame()== 2){
@@ -111,7 +160,21 @@ public class Game {
         
     public ArrayList<Player> getPlayers(){
         return this.players;
-    } 
+    }
+    public String getPlayersString(){
+        if(this.players.size() == 0){
+
+            return "Ei pelaajia";
+        } else {
+        
+        String printOut = "";
+        for(int index = 0; index < this.players.size(); index++){
+            printOut = printOut + this.players.get(index) + "\n";
+        }
+        return printOut;   
+        }
+    }
+    
     
     public int getHowManyPlayers(){
         return this.players.size();

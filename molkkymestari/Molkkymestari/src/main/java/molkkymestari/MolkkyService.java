@@ -21,7 +21,6 @@ public class MolkkyService {
     public MolkkyService(){
         this.molkky = new Game();
     }
-
     
     public void changePointLimitToFifty(){
         molkky.setPointLimit(50);
@@ -31,24 +30,36 @@ public class MolkkyService {
         molkky.setPointLimit(30);
     }
     
-    public void pointsGoToZeroIfPoinLimitIsPassed(){
-        molkky.setPointsToZeroWhenPointLimitPassedWithTrue();
+    public void pointsGoToZeroIfPointLimitIsPassed(){
+        molkky.setPointsToZeroWhenPointLimitPassedWithValue(true);
     }
     
     public void pointsAreSplitHalfIfPoinLimitIsPassed(){
-        molkky.setPointsToZeroWhenPointLimitPassedWithFalse();
+        molkky.setPointsToZeroWhenPointLimitPassedWithValue(false);
     }
     
     public void addNewPlayer(String name){
         molkky.addNewPlayer(name);
     }
     public String getPlayersToPrint(){
-        return molkky.getPlayersString();
+        return molkky.getPlayersToString();
     }
     
-    public void documentThrow(){
-        //kirjaa heittovuoron tapahtumat
+    public String getWhosTurnName(){
+        return molkky.getWhosTurnName();
     }
+    
+    public String getWhosNextName(){
+        return molkky.getWhosTurnNextName();
+    }
+    public String getTheCurrentPlayersPoints(){
+        return molkky.getCurrentPlayersPoints();
+    }
+    
+    public void documentThrow(int points){
+        molkky.documentPointsFromThrow(points);
+    }
+    
     public void winnerFoundGameOver(){
         //jotain voittajan juhlintaa
     }

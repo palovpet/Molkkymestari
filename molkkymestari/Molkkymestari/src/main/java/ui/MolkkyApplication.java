@@ -1,12 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
-
-
-
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -18,16 +10,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import molkkymestari.MolkkyService;
 
-
-
-
-/**
- *
- * @author palovpet
- */
 public class MolkkyApplication extends Application{
-
-
 
     @Override
     public void start(Stage window){
@@ -42,7 +25,7 @@ public class MolkkyApplication extends Application{
         
         // ** Luo ja lisää infotekstin ja nimimerkkikentän 
         
-        Label infotext = createLabelWithSettings("Tervetuloa! Syötä pelaajan nimi "
+        Label infotext = createLabelWithSettings("Tervetuloa! Syötä ja tallenna ainakin yhden pelaajan nimi "
                 + "kenttään ja aletaan pelaamaan :-)" + "\n" + "Pelaajat:");
         Label playersAdded = new Label();
         
@@ -105,21 +88,25 @@ public class MolkkyApplication extends Application{
         vBoxLayoutSettings(GameLayout);
         
         // ** Pelivuoron tiedot 
-        Label whosTurn = createLabelWithSettings("Pelivuorossa");
-        Label whosTurnTemp = createLabelWithSettings("*tässä lukisi pelaaja*");
-        Label whosTurnPointsTemp = createLabelWithSettings("*tässä lukisi pelaajan pisteet*");
+        Label whosTurnText = createLabelWithSettings("Pelivuorossa:");
+        Label whosTurn = createLabelWithSettings(" ");
+        
+        Label whosTurnPoints = createLabelWithSettings(" ");
+        
                
         // ** Pisteiden kirjaaminen
         addLabelToVBox(GameLayout, createLabelWithSettings("Kirjaa heitto:"));   
         TextField pointsToDocument = createTextFieldWithSettings();
 
-//      String pointsToDocumentString = pointsToDocument.getText();
-//      int pointsToDocumentInteger = Integer.valueOf(pointsToDocumentString);
         Button documentButton = createGrayButton("Kirjaa");
         
+        Label whosTurnNextText = createLabelWithSettings("Seuraavana vuorossa:");
+        Label whosTurnNext = createLabelWithSettings(" ");
+        
         //** Pelinäkymän rompe lisätty ja uusi scene
-        addLabelToVBox(GameLayout, whosTurn, whosTurnTemp, whosTurnPointsTemp);
+        addLabelToVBox(GameLayout, whosTurnText, whosTurn, whosTurnPoints);
         addTextFieldToVBox(GameLayout, pointsToDocument);
+        addLabelToVBox(GameLayout, whosTurnNextText, whosTurnNext);
         addButtonsToVBox(GameLayout, documentButton);
 
         Scene GameView = new Scene(GameLayout);
@@ -130,8 +117,10 @@ public class MolkkyApplication extends Application{
         });
         
         startGameButton.setOnAction((event) -> {
-            
             window.setScene(GameView);
+            whosTurn.setText(service.getWhosTurnName());
+            whosTurnNext.setText(service.getWhosNextName());
+            
         });
         
         newPlayer.setOnAction((event) -> {
@@ -139,8 +128,19 @@ public class MolkkyApplication extends Application{
             service.addNewPlayer(name);
             nameField.clear();
             playersAdded.setText(service.getPlayersToPrint());
+            
         });
         
+        pointLimitButton.setOnAction((event ->{
+            service.changePointLimitToFifty();
+        }));
+        
+        documentButton.setOnAction((event ->{ 
+//            String pointsString = pointsToDocument.getText();
+//            service.documentThrow(Integer.valueOf(pointsString));
+//            whosTurnPoints.setText(service.getTheCurrentPlayersPoints());
+            
+        }));
 
         window.setScene(welcomeView);
         window.show();       
@@ -211,7 +211,7 @@ public class MolkkyApplication extends Application{
     }
     
     public void vBoxLayoutSettings(VBox VBox){
-        VBox.setPrefSize(500, 500);
+        VBox.setPrefSize(800, 800);
         VBox.setSpacing(30);
     }
     public void labelSettings(Label label){
@@ -265,6 +265,11 @@ public class MolkkyApplication extends Application{
         vBox.getChildren().add(HBox2);
         addButtonsToHBox(HBox2, button);
 
+    }
+    public void upDatePointLimitToFifty(MolkkyService service, Button button){
+        service.changePointLimitToFifty();
+        Button buttonToReturn = createGrayButton("30");
+        
     }
     
     

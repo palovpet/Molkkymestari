@@ -9,12 +9,12 @@ Mölkkymestarin avulla voidaan pitää kirjaa mölkkyturnauksen etenemisestä. M
 ### Perusversio
 * Pelin alkuvalmistelut:
   * 1-10 pelaajaa kirjataan  peliin nimimerkeillä
-  * Valitaan moneenko pisteeseen pelataan (50 / 30)
-  * Valitaan meneekö pistesaldo pisterajan ylitettäessä puoleen väliin vai nollaan
+  * Pisteraja on oletuksena 50, mutta sen voi vaihtaa olemaan 30
+  * Pisterjan ylittyessä oletuksena on, että pelaajan pisteet puolittuvat. Ne voi myös valita nollaantumaan.
 
 * Pelin kulku:
-  * Jokaisen pelaajan pisteet kysytään peräkkäin samassa järjestyksessä jossa pelaajat syötettiin, pistemäärä syötetään lukuna tai tyhjänä
-  * Kun jokin pelaaja saavuttaa sovitun pisterajan, peli päättyy
+  * Jokaisen pelaajan pisteet kysytään peräkkäin samassa järjestyksessä jossa pelaajat syötettiin, pistemäärä syötetään lukuna, huti nollana.ä
+  * Kun jokin pelaaja saavuttaa sovitun pisterajan, peli päättyy ja voittaja ilmoitetaan
   * Jos pelaaja ylittää sovitun pisterajan, heidän pistesaldo menee puoleen tai nollaan alun määrittelyistä riippuen
   * Jos pelaaja saa peräkkäin kolme tyhjää, hän tippuu pelistä
 

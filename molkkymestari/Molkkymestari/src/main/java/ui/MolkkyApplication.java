@@ -11,11 +11,12 @@ import javafx.scene.control.TextField;
 import molkkymestari.MolkkyService;
 
 public class MolkkyApplication extends Application{
+    private MolkkyService service;
 
     @Override
     public void start(Stage window){
         window.setTitle("Mölkkymestari");
-        MolkkyService service = new MolkkyService();
+        service = new MolkkyService();
         
 
         // *1 Ensimmäinen näkymä ja scene
@@ -60,17 +61,12 @@ public class MolkkyApplication extends Application{
         HBox gameSettingsLabels = createHBoxWithLabels(pointLimitLabel, pointLimitBrokenLabel);  
         
         // ** Asetusten painikkeet
-        Button pointLimitButtonThirty = createGrayButton("30");
-        Button pointLimitButtonFifty = createGrayButton("50");
+        Button pointLimitButton = createPinkButton("");
+        pointLimitButton.setText("" + service.getPointLimit());
         
-        Button pointLimitBrokenToHalf = createGrayButton("Pisteet puolitetaan");
-        Button pointLimitBrokenToZero = createGrayButton("Pisteet nollataan");
+        //1 Nappi jonka tekstiä muutetaan, taphtumankäsittelijään if-lause
         
-        Button pointLimitButton = new Button();
-        Button pointLimitBrokenButton = new Button();
-        
-        pointLimitButton = pointLimitButtonFifty;
-        pointLimitBrokenButton = pointLimitBrokenToHalf;
+        Button pointLimitBrokenButton = createPinkButton("Pisteet puolitetaan pisterajan ylittyessä");         
         
         HBox gameSettingsButtons = createHBoxWithButtons(pointLimitButton, pointLimitBrokenButton);
         
@@ -116,12 +112,7 @@ public class MolkkyApplication extends Application{
             window.setScene(startGameView);
         });
         
-        startGameButton.setOnAction((event) -> {
-            window.setScene(GameView);
-            whosTurn.setText(service.getWhosTurnName());
-            whosTurnNext.setText(service.getWhosNextName());
-            
-        });
+        
         
         newPlayer.setOnAction((event) -> {
             String name = nameField.getText();
@@ -132,16 +123,45 @@ public class MolkkyApplication extends Application{
         });
         
         pointLimitButton.setOnAction((event ->{
-            service.changePointLimitToFifty();
-        }));
-        
-        documentButton.setOnAction((event ->{ 
-//            String pointsString = pointsToDocument.getText();
-//            service.documentThrow(Integer.valueOf(pointsString));
-//            whosTurnPoints.setText(service.getTheCurrentPlayersPoints());
+            if(service.getPointLimit() == 50){
+                service.changePointLimitToThirty();
+                pointLimitButton.setText("30");
+            } else if (service.getPointLimit() == 30){
+                service.changePointLimitToFifty();
+                pointLimitButton.setText("50");
+            }
             
         }));
-
+        
+        pointLimitBrokenButton.setOnAction((event ->{
+            if(service.getPointsToZeroWhenPointLimitPassedWithValue() == false){
+                service.setPointsToZeroWhenPointLimitPassedWithValue(true);
+                pointLimitBrokenButton.setText("Pisteet nollataan pisterajan ylittyessä");
+            } else if(service.getPointsToZeroWhenPointLimitPassedWithValue() == true){
+                service.setPointsToZeroWhenPointLimitPassedWithValue(false);
+                pointLimitBrokenButton.setText("Pisteet puolitetaan pisterajan ylittyessä");
+            }
+            
+        }));
+        
+        startGameButton.setOnAction((event) -> {
+            window.setScene(GameView);
+            whosTurn.setText(service.getWhosTurnName());
+            whosTurnNext.setText(service.getWhosNextName());
+            
+        });
+        
+        documentButton.setOnAction((event ->{ 
+            String pointsString = pointsToDocument.getText();
+            service.documentThrow(Integer.valueOf(pointsString));
+            pointsToDocument.clear();
+            
+            whosTurnPoints.setText(service.getTheCurrentPlayersPoints());
+            whosTurn.setText(service.getWhosTurnName());
+            whosTurnNext.setText(service.getWhosNextName());
+            
+        }));
+        
         window.setScene(welcomeView);
         window.show();       
         

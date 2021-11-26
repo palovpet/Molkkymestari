@@ -3,23 +3,15 @@ package molkkymestari;
 
 import domain.Game;
 
-///*
-// * To change this license header, choose License Headers in Project Properties.
-// * To change this template file, choose Tools | Templates
-// * and open the template in the editor.
-// */
-//package molkkymestari;
-
-//
-///**
-// *
-// * @author palovpet
-// */
 public class MolkkyService {
     Game molkky;
-    
+  
     public MolkkyService(){
         this.molkky = new Game();
+    }
+    
+    public int getPointLimit(){
+        return molkky.getPointLimit();
     }
     
     public void changePointLimitToFifty(){
@@ -30,12 +22,12 @@ public class MolkkyService {
         molkky.setPointLimit(30);
     }
     
-    public void pointsGoToZeroIfPointLimitIsPassed(){
-        molkky.setPointsToZeroWhenPointLimitPassedWithValue(true);
+    public void setPointsToZeroWhenPointLimitPassedWithValue(boolean value){
+        molkky.setPointsToZeroWhenPointLimitPassedWithValue(value);
     }
     
-    public void pointsAreSplitHalfIfPoinLimitIsPassed(){
-        molkky.setPointsToZeroWhenPointLimitPassedWithValue(false);
+    public boolean getPointsToZeroWhenPointLimitPassedWithValue(){
+        return molkky.getPointsToZeroWhenPointLimitPassedWithValue();
     }
     
     public void addNewPlayer(String name){

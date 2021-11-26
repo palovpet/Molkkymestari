@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class PlayerList {
     ArrayList<Player> players;
-    
-    
+        
     public PlayerList(){
         this.players = new ArrayList<>();       
     }
        
     public Player getPlayerWithIndex(int index){
+        
         Player player = this.players.get(index);
         return player;
     }
@@ -38,6 +38,8 @@ public class PlayerList {
         newPlayer.setIndexInThisGame(indexForThisGame);        
         newPlayer.setPointsInThisGame(0);
         newPlayer.setMissedThrowsInThisGame(0);
+        
+        
     }
    
     public int getHowManyPointDoesPlayerHave(Player player){

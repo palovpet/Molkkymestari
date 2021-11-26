@@ -17,8 +17,7 @@ public class Game {
         this.pointLimit = pointLimit;
         this.pointsToZeroWhenPointLimitPassed = false;  
         this.winnerFound = false;        
-    }
-    
+    }   
     //Pelaajien hallinta   
     public void addNewPlayer(String name){
         this.playerList.addNewPlayer(name);
@@ -47,13 +46,28 @@ public class Game {
     }
         
     //Pelivuoroon liittyvät
+    public void updateWhosTurn(){
+        
+            
+        if(this.whosTurn >= (this.playerList.getHowManyPlayers()-1)){
+            
+            this.whosTurn = 0;
+            
+        } else {
+            
+            this.whosTurn = this.whosTurn + 1;
+        }
+    }
+    
     public String getCurrentPlayersPoints(){
+        
         Player playerWhosTurn = this.playerList.getPlayerWithIndex(whosTurn);
         int playersPoints = playerWhosTurn.getPointsInThisGame();
         return "" + playersPoints;
     }
     
     public String getWhosTurnName(){
+        
         if (this.playerList.getHowManyPlayers()== 0){
             return "Ei pelaajia";
         }    
@@ -61,15 +75,23 @@ public class Game {
     }
     
     public int getWhosTurnIndex(){
+        
         return this.whosTurn;
     }
     
     public int getWhosNextIndex(){
+             
         if(this.playerList.getHowManyPlayers()== 1){
-            return 1;
+            
+            return 0;
+        }
+        
+        else if ((this.whosTurn + 1) >= (this.playerList.getHowManyPlayers())){
+            return 0;
         }
         return (this.whosTurn + 1);
     }
+    
     public String getWhosTurnNextName(){
         if(this.playerList.getHowManyPlayers()== 1){
             return "Vain yksi pelaaja lisätty";
@@ -77,7 +99,9 @@ public class Game {
         else if (this.playerList.getHowManyPlayers()== 0){
             return "Ei pelaajia";
         }
-        return this.playerList.getPlayerWithIndex(this.getWhosNextIndex()).toString();
+        int indexOfNext = this.getWhosNextIndex();
+        
+        return this.playerList.getPlayerWithIndex(indexOfNext).toString();
             
     }
     //Peliasetukset  
@@ -97,7 +121,6 @@ public class Game {
         this.pointLimit = limit;
     }
     
-      
     //Pelitoiminnot
     
         public void winnerFound(){
@@ -107,7 +130,7 @@ public class Game {
         
     public void documentPointsFromThrow(int points){
         Player playerWhosTurn = this.playerList.getPlayerWithIndex(this.whosTurn);        
-        this.whosTurn += 1;
+        this.updateWhosTurn();
         
         if(points == 0){
             if(playerWhosTurn.getMissedThrowsInThisGame()== 2){
@@ -123,10 +146,12 @@ public class Game {
         else if ((playerWhosTurn.getPointsInThisGame() + points) == this.pointLimit){
             winnerFound();
             
+            
         } else if ((playerWhosTurn.getPointsInThisGame() + points) > this.pointLimit){
             if(getPointsToZeroWhenPointLimitPassedWithValue()== false){
-                int pointsToHalf = (playerWhosTurn.getPointsInThisGame() / 2);
+                int pointsToHalf = ((playerWhosTurn.getPointsInThisGame() + points) / 2);
                 //tee jotain parittomien lukujen käsittelylle
+                
                 playerWhosTurn.setPointsInThisGame(pointsToHalf);
             }
             else {

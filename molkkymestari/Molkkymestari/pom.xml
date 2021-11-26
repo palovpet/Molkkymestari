@@ -66,7 +66,7 @@
                 <version>0.8.3</version>
                 <configuration>
                     <excludes>
-                        <exclude>molkkymestari/ui/*</exclude>
+                        <exclude>ui/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -91,7 +91,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>molkkymestari.ui.Paaohjelma</mainClass>
+                                    <mainClass>molkkymestari.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

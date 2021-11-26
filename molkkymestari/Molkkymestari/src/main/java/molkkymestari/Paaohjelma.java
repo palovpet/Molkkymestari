@@ -1,8 +1,7 @@
-
 package molkkymestari;
 
-import static javafx.application.Application.launch;
 import ui.MolkkyApplication;
+import static javafx.application.Application.launch;
 
 public class Paaohjelma {
     

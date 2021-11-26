@@ -94,7 +94,7 @@ public class MolkkyApplication extends Application{
         addLabelToVBox(GameLayout, createLabelWithSettings("Kirjaa heitto:"));   
         TextField pointsToDocument = createTextFieldWithSettings();
 
-        Button documentButton = createGrayButton("Kirjaa");
+        Button documentButton = createPinkButton("Kirjaa");
         
         Label whosTurnNextText = createLabelWithSettings("Seuraavana vuorossa:");
         Label whosTurnNext = createLabelWithSettings(" ");

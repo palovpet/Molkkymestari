@@ -1,5 +1,6 @@
 package domain;
 
+import molkkymestari.domain.PlayerList;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

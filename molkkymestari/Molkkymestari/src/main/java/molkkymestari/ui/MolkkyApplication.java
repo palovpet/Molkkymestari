@@ -1,6 +1,6 @@
-package ui;
+package molkkymestari.ui;
 
-import molkkymestari.MolkkyService;
+import molkkymestari.logic.MolkkyService;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

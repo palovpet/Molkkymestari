@@ -42,7 +42,7 @@ public class Player {
             return;
         } else if(points > 12){
             return;
-        }
+        } 
         this.pointsInThisGame += points;
     }
 

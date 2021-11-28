@@ -12,12 +12,23 @@ import javafx.scene.control.TextField;
 
 public class MolkkyApplication extends Application{
     private MolkkyService service;
-
+    
+    @Override
+    public void init(){
+        service = new MolkkyService();
+        
+    }
+    
     @Override
     public void start(Stage window){
         window.setTitle("Mölkkymestari");
-        service = new MolkkyService();
         
+        // * Painikkeet eri näkymille ja sulkemiselle
+        
+        /*Button GameSettingsLayoutButton = createLilacButton("Peliasetukset");
+        Button GameViewButton = createLilacButton("Pelinäkymä");
+        Button CloseGameButton = createLilacButton("Sulje");*/
+       
 
         // *1 Ensimmäinen näkymä ja scene
         VBox firstLayout = new VBox();  
@@ -49,7 +60,9 @@ public class MolkkyApplication extends Application{
         firstLayout.getChildren().add(createHBoxWithButtons(newPlayer, newGame));        
 
         // *2 Uusi peli + asetukset -näkymä 
-        VBox startGameLayout = new VBox();    
+        VBox gameSettingsLayout = new VBox();    
+                     
+        
         
         // ** Näkymän otsikko   
         Label newGameText = createLabelWithSettings("UUSI PELI - asetukset");
@@ -75,9 +88,9 @@ public class MolkkyApplication extends Application{
         
         // ** Lisää rompe näkymään ja luo scene
         
-        createStartGameLayout(startGameLayout, newGameText, gameSettingsLabels, gameSettingsButtons, startGameButton);       
+        createGameSettingsLayout(gameSettingsLayout, newGameText, gameSettingsLabels, gameSettingsButtons, startGameButton);       
         
-        Scene startGameView = new Scene(startGameLayout);       
+        Scene GameSettingsView = new Scene(gameSettingsLayout);       
         
         // *3 Pelinäkymä 
         VBox GameLayout = new VBox();  
@@ -107,9 +120,13 @@ public class MolkkyApplication extends Application{
 
         Scene GameView = new Scene(GameLayout);
         
+        
+        
+        
+        
         // * Painikkeiden toiminnot
         newGame.setOnAction((event) -> {
-            window.setScene(startGameView);
+            window.setScene(GameSettingsView);
         });
         
         
@@ -153,12 +170,14 @@ public class MolkkyApplication extends Application{
         
         documentButton.setOnAction((event ->{ 
             String pointsString = pointsToDocument.getText();
+            
             service.documentThrow(Integer.valueOf(pointsString));
             pointsToDocument.clear();
             
             whosTurnPoints.setText(service.getTheCurrentPlayersPoints());
             whosTurn.setText(service.getWhosTurnName());
             whosTurnNext.setText(service.getWhosNextName());
+            //Käsittely jos ei syötetä arvoa mutta napsautetaan?
             
         }));
         
@@ -262,10 +281,23 @@ public class MolkkyApplication extends Application{
         button.setStyle("-fx-background-color: #D76FB0; ");
         return button;
     }
+    public Button createLilacButton(String text){
+        Button button = new Button(text);
+        button.setStyle("-fx-background-color: #DDAADD; ");
+        return button;
+    }    
     
     public HBox createHBoxWithButtons(Button button1, Button button2){
         HBox HBox = new HBox();
         addButtonsToHBox(HBox, button1, button2);
+        hBoxSettins(HBox);
+        return HBox;
+    }
+    
+    public HBox createHBoxWithButtons(Button button1, Button button2, Button button3, Button button4){
+        HBox HBox = new HBox();
+        addButtonsToHBox(HBox, button1, button2);
+        addButtonsToHBox(HBox, button3, button4);
         hBoxSettins(HBox);
         return HBox;
     }
@@ -277,7 +309,7 @@ public class MolkkyApplication extends Application{
         return HBox;
     }
     
-    public void createStartGameLayout(VBox vBox, Label label1, HBox HBox1, HBox HBox2, Button button){           
+    public void createGameSettingsLayout(VBox vBox, Label label1, HBox HBox1, HBox HBox2, Button button){           
         vBoxLayoutSettings(vBox);
         addLabelToVBox(vBox, label1);
         

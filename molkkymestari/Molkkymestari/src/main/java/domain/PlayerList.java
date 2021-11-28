@@ -10,7 +10,6 @@ public class PlayerList {
     }
        
     public Player getPlayerWithIndex(int index){
-        
         Player player = this.players.get(index);
         return player;
     }

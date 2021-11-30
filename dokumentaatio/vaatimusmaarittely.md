@@ -21,7 +21,6 @@ Mölkkymestarin avulla voidaan pitää kirjaa mölkkyturnauksen etenemisestä. M
 * Pelin päätyttyä:
   * Voittaja julistetaan (TEKEMÄTTÄ)
   * Kaikilta osallistuneilta pelaajilta näytetään statistiikkaa pelistä (TEKEMÄTTÄ)
-  * Paluu alkuun (TEKEMÄTTÄ)
 
 ### Perusversiota laajentavat jatkokehitysideat:
   * Pelaajien tiedot tallennetaan ja statistiikkaan voi palata pelin jälkeen

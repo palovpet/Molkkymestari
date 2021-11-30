@@ -12,13 +12,22 @@ Alustava arkkitehtuurikuvaus: [arkkitehtuuri](https://github.com/palovpet/ot-har
 
 ## Sovelluksen käynnistäminen
 
-Komentoriviltä oltaessa Molkkymestari hakemistossa komennolla: mvn compile exec:java -Dexec.mainClass=molkkymestari.logic.Main
+Komentoriviltä oltaessa Molkkymestari hakemistossa komennolla: 
+```
+mvn compile exec:java -Dexec.mainClass=molkkymestari.logic.Main
+```
 
 Ohjelma pyytää ensin syöttämään pelaajat, kun pelaajia on tallennettu 1 tai enemmän, voi pelin aloittaa Aloita peli painikkeesta.
 
 ## Testien ajaminen
 
-Komentoriviltä oltaessa Molkkymestari hakemistossa komennolla: mvn test
+Komentoriviltä oltaessa Molkkymestari hakemistossa komennolla: 
+```
+mvn test
+```
 
-ja testikattavuusraportin luoda komennolla: mvn test jacoco:report
+ja testikattavuusraportin luoda komennolla: 
+```
+mvn test jacoco:report
+```
 

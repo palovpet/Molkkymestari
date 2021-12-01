@@ -21,7 +21,7 @@ public class PlayerList {
         int playersIndex = -1;
         for (int index = 0; index < this.players.size(); index++) {
                 
-            if (this.players.get(index).equals(name)) {
+            if (this.players.get(index).toString().equals(name)) {
                     
                 playersIndex = index;
             }

@@ -2,9 +2,6 @@ package molkkymestari.ui;
 
 import molkkymestari.logic.MolkkyService;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,7 +9,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 
 public class MolkkyApplication extends Application{
     private MolkkyService service;
@@ -138,10 +134,10 @@ public class MolkkyApplication extends Application{
         
         pointLimitButton.setOnAction((event ->{
             if(service.getPointLimit() == 50){
-                service.changePointLimitToThirty();
+                service.setPointLimit(30);
                 pointLimitButton.setText("30");
             } else if (service.getPointLimit() == 30){
-                service.changePointLimitToFifty();
+                service.setPointLimit(50);
                 pointLimitButton.setText("50");
             }
             
@@ -190,10 +186,11 @@ public class MolkkyApplication extends Application{
                 
                 
                 pointsToDocument.clear();
-                    
-                whosTurnPoints.setText(service.getTheCurrentPlayersPoints());
+                
+                whosTurnPoints.setText(service.getPlayersPointsWithIndex(service.getWhosTurnIndex()));
                 whosTurn.setText(service.getWhosTurnName());
                 whosTurnNext.setText(service.getWhosNextName());
+                       
              
                 //Käsittely jos ei syötetä arvoa mutta napsautetaan?
                         
@@ -335,11 +332,6 @@ public class MolkkyApplication extends Application{
         vBox.getChildren().add(HBox2);
         addButtonsToHBox(HBox2, button);
 
-    }
-    public void upDatePointLimitToFifty(MolkkyService service, Button button){
-        service.changePointLimitToFifty();
-        Button buttonToReturn = createGrayButton("30");
-        
     }
     
     public VBox createPlayerPointTable(){

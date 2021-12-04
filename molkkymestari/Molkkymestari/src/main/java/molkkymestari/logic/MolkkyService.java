@@ -16,14 +16,9 @@ public class MolkkyService {
         return molkky.getPointLimit();
     }
     
-    public void changePointLimitToFifty() {
+    public void setPointLimit(int limit) {
         
-        molkky.setPointLimit(50);
-    }
-    
-    public void changePointLimitToThirty() {
-        
-        molkky.setPointLimit(30);
+        molkky.setPointLimit(limit);
     }
     
     public void setPointsToZeroWhenPointLimitPassedWithValue(boolean value) {
@@ -40,6 +35,7 @@ public class MolkkyService {
         
         molkky.addNewPlayer(name);
     }
+    
     public String getPlayersToPrint() {
         
         return molkky.getPlayersToString();
@@ -52,11 +48,11 @@ public class MolkkyService {
     
     public String getWhosNextName() {
         
-        return molkky.getWhosTurnNextName();
+        return molkky.getWhosNextName();
     }
-    public String getTheCurrentPlayersPoints() {
-        
-        return molkky.getCurrentPlayersPoints();
+    
+    public int getWhosTurnIndex() {
+        return molkky.getWhosTurnIndex();
     }
     
     public void documentThrow(int points) {

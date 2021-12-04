@@ -9,8 +9,7 @@ public class Game {
     Player winner;
     boolean winnerFound;
 
-    public Game() {
-        
+    public Game() {       
         this(50);
     }
     
@@ -63,12 +62,12 @@ public class Game {
         }
     }
 
-    public String getCurrentPlayersPoints() {
+    /*public String getCurrentPlayersPoints() {
         
         Player playerWhosTurn = this.playerList.getPlayerWithIndex(whosTurn);
         int playersPoints = playerWhosTurn.getPointsInThisGame();
         return "" + playersPoints;
-    }
+    }*/
 
     public String getWhosTurnName() {
 
@@ -94,7 +93,7 @@ public class Game {
         return (this.whosTurn + 1);
     }
 
-    public String getWhosTurnNextName() {
+    public String getWhosNextName() {
         if (this.playerList.getHowManyPlayers() == 1) {
             return "Vain yksi pelaaja";
         } else if (this.playerList.getHowManyPlayers() == 0) {

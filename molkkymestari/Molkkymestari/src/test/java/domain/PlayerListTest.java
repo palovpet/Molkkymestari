@@ -68,6 +68,14 @@ public class PlayerListTest {
         assertEquals(emptyList.toString(), "Ei pelaajia");        
     }
     
+    @Test
+    public void removePlayerRemovesAPlayer() {
+        
+        list.removePlayer(list.getPlayerWithIndex(0));
+        assertEquals(list.getHowManyPlayers(), 1);
+    }
+    
+     
     
     
 }

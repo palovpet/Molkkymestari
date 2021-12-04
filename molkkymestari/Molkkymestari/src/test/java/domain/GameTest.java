@@ -17,10 +17,12 @@ import static org.junit.Assert.*;
 public class GameTest {   
     
     Game game;
+  
     
     @Before
     public void setUp() {
         game = new Game();
+        
     }
     
     @Test
@@ -56,4 +58,20 @@ public class GameTest {
         assertEquals(game.getPointsToZeroWhenPointLimitPassedWithValue(), true);
     }
     
+    @Test
+    public void addNewPlayerAddsPlayer() {
+        game.addNewPlayer("Testi-Taneli");
+        assertEquals(game.getHowManyPlayers(), 1);
+    }
+    
+    @Test
+    public void getPlayersToStringReturnsPlayers() {
+        game.addNewPlayer("Testi-Taneli");
+        assertEquals(game.getPlayersToString(), "Testi-Taneli\n");
+    }
+    
+    @Test
+    public void getWinnerFoundReturnsFalseWhenGameBegins() {
+        assertEquals(game.getWinnerFound(), false);
+    }
 }

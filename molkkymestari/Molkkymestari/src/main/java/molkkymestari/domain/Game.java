@@ -64,7 +64,7 @@ public class Game {
     }
 
     public String getCurrentPlayersPoints() {
-
+        
         Player playerWhosTurn = this.playerList.getPlayerWithIndex(whosTurn);
         int playersPoints = playerWhosTurn.getPointsInThisGame();
         return "" + playersPoints;
@@ -96,7 +96,7 @@ public class Game {
 
     public String getWhosTurnNextName() {
         if (this.playerList.getHowManyPlayers() == 1) {
-            return "Vain yksi pelaaja lisätty";
+            return "Vain yksi pelaaja";
         } else if (this.playerList.getHowManyPlayers() == 0) {
             return "Ei pelaajia";
         }
@@ -124,21 +124,23 @@ public class Game {
     }
 
     //Pelitoiminnot ja voittaja
-    public void removePlayerWithIndex(int index) {
+    public void removePlayer(Player player) {
         
-        Player playerToBeRemoved = getPlayerWithIndex(index);
-        this.playerList.removePlayer(playerToBeRemoved);
+        this.playerList.removePlayer(player);
+        PlayerList updatedPlayerList = playerList.updatePlayerList();
+        this.playerList = updatedPlayerList;
     }
     
     
     public void documentPointsFromThrow(int points) {
         
         Player playerWhosTurn = this.playerList.getPlayerWithIndex(this.whosTurn);
-        this.updateWhosTurn();
-
+        
         if (points == 0) {
             if (playerWhosTurn.getMissedThrowsInThisGame() == 2) {
-                this.removePlayerWithIndex(points);
+                removePlayer(playerWhosTurn);
+                
+                
             } else {
                 playerWhosTurn.setMissedThrowsInThisGame((playerWhosTurn.getMissedThrowsInThisGame() + 1));
             }
@@ -162,6 +164,8 @@ public class Game {
                 playerWhosTurn.setPointsInThisGame(0);
             }
         } 
+        int playerWhosTurnIndexAfterDocumenting = playerWhosTurn.getIndexInThisGame();
+        this.updateWhosTurn();
     }
     
     public boolean getWinnerFound() {

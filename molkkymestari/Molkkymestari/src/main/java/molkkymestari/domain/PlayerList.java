@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 public class PlayerList {
     ArrayList<Player> players;
+    ArrayList<Player> playersForPointTable;
         
     public PlayerList() {
         
-        this.players = new ArrayList<>();       
+        this.players = new ArrayList<>();    
+        this.playersForPointTable = new ArrayList<>();
     }
        
     public Player getPlayerWithIndex(int index) {
@@ -39,6 +41,7 @@ public class PlayerList {
         //Lisää jokin tarkastus, jos sama nimi on jo käytössä
         Player newPlayer = new Player(name);
         this.players.add(newPlayer);
+        this.playersForPointTable.add(newPlayer);
         
         int indexForThisGame = this.players.indexOf(newPlayer);
         newPlayer.setIndexInThisGame(indexForThisGame);        
@@ -57,6 +60,10 @@ public class PlayerList {
         
         return this.players.size();
     }   
+    
+    public void removePlayer(Player player) {
+        this.players.remove(player);
+    }
     
     @Override
     public String toString() {

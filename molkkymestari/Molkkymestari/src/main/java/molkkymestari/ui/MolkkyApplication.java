@@ -2,6 +2,9 @@ package molkkymestari.ui;
 
 import molkkymestari.logic.MolkkyService;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 
 public class MolkkyApplication extends Application{
     private MolkkyService service;
@@ -22,13 +26,7 @@ public class MolkkyApplication extends Application{
     @Override
     public void start(Stage window){
         window.setTitle("Mölkkymestari");
-        
-        // * Painikkeet eri näkymille ja sulkemiselle
-        
-        /*Button GameSettingsLayoutButton = createLilacButton("Peliasetukset");
-        Button GameViewButton = createLilacButton("Pelinäkymä");
-        Button CloseGameButton = createLilacButton("Sulje");*/
-       
+         
 
         // *1 Ensimmäinen näkymä ja scene
         VBox firstLayout = new VBox();  
@@ -111,18 +109,17 @@ public class MolkkyApplication extends Application{
         
         Label whosTurnNextText = createLabelWithSettings("Seuraavana vuorossa:");
         Label whosTurnNext = createLabelWithSettings(" ");
+         
         
         //** Pelinäkymän rompe lisätty ja uusi scene
         addLabelToVBox(GameLayout, whosTurnText, whosTurn, whosTurnPoints);
         addTextFieldToVBox(GameLayout, pointsToDocument);
         addLabelToVBox(GameLayout, whosTurnNextText, whosTurnNext);
         addButtonsToVBox(GameLayout, documentButton);
+           
+        
 
         Scene GameView = new Scene(GameLayout);
-        
-        
-        
-        
         
         // * Painikkeiden toiminnot
         newGame.setOnAction((event) -> {
@@ -168,18 +165,39 @@ public class MolkkyApplication extends Application{
             
         });
         
-        documentButton.setOnAction((event ->{ 
+        documentButton.setOnAction((event) -> {                   
             String pointsString = pointsToDocument.getText();
-            
             service.documentThrow(Integer.valueOf(pointsString));
-            pointsToDocument.clear();
             
-            whosTurnPoints.setText(service.getTheCurrentPlayersPoints());
-            whosTurn.setText(service.getWhosTurnName());
-            whosTurnNext.setText(service.getWhosNextName());
-            //Käsittely jos ei syötetä arvoa mutta napsautetaan?
-            
-        }));
+                
+            if(service.getWinnerFound() == true) {    
+                    
+                  VBox winnerLayout = new VBox();
+                  vBoxLayoutSettings(winnerLayout);
+                  Scene winnerView = new Scene(winnerLayout);
+                    
+                  Label winnerFoundText = createLabelWithSettings("VOITTAJA ON:");
+                  Label winnersName = createLabelWithSettings("");
+                  winnersName.setText(service.getWinnerName());
+                  
+                  VBox playerPointTable = createPlayerPointTable();
+                   
+                  addLabelToVBox(winnerLayout, winnerFoundText, winnersName);
+                  winnerLayout.getChildren().add(playerPointTable);
+                   
+                  window.setScene(winnerView);
+                }
+                
+                
+                pointsToDocument.clear();
+                    
+                whosTurnPoints.setText(service.getTheCurrentPlayersPoints());
+                whosTurn.setText(service.getWhosTurnName());
+                whosTurnNext.setText(service.getWhosNextName());
+             
+                //Käsittely jos ei syötetä arvoa mutta napsautetaan?
+                        
+        });
         
         window.setScene(welcomeView);
         window.show();       
@@ -322,6 +340,18 @@ public class MolkkyApplication extends Application{
         service.changePointLimitToFifty();
         Button buttonToReturn = createGrayButton("30");
         
+    }
+    
+    public VBox createPlayerPointTable(){
+        VBox playerPoints = new VBox();
+        playerPoints.getChildren().add(createLabelWithSettings("Pistetaulukko"));
+        for(int index = 0; index < service.getHowManyPlayers(); index ++) {
+                        
+            addLabelToVBox(playerPoints, new Label (service.getPlayersNameWithIndex(index) + ": " + service.getPlayersPointsWithIndex(index)));
+                     
+        }
+        
+        return playerPoints;
     }
     
     

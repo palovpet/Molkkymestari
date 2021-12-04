@@ -60,9 +60,28 @@ public class MolkkyService {
     }
     
     public void documentThrow(int points) {
-        
         molkky.documentPointsFromThrow(points);
     }
     
+    public boolean getWinnerFound() {
+        return molkky.getWinnerFound();
+    }
+    
+    public String getWinnerName() {
+        return molkky.getWinner().toString();
+    }
+    
+    public int getHowManyPlayers() {
+        return molkky.getHowManyPlayers();
+    }
+    
+    
+    public String getPlayersNameWithIndex(int index) {
+        return molkky.getPlayerWithIndex(index).toString();
+    }
+    
+    public String getPlayersPointsWithIndex(int index) {
+        return "" + molkky.getPlayerWithIndex(index).getPointsInThisGame();
+    }
     
 }

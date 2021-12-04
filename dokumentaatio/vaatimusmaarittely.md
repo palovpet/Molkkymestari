@@ -14,13 +14,13 @@ Mölkkymestarin avulla voidaan pitää kirjaa mölkkyturnauksen etenemisestä. M
 
 * Pelin kulku:
   * Jokaisen pelaajan pisteet kysytään peräkkäin samassa järjestyksessä jossa pelaajat syötettiin, pistemäärä syötetään lukuna, huti nollana. (TEHTY!)
-  * Kun jokin pelaaja saavuttaa sovitun pisterajan, peli päättyy ja voittaja ilmoitetaan (TEKEMÄTTÄ)
+  * Kun jokin pelaaja saavuttaa sovitun pisterajan, peli päättyy ja voittaja ilmoitetaan (TEHTY!)
   * Jos pelaaja ylittää sovitun pisterajan, heidän pistesaldo menee puoleen tai nollaan alun määrittelyistä riippuen (TEHTY!)
-  * Jos pelaaja saa peräkkäin kolme tyhjää, hän tippuu pelistä (TEKEMÄTTÄ)
+  * Jos pelaaja saa peräkkäin kolme tyhjää, hän tippuu pelistä (TEHTY!)
 
 * Pelin päätyttyä:
-  * Voittaja julistetaan (TEKEMÄTTÄ)
-  * Kaikilta osallistuneilta pelaajilta näytetään statistiikkaa pelistä (TEKEMÄTTÄ)
+  * Voittaja julistetaan (TEHTY!)
+  * Kaikilta osallistuneilta pelaajilta näytetään statistiikkaa pelistä (TEHTY!)
 
 ### Perusversiota laajentavat jatkokehitysideat:
   * Pelaajien tiedot tallennetaan ja statistiikkaan voi palata pelin jälkeen

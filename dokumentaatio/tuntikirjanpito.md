@@ -9,5 +9,6 @@
 |23.11|3|Koodin selkeyttämistä eriyttämällä uusi luokka PlayerList, lisätty toiminnallisuus pelaajien tallentamiseen|
 |26.11|2|Pisteiden dokumentointi lisätty|
 |28.11|3|Testauskattavuuden laajentamista, CheckStyle, pakkausrakennetta, luokka- ja pakkauskaavio|
+|4.12|5|Lisää toiminnallisuuksia (voittaja ja hudeista tippuminen), testikattavuutta lisätty|
 
-Tunteja käytetty yhteensä: 18
+Tunteja käytetty yhteensä: 23

@@ -10,5 +10,6 @@
 |26.11|2|Pisteiden dokumentointi lisätty|
 |28.11|3|Testauskattavuuden laajentamista, CheckStyle, pakkausrakennetta, luokka- ja pakkauskaavio|
 |4.12|5|Lisää toiminnallisuuksia (voittaja ja hudeista tippuminen), testikattavuutta lisätty|
+|6.12|2|Github releasen teko ja paranneltu README:tä sisältämään tarkemmat ohjeet ohjelman suorittamiseksi|
 
-Tunteja käytetty yhteensä: 23
+Tunteja käytetty yhteensä: 25

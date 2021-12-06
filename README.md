@@ -10,24 +10,37 @@ Alustava arkkitehtuurikuvaus: [arkkitehtuuri](https://github.com/palovpet/ot-har
 
 [Tuntikirjanpito](https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
-## Sovelluksen käynnistäminen
+## Sovelluksen käynnistäminen ja toiminta
+Ladattuasi [releasen](https://github.com/palovpet/ot-harjoitustyo/releases/tag/viikko5) githubista (lähdekoodi ja .jar -tiedosto) siirry komentorivillä kansioon, johon .jar-loppuinen kansio tallentui (todennäköisesti Downloads-kansio). 
 
-Komentoriviltä oltaessa Molkkymestari hakemistossa komennolla: 
+Suorita komentorivillä komento:  
 ```
-mvn compile exec:java -Dexec.mainClass=molkkymestari.logic.Main
+java -jar Molkkymestari-1.0-SNAPSHOT.jar
 ```
 
-Ohjelma pyytää ensin syöttämään pelaajat, kun pelaajia on tallennettu 1 tai enemmän, voi pelin aloittaa Aloita peli painikkeesta.
+Ohjelma pyytää ensin syöttämään pelaajat. Anna vähintään yhden pelaajan nimi, tämän jälkeen napsauta Aloiota peli -painiketta.
+
+Avautuvassa näkymässä voit valita, pelataanko mölkkyä viiteenkymmeneen vai kolmeenkymmeneen pisteesen, sekä puolitetaanko vai nollataanko pelaajan pisteet jos hän ylittää pisterajan. Valinnat tehdään napsauttamalla painikkeita, jolloin asetukset vaihtuvat. Kun olet valinnut mieleisesti asetukset, napsauta Aloita peli -painiketta.
+
+Pelinäkymässä näkyy ylhäällä heittovurossa olevan pelaajan nimi ja hänen silloinen pistesldonsa. Keskivaiheilla olevaan kenttään syötetään heittopisteet numeroina 0-12 väliltä. Pisteet jotka eivät ole 0-12 välillä eivät kirjaudu. Näkymässä näkyy myös seuraavana heittovuorossa olevan pelaajan nimi. Kirjaa-painikkeen painaminen tallentaa pisteet heittovuorossa olevalle pelaajalle ja päivittää pelivuoron seuraavalle. Hutiheitto kirjataan nollana. Mikäli pelaaja heittää kolme hutia peräkkäin, hän tippuu pelistä. Riippuen tehdyistä asetuksista, pistetavoitteen ylittäminen aiheuttaa pistesaldon puolittamisen tai nollaamisen. Kun joku pelaaja heittää pistemäärän, jolla hän saavuttaa tarkalleen pisterajan peli päättyy. Aukavassa näkymässä näkyy voittavan pelaajan nimi ja muiden pelaajien pisteet. Pelistä tippuneiden pisteitä ei näytetä.
+
+Peli suljetaan ikkunan raksista.
 
 ## Testien ajaminen
 
-Komentoriviltä oltaessa Molkkymestari hakemistossa komennolla: 
+Siirry komentorivillä kansioon ot-harjoitustyö-viikko5/Molkkymestari ja suorita komento: 
 ```
 mvn test
 ```
 
-ja testikattavuusraportin luoda komennolla: 
+testikattavuusraportin voi luoda samassa kansiossa komennolla: 
 ```
 mvn test jacoco:report
+```
+
+Checkstyle raportin voi luoda komentoriviltä komennolla:
+```
+
+mvn jxr:jxr checkstyle:checkstyle
 ```
 

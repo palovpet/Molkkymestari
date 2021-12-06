@@ -1,6 +1,11 @@
 ## Mölkkymestari
+Mölkyssä heitetään mölkyllä (=puinen palikka) luvuilla 1–12 numeroituja puisia "keiloja", jotka on pystytetty tiiviiksi ryhmäksi 3–4 metrin etäisyydelle heittäjästä. Heitto on suoritettava aina alakautta, muuten heittotapa on vapaa. Jos heittäjä kaataa yhden keilan, pistemäärä on sama kuin kaatuneen keilan numero. Jos keiloja kaatuu kaksi tai enemmän, pistemäärä on sama kuin kaatuneiden keilojen lukumäärä. Mikäli keila nojaa toiseen keilaan tai mölkkyyn, sen laskenta riippuu missä seurassa mölkkyä pelataan. Heiton jälkeen keilat nostetaan pystyyn sille kohdalle, johon ne ovat kaatuneet tai lentäneet. Kolmesta perättäisestä ohiheitosta kilpailija putoaa pelistä ja siirtyy yleensä kirjuriksi. Peli päättyy, kun ensimmäinen pelaaja saavuttaa täsmälleen 50 pistettä. Mikäli pistemäärä ylittää 50, pelaajan pisteet putoavat 25:een. 
 
-Mölkkymestarin avulla voidaan pitää kirjaa mölkkyturnauksen etenemisestä. Mölkkymestariin kirjataan heittojen pisteet yksilöittäin. Kun voittava pisteraja on saavutettu, Mölkkymestari ilmoittaa voittajan.
+
+
+
+Mölkky on perinteinen Suomalainen seurapeli, joka on monille tuttu etenkin kesämökeiltä. Mölkyssä heitetään puisella kapulalla, mölkyllä, luvuilla 1-12 numeroiuja puolisia "keiloja", jotka on pelin alussa aseteltu tiiviiksi ryhmäksi noin 3 metrin päähän heittäjistä. Heittäjät pyrkivät kaatamaan mölkyllä keiloja vuoron perään, mikäli kaatuu yksi keila, saatu pistemäärä on keilassa oleva numero. Mikäli kaatuu useampi, on saatu pistemäärä kaatuneiden keilojen lukumäärä. Kolmesta peräkkäisestä hudista tippuu pelistä ja peli päättyy, kun ensimmäinen pelaaja saavuttaa täsmälleen sovitun pisterajan. Mikäli pisteraja ylittyy, pisteet joko puolitetaan tai nollataan peliporukasta riippuen. Mölkky on peli joka monissa porukoissa kuumentaa tunteita, omasta kokemuksestari erityisesti kirjanpidosta löytyy monesti monenlaisia mielipiteitä. Mölkkymestari on kehitetty tähän tarpeeseen. Heittopisteet on helppo kirjata, eikä kirjanpitäjää tarvitse syyttää vilpistä. 
+
 
 ### Dokumentaatio
 
@@ -22,7 +27,7 @@ Ohjelma pyytää ensin syöttämään pelaajat. Anna vähintään yhden pelaajan
 
 Avautuvassa näkymässä voit valita, pelataanko mölkkyä viiteenkymmeneen vai kolmeenkymmeneen pisteesen, sekä puolitetaanko vai nollataanko pelaajan pisteet jos hän ylittää pisterajan. Valinnat tehdään napsauttamalla painikkeita, jolloin asetukset vaihtuvat. Kun olet valinnut mieleisesti asetukset, napsauta Aloita peli -painiketta.
 
-Pelinäkymässä näkyy ylhäällä heittovurossa olevan pelaajan nimi ja hänen silloinen pistesldonsa. Keskivaiheilla olevaan kenttään syötetään heittopisteet numeroina 0-12 väliltä. Pisteet jotka eivät ole 0-12 välillä eivät kirjaudu. Näkymässä näkyy myös seuraavana heittovuorossa olevan pelaajan nimi. Kirjaa-painikkeen painaminen tallentaa pisteet heittovuorossa olevalle pelaajalle ja päivittää pelivuoron seuraavalle. Hutiheitto kirjataan nollana. Mikäli pelaaja heittää kolme hutia peräkkäin, hän tippuu pelistä. Riippuen tehdyistä asetuksista, pistetavoitteen ylittäminen aiheuttaa pistesaldon puolittamisen tai nollaamisen. Kun joku pelaaja heittää pistemäärän, jolla hän saavuttaa tarkalleen pisterajan peli päättyy. Aukavassa näkymässä näkyy voittavan pelaajan nimi ja muiden pelaajien pisteet. Pelistä tippuneiden pisteitä ei näytetä.
+Pelinäkymässä näkyy ylhäällä heittovurossa olevan pelaajan nimi ja hänen silloinen pistesaldonsa. Keskivaiheilla olevaan kenttään syötetään heittopisteet numeroina 0-12 väliltä. Pisteet jotka eivät ole 0-12 välillä eivät kirjaudu. Näkymässä näkyy myös seuraavana heittovuorossa olevan pelaajan nimi. Kirjaa-painikkeen napsauttaminen tallentaa pisteet heittovuorossa olevalle pelaajalle ja päivittää pelivuoron seuraavalle. Hutiheitto kirjataan nollana. Mikäli pelaaja heittää kolme hutia peräkkäin, hän tippuu pelistä. Riippuen tehdyistä asetuksista, pistetavoitteen ylittäminen aiheuttaa pistesaldon puolittamisen tai nollaamisen. Kun joku pelaaja heittää pistemäärän, jolla hän saavuttaa tarkalleen pisterajan peli päättyy. Aukeavassa näkymässä näkyy voittavan pelaajan nimi ja pelaajien pisteet. Pelistä tippuneiden pisteitä ei näytetä.
 
 Peli suljetaan ikkunan raksista.
 

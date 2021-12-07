@@ -62,7 +62,7 @@ public class Game {
         if (lastBeforeRemovedIndex < 0) {
             lastBeforeRemovedIndex  = this.getHowManyPlayers() - 1;
         }
-        Player lastBeforeRemovingPlayer = this.getPlayerWithIndex(lastBeforeRemovedIndex );
+        Player lastBeforeRemovingPlayer = this.getPlayerWithIndex(lastBeforeRemovedIndex);
                 
         this.playerList.removePlayer(player);
         PlayerList updatedPlayerList = playerList.updatePlayerList();
@@ -149,29 +149,29 @@ public class Game {
     public void pointLimitPassed(Player player, int points) {
         
         if (getPointsToZeroWhenPointLimitPassedWithValue() == false) {
-                int pointsToHalf = ((player.getPointsInThisGame() + points) / 2);
+            int pointsToHalf = ((player.getPointsInThisGame() + points) / 2);
                 //tee jotain parittomien lukujen käsittelylle
 
-                player.setPointsInThisGame(pointsToHalf);
-            } else {
-                player.setPointsInThisGame(0);
-            }
+            player.setPointsInThisGame(pointsToHalf);
+        } else {
+            player.setPointsInThisGame(0);
+        }
         
     }
     
     public void missedThrow(Player player) {
         if (player.getMissedThrowsInThisGame() == 2) {
-                removePlayer(player);
+            removePlayer(player);
                 
-            } else {
-                player.setMissedThrowsInThisGame((player.getMissedThrowsInThisGame() + 1));
-            }
+        } else {
+            player.setMissedThrowsInThisGame((player.getMissedThrowsInThisGame() + 1));
+        }
     }
     
     public void winningThrow(Player player, int points) {
         player.addPointsInThisGame(points);
-            this.winnerFound = true;
-            this.winner = player;
+        this.winnerFound = true;
+        this.winner = player;
     }
     
     public boolean getWinnerFound() {

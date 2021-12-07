@@ -36,7 +36,8 @@ public class PlayerList {
     public PlayerList updatePlayerList() {
     
         ArrayList<Player> updatedList = new ArrayList<>();
-        for (int index = 0; index < this.players.size(); index ++ ) {
+        for (int index = 0; index < this.players.size(); index ++) {
+            
             Player playerToNewList = players.get(index);
             
             updatedList.add(playerToNewList);

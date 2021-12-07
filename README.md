@@ -19,7 +19,7 @@ Suorita komentorivillä komento:
 java -jar Molkkymestari-1.0-SNAPSHOT.jar
 ```
 
-Ohjelma pyytää ensin syöttämään pelaajat. Anna vähintään yhden pelaajan nimi, tämän jälkeen napsauta Aloiota peli -painiketta.
+Ohjelma pyytää ensin syöttämään pelaajat. Anna vähintään yhden pelaajan nimi, tämän jälkeen napsauta Aloita peli -painiketta.
 
 Avautuvassa näkymässä voit valita, pelataanko mölkkyä viiteenkymmeneen vai kolmeenkymmeneen pisteesen, sekä puolitetaanko vai nollataanko pelaajan pisteet jos hän ylittää pisterajan. Valinnat tehdään napsauttamalla painikkeita, jolloin asetukset vaihtuvat. Kun olet valinnut mieleisesti asetukset, napsauta Aloita peli -painiketta.
 
@@ -29,7 +29,7 @@ Peli suljetaan ikkunan raksista.
 
 ## Testien ajaminen
 
-Siirry komentorivillä kansioon ot-harjoitustyö-viikko5/Molkkymestari ja suorita komento: 
+Siirry komentorivillä kansioon ot-harjoitustyö-viikko5/Molkkymestari (muista purkaa .zip-paketti) ja suorita komento: 
 ```
 mvn test
 ```

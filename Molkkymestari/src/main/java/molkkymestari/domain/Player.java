@@ -10,11 +10,8 @@ public class Player {
         
         this.name = name;          
     }
-
-    public String getName() {
-        
-        return name;
-    }
+    
+    //Pelaajan tiedot
 
     public int getIndexInThisGame() {
         
@@ -32,6 +29,7 @@ public class Player {
         this.indexInThisGame = indexInThisGame;
     }
 
+    //Pisteet ja hudit    
     public int getPointsInThisGame() {
         
         return pointsInThisGame;

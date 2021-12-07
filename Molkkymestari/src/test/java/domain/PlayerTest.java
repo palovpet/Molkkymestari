@@ -18,11 +18,6 @@ public class PlayerTest {
     }
     
     @Test
-    public void getNameReturnsName(){
-        assertEquals(player.getName(), "Testi-Tahvo"); 
-    }
-    
-    @Test
     public void getIndexInThisGameReturnsIndexInThisName(){
         assertEquals(player.getIndexInThisGame(), 0);
     }
@@ -98,6 +93,6 @@ public class PlayerTest {
     
     @Test
     public void toStringReturnsPlayersName(){
-        assertEquals(player.toString(), player.getName());
+        assertEquals(player.toString(), "Testi-Tahvo");
     }
 }

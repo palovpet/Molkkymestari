@@ -11,5 +11,6 @@
 |28.11|3|Testauskattavuuden laajentamista, CheckStyle, pakkausrakennetta, luokka- ja pakkauskaavio|
 |4.12|5|Lisää toiminnallisuuksia (voittaja ja hudeista tippuminen), testikattavuutta lisätty|
 |6.12|2|Github releasen teko ja paranneltu README:tä sisältämään tarkemmat ohjeet ohjelman suorittamiseksi|
+|7.12|2|Selkeytetty luokkia koodikatselmointia varten|
 
-Tunteja käytetty yhteensä: 25
+Tunteja käytetty yhteensä: 27

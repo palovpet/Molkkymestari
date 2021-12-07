@@ -11,6 +11,7 @@ public class MolkkyService {
         this.molkky = new Game();
     }
     
+    //Peliasetukset    
     public int getPointLimit() {
         
         return molkky.getPointLimit();
@@ -31,16 +32,30 @@ public class MolkkyService {
         return molkky.getPointsToZeroWhenPointLimitPassedWithValue();
     }
     
+    //Pelaajien hallinta    
     public void addNewPlayer(String name) {
         
         molkky.addNewPlayer(name);
     }
+    
+    public int getHowManyPlayers() {
+        return molkky.getHowManyPlayers();
+    }
+    
     
     public String getPlayersToPrint() {
         
         return molkky.getPlayersToString();
     }
     
+    public String getPlayersNameWithIndex(int index) {
+        return molkky.getPlayerWithIndex(index).toString();
+    }
+    
+    public String getPlayersPointsWithIndex(int index) {
+        return "" + molkky.getPlayerWithIndex(index).getPointsInThisGame();
+    }
+    //Pelivuoroon liittyvät
     public String getWhosTurnName() {
         
         return molkky.getWhosTurnName();
@@ -55,6 +70,7 @@ public class MolkkyService {
         return molkky.getWhosTurnIndex();
     }
     
+    //Heittovuoro ja voittaja    
     public void documentThrow(int points) {
         molkky.documentPointsFromThrow(points);
     }
@@ -65,19 +81,6 @@ public class MolkkyService {
     
     public String getWinnerName() {
         return molkky.getWinner().toString();
-    }
-    
-    public int getHowManyPlayers() {
-        return molkky.getHowManyPlayers();
-    }
-    
-    
-    public String getPlayersNameWithIndex(int index) {
-        return molkky.getPlayerWithIndex(index).toString();
-    }
-    
-    public String getPlayersPointsWithIndex(int index) {
-        return "" + molkky.getPlayerWithIndex(index).getPointsInThisGame();
     }
     
 }

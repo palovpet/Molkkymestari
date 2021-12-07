@@ -10,54 +10,23 @@ public class PlayerList {
         this.players = new ArrayList<>();    
     }
     
-       
-    public Player getPlayerWithIndex(int index) {   
-        
-        Player player = this.players.get(index);
-        return player;
-    }
-
-    public Player getPlayerWithName(String name) {
-        
-        int playersIndex = -1;
-        for (int index = 0; index < this.players.size(); index++) {
-                
-            if (this.players.get(index).toString().equals(name)) {
-                    
-                playersIndex = index;
-            }
-        }
-        if (playersIndex == -1) {
-                
-            return null;
-        }
-        return this.players.get(playersIndex);                       
-    }
-           
-    
-    public void addNewPlayer(String name) {
-        
-        //Lisää jokin tarkastus, jos sama nimi on jo käytössä
-        Player newPlayer = new Player(name);
-        this.players.add(newPlayer);
-        
-        int indexForThisGame = this.players.indexOf(newPlayer);
-        newPlayer.setIndexInThisGame(indexForThisGame);        
-        newPlayer.setPointsInThisGame(0);
-        newPlayer.setMissedThrowsInThisGame(0);
-        
-        
-    }
-   
-    public int getHowManyPointDoesPlayerHave(Player player) {
-        
-        return player.getPointsInThisGame();
-    }
-     
+    //Pelaajalistan toiminnot  
     public int getHowManyPlayers() {
         
         return this.players.size();
-    }   
+    } 
+    
+    public void addNewPlayer(String name) {
+       
+    //Lisää jokin tarkastus, jos sama nimi on jo käytössä
+        Player newPlayer = new Player(name);
+        this.players.add(newPlayer);
+    
+        int indexForThisGame = this.players.indexOf(newPlayer);
+        newPlayer.setIndexInThisGame(indexForThisGame);        
+        newPlayer.setPointsInThisGame(0);
+        newPlayer.setMissedThrowsInThisGame(0);        
+    }
     
     public void removePlayer(Player player) {
         this.players.remove(player.getIndexInThisGame());
@@ -81,7 +50,31 @@ public class PlayerList {
             
     }
     
-    
+    //Pelaajien tiedot  
+    public Player getPlayerWithIndex(int index) {   
+        
+        Player player = this.players.get(index);
+        return player;
+    }
+
+    //Mahdollisesti turha, ellei käytä pelaajan nimen tarkistukseen
+    public Player getPlayerWithName(String name) {
+        
+        int playersIndex = -1;
+        for (int index = 0; index < this.players.size(); index++) {
+                
+            if (this.players.get(index).toString().equals(name)) {
+                    
+                playersIndex = index;
+            }
+        }
+        if (playersIndex == -1) {
+                
+            return null;
+        }
+        return this.players.get(playersIndex);                       
+    }
+
     @Override
     public String toString() {
         

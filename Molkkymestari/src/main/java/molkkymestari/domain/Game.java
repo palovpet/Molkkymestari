@@ -13,40 +13,65 @@ public class Game {
         this(50);
     }
     
-
     public Game(int pointLimit) {
         this.playerList = new PlayerList();
         this.whosTurn = 0;
         this.pointLimit = pointLimit;
         this.pointsToZeroWhenPointLimitPassed = false;
-        this.winnerFound = false;
-        
+        this.winnerFound = false;     
+    }
+    
+    //Peliasetukset  
+    public void setPointsToZeroWhenPointLimitPassedWithValue(boolean value) {
+        this.pointsToZeroWhenPointLimitPassed = value;
+    }
+
+    public boolean getPointsToZeroWhenPointLimitPassedWithValue() {
+        return this.pointsToZeroWhenPointLimitPassed;
+    }
+
+    public int getPointLimit() {
+        return this.pointLimit;
+    }
+
+    public void setPointLimit(int limit) {
+        this.pointLimit = limit;
     }
 
     //Pelaajien hallinta   
     public void addNewPlayer(String name) {
         this.playerList.addNewPlayer(name);
     }
-
-    public int getHowManyPointDoesPlayerHave(String name) {
-        return this.playerList.getHowManyPointDoesPlayerHave(playerList.getPlayerWithName(name));
-    }
-
+    
     public int getHowManyPlayers() {
         return this.playerList.getHowManyPlayers();
     }
-
-    //Pelaajan tiedot tässä pelissä
-    public int getHowManyPointDoesPlayerHave(Player player) {
-        return player.getPointsInThisGame();
-    }
-
-    public int getPlayersIndex(Player player) {
-        return player.indexInThisGame;
-    }
-
+    
     public String getPlayersToString() {
         return this.playerList.toString();
+    }
+    
+    public Player getPlayerWithIndex(int index) {
+        return this.playerList.getPlayerWithIndex(index);
+    }
+    
+    public void removePlayer(Player player) {
+        
+        int lastBeforeRemovedIndex = this.getWhosTurnIndex() - 1;
+        
+        if (lastBeforeRemovedIndex < 0) {
+            lastBeforeRemovedIndex  = this.getHowManyPlayers() - 1;
+        }
+        Player lastBeforeRemovingPlayer = this.getPlayerWithIndex(lastBeforeRemovedIndex );
+                
+        this.playerList.removePlayer(player);
+        PlayerList updatedPlayerList = playerList.updatePlayerList();
+        this.playerList = updatedPlayerList;
+        
+        int whoWasLastBeforeRemovingIndex = lastBeforeRemovingPlayer.getIndexInThisGame();
+        this.whosTurn = whoWasLastBeforeRemovingIndex;
+        
+               
     }
 
     //Pelivuoroon liittyvät
@@ -61,13 +86,6 @@ public class Game {
             this.whosTurn = this.whosTurn + 1;
         }
     }
-
-    /*public String getCurrentPlayersPoints() {
-        
-        Player playerWhosTurn = this.playerList.getPlayerWithIndex(whosTurn);
-        int playersPoints = playerWhosTurn.getPointsInThisGame();
-        return "" + playersPoints;
-    }*/
 
     public String getWhosTurnName() {
 
@@ -103,68 +121,57 @@ public class Game {
 
         return this.playerList.getPlayerWithIndex(indexOfNext).toString();
 
-    }
+    }    
 
-    //Peliasetukset  
-    public void setPointsToZeroWhenPointLimitPassedWithValue(boolean value) {
-        this.pointsToZeroWhenPointLimitPassed = value;
-    }
-
-    public boolean getPointsToZeroWhenPointLimitPassedWithValue() {
-        return this.pointsToZeroWhenPointLimitPassed;
-    }
-
-    public int getPointLimit() {
-        return this.pointLimit;
-    }
-
-    public void setPointLimit(int limit) {
-        this.pointLimit = limit;
-    }
-
-    //Pelitoiminnot ja voittaja
-    public void removePlayer(Player player) {
-        
-        this.playerList.removePlayer(player);
-        PlayerList updatedPlayerList = playerList.updatePlayerList();
-        this.playerList = updatedPlayerList;
-    }
-    
-    
+    //Heittovuoro ja voittaja
     public void documentPointsFromThrow(int points) {
         
         Player playerWhosTurn = this.playerList.getPlayerWithIndex(this.whosTurn);
         
         if (points == 0) {
-            if (playerWhosTurn.getMissedThrowsInThisGame() == 2) {
-                removePlayer(playerWhosTurn);
-                
-                
-            } else {
-                playerWhosTurn.setMissedThrowsInThisGame((playerWhosTurn.getMissedThrowsInThisGame() + 1));
-            }
+            this.missedThrow(playerWhosTurn);
         }
 
-        if ((playerWhosTurn.getPointsInThisGame() + points) < this.pointLimit) {
+        else if ((playerWhosTurn.getPointsInThisGame() + points) < this.pointLimit) {
             playerWhosTurn.addPointsInThisGame(points);
             
         } else if ((playerWhosTurn.getPointsInThisGame() + points) == this.pointLimit) {
-            playerWhosTurn.addPointsInThisGame(points);
-            this.winnerFound = true;
-            this.winner = playerWhosTurn;
+            this.winningThrow(playerWhosTurn, points);
 
         } else if ((playerWhosTurn.getPointsInThisGame() + points) > this.pointLimit) {
-            if (getPointsToZeroWhenPointLimitPassedWithValue() == false) {
-                int pointsToHalf = ((playerWhosTurn.getPointsInThisGame() + points) / 2);
-                //tee jotain parittomien lukujen käsittelylle
-
-                playerWhosTurn.setPointsInThisGame(pointsToHalf);
-            } else {
-                playerWhosTurn.setPointsInThisGame(0);
-            }
-        } 
+            this.pointLimitPassed(playerWhosTurn, points);
+            
+        }
         int playerWhosTurnIndexAfterDocumenting = playerWhosTurn.getIndexInThisGame();
         this.updateWhosTurn();
+    }
+    
+    public void pointLimitPassed(Player player, int points) {
+        
+        if (getPointsToZeroWhenPointLimitPassedWithValue() == false) {
+                int pointsToHalf = ((player.getPointsInThisGame() + points) / 2);
+                //tee jotain parittomien lukujen käsittelylle
+
+                player.setPointsInThisGame(pointsToHalf);
+            } else {
+                player.setPointsInThisGame(0);
+            }
+        
+    }
+    
+    public void missedThrow(Player player) {
+        if (player.getMissedThrowsInThisGame() == 2) {
+                removePlayer(player);
+                
+            } else {
+                player.setMissedThrowsInThisGame((player.getMissedThrowsInThisGame() + 1));
+            }
+    }
+    
+    public void winningThrow(Player player, int points) {
+        player.addPointsInThisGame(points);
+            this.winnerFound = true;
+            this.winner = player;
     }
     
     public boolean getWinnerFound() {
@@ -173,14 +180,6 @@ public class Game {
     
     public Player getWinner() {
         return this.winner;
-    }
-    
-    public Player getPlayerWithIndex(int index) {
-        return this.playerList.getPlayerWithIndex(index);
-    }
-    
-    public int getPlayersPointsWithPlayersIndex(int index) {
-        return this.playerList.getPlayerWithIndex(index).getPointsInThisGame();
     }
 
 }

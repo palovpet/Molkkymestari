@@ -1,10 +1,14 @@
+/**
+ * 
+ */
+
 package molkkymestari.domain;
 
 public class Player {
-    String name;
-    int pointsInThisGame;
-    int indexInThisGame;
-    int missedThrowsInThisGame;
+    private String name;
+    private int pointsInThisGame;
+    private int indexInThisGame;
+    private int missedThrowsInThisGame;
     
     public Player(String name) {
         

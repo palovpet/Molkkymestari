@@ -4,7 +4,7 @@ import molkkymestari.domain.Game;
 
 public class MolkkyService {
     
-    Game molkky;
+    private Game molkky;
   
     public MolkkyService() {
         

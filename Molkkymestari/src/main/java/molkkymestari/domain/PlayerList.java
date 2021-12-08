@@ -3,7 +3,8 @@ package molkkymestari.domain;
 import java.util.ArrayList;
 
 public class PlayerList {
-    ArrayList<Player> players;
+    
+    private ArrayList<Player> players;
         
     public PlayerList() {
         

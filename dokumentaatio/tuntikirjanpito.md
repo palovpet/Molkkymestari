@@ -12,5 +12,6 @@
 |4.12|5|Lisää toiminnallisuuksia (voittaja ja hudeista tippuminen), testikattavuutta lisätty|
 |6.12|2|Github releasen teko ja paranneltu README:tä sisältämään tarkemmat ohjeet ohjelman suorittamiseksi|
 |7.12|2|Selkeytetty luokkia koodikatselmointia varten|
+|8.12|3|Graafisen käyttöliittymän selkeyttämistä metodeihin jakamalla|
 
-Tunteja käytetty yhteensä: 27
+Tunteja käytetty yhteensä: 30

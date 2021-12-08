@@ -2,12 +2,12 @@ package molkkymestari.domain;
 
 public class Game {
 
-    PlayerList playerList;
-    int whosTurn;
-    int pointLimit;
-    boolean pointsToZeroWhenPointLimitPassed;
-    Player winner;
-    boolean winnerFound;
+    private PlayerList playerList;
+    private int whosTurn;
+    private int pointLimit;
+    private boolean pointsToZeroWhenPointLimitPassed;
+    private Player winner;
+    private boolean winnerFound;
 
     public Game() {       
         this(50);

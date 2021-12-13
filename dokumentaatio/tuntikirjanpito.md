@@ -13,5 +13,6 @@
 |6.12|2|Github releasen teko ja paranneltu README:tä sisältämään tarkemmat ohjeet ohjelman suorittamiseksi|
 |7.12|2|Selkeytetty luokkia koodikatselmointia varten|
 |8.12|3|Graafisen käyttöliittymän selkeyttämistä metodeihin jakamalla|
+|12.12|6|Parannuksia graafiseen käyttöliittymään, lisätty testilaajuutta, tehty javadoc viidestä luokasta ja niiden julkisista metodeista|
 
-Tunteja käytetty yhteensä: 30
+Tunteja käytetty yhteensä: 36

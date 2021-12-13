@@ -33,6 +33,106 @@ public class GameTest {
         noPlayersGame = new Game();
                 
     }
+    @Test
+    public void documentPointsFromThrowDocumentAWinnigThrowCorreclty() {
+        onePlayerGame.getPlayerWithIndex(0).setPointsInThisGame(49);
+        onePlayerGame.documentPointsFromThrow(1);
+        assertEquals(onePlayerGame.getPlayerWithIndex(0).getPointsInThisGame(), 50);
+    }
+    
+    @Test
+    public void documentPointsFromThrowSetsTheWinnerFoundValue() {
+        this.documentPointsFromThrowDocumentAWinnigThrowCorreclty();
+        assertEquals(onePlayerGame.getWinnerFound(), true);
+    }
+    
+    @Test
+    public void documentPointsFromThrowSetsTheWinnerPlayer() {
+        this.documentPointsFromThrowDocumentAWinnigThrowCorreclty();
+        assertEquals(onePlayerGame.getWinner(), onePlayerGame.getPlayerWithIndex(0));
+    }
+    
+    @Test
+    public void documentPointsFromThrowAddsPoints() {
+        onePlayerGame.documentPointsFromThrow(1);
+        assertEquals(onePlayerGame.getPlayerWithIndex(0).getPointsInThisGame(), 1);
+    }
+        
+    
+    @Test
+    public void documentPointsFromThrowDocumentsBreakingAPointLimitCorrectly() {
+        onePlayerGame.getPlayerWithIndex(0).setPointsInThisGame(49);
+        onePlayerGame.documentPointsFromThrow(3);
+        assertEquals(onePlayerGame.getPlayerWithIndex(0).getPointsInThisGame(), 26);
+    }
+    
+    @Test
+    public void documentPointsFromThrowAddsPointsDocumentsAMissCorrectly() {
+        onePlayerGame.documentPointsFromThrow(0);
+        assertEquals(onePlayerGame.getPlayerWithIndex(0).getMissedThrowsInThisGame(), 1);
+    }
+    
+    @Test
+    public void getWhosNextReturnsZeroIfThereIsNotNextPlayer() {
+        game.updateWhosTurn();
+        assertEquals(game.getWhosNextIndex(), 0);
+    }
+    
+    @Test
+    public void getWhosNextReturnsZeroWithOnePlayerGame() {
+        assertEquals(onePlayerGame.getWhosNextIndex(), 0);
+    }
+    
+    @Test
+    public void updateWhosTurnAddsOneIfThereIsANextPlayer() {
+        game.updateWhosTurn();
+        assertEquals(game.getWhosTurnName(), "Testi-Timotei");
+    }
+    
+    @Test
+    public void updateWhosTurnReuturnsToFirstIfThereIsNotANextPlayer() {
+        game.updateWhosTurn();
+        game.updateWhosTurn();
+        assertEquals(game.getWhosTurnName(), "Testi-Timantti");
+    }
+            
+    
+    @Test
+    public void pointLimitPassedSetsPointsToZeroIfThatSettingIsSelected() {
+        game.setPointsToZeroWhenPointLimitPassedWithValue(true);
+        game.getPlayerWithIndex(1).setPointsInThisGame(49);
+        game.pointLimitPassed(game.getPlayerWithIndex(1), 2);   
+ 
+        assertEquals(game.getPlayerWithIndex(1).getPointsInThisGame(), 0);
+    }
+    
+    @Test
+    public void pointLimitPassedDividesByHalfIfThatSettingIsSelected() {
+        game.setPointsToZeroWhenPointLimitPassedWithValue(false);
+        game.getPlayerWithIndex(0).setPointsInThisGame(48);
+        game.pointLimitPassed(game.getPlayerWithIndex(0), 4);
+        
+        assertEquals(game.getPlayerWithIndex(0).getPointsInThisGame(), 26);
+    }
+    
+    @Test
+    public void missedThrowAddsOneIfThereAreLessThanTwpMissedThrows() {
+        game.getPlayerWithIndex(1).setMissedThrowsInThisGame(1);
+        game.missedThrow(game.getPlayerWithIndex(1));
+        assertEquals(game.getPlayerWithIndex(1).getMissedThrowsInThisGame(), 2);
+    }
+    
+    @Test
+    public void thirdMissedThrowRemovesPlayer() {
+        onePlayerGame.getPlayerWithIndex(0).setMissedThrowsInThisGame(2);
+        onePlayerGame.missedThrow(onePlayerGame.getPlayerWithIndex(0));
+        assertEquals(onePlayerGame.getPlayerWithIndex(0), null);
+    }
+    
+    @Test
+    public void getPlayerWithIndexReturnsCorrectPlayer() {
+        assertEquals(game.getPlayerWithIndex(0).toString(), "Testi-Timantti");
+    }
     
     @Test
     public void getPointLimitReturnsPointLimit() {
@@ -47,6 +147,11 @@ public class GameTest {
     @Test
     public void getWhosTurnIndexReturnsThat() {
         assertEquals(game.getWhosTurnIndex(), 0);
+    }
+    
+    @Test
+    public void getWhosNextReturnsIndexOneInTheBeginning() {
+        assertEquals(game.getWhosNextIndex(), 1);
     }
     
     @Test

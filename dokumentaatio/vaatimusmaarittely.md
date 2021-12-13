@@ -8,7 +8,7 @@ Mölkkymestarin avulla voidaan pitää kirjaa mölkkyturnauksen etenemisestä. M
 ## Suunnitellut toiminnallisuudet
 ### Perusversio
 * Pelin alkuvalmistelut:
-  * 1-10 pelaajaa kirjataan  peliin nimimerkeillä. (OSITTAIN TEHTY, PELAAJAMÄÄRÄ RAJOITTAMATTA)
+  * 1-10 pelaajaa kirjataan  peliin nimimerkeillä. (TEHTY!)
   * Pisteraja on oletuksena 50, mutta sen voi vaihtaa olemaan 30. (TEHTY!)
   * Pisterjan ylittyessä oletuksena on, että pelaajan pisteet puolittuvat. Ne voi myös valita nollaantumaan. (TEHTY!)
 
@@ -25,6 +25,4 @@ Mölkkymestarin avulla voidaan pitää kirjaa mölkkyturnauksen etenemisestä. M
 ### Perusversiota laajentavat jatkokehitysideat:
   * Pelaajien tiedot tallennetaan ja statistiikkaan voi palata pelin jälkeen
   * Pelaajat löydetään tietokannasta
-  * Anonyymi/ei tallennettava käyttäjä pikapeliä varten, anonyymi käyttäjä ei tallenna pisteitä
-  * Yksittäiset pelaajat voivat muodostaa joukkueita
   

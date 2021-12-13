@@ -71,23 +71,23 @@ public class PlayerTest {
     }
     
     @Test
-    public void addPointsInThisGameAddsPoints(){
+    public void addPointsFromThrowAddsPoints(){
         int points = 5;
-        player.addPointsInThisGame(points);
+        player.addPointsFromThrow(points);
         assertEquals(player.getPointsInThisGame(), 15);
     }
     
     @Test
-    public void addPointsInThisGameWontAddNegativePoints(){
+    public void addPointsFromThrowWontAddNegativePoints(){
         int points = -5;
-        player.addPointsInThisGame(points);
+        player.addPointsFromThrow(points);
         assertEquals(player.getPointsInThisGame(), 10);
     }
     
     @Test
-    public void addPointsInThisGameWontAddPointsBiggerThanTwelve(){
+    public void addPointsFromThrowWontAddPointsBiggerThanTwelve(){
         int points = 13;
-        player.addPointsInThisGame(points);
+        player.addPointsFromThrow(points);
         assertEquals(player.getPointsInThisGame(), 10);
     }
     

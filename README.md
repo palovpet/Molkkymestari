@@ -31,11 +31,11 @@ Avautuvassa näkymässä voit valita, pelataanko mölkkyä viiteenkymmeneen vai 
 
 Pelinäkymässä näkyy ylhäällä heittovurossa olevan pelaajan nimi ja hänen silloinen pistesaldonsa. Keskivaiheilla olevaan kenttään syötetään heittopisteet numeroina 0-12 väliltä. Pisteet jotka eivät ole 0-12 välillä eivät kirjaudu. Näkymässä näkyy myös seuraavana heittovuorossa olevan pelaajan nimi. Kirjaa-painikkeen napsauttaminen tallentaa pisteet heittovuorossa olevalle pelaajalle ja päivittää pelivuoron seuraavalle. Hutiheitto kirjataan nollana. Mikäli pelaaja heittää kolme hutia peräkkäin, hän tippuu pelistä. Riippuen tehdyistä asetuksista, pistetavoitteen ylittäminen aiheuttaa pistesaldon puolittamisen tai nollaamisen. Kun joku pelaaja heittää pistemäärän, jolla hän saavuttaa tarkalleen pisterajan peli päättyy. Aukeavassa näkymässä näkyy voittavan pelaajan nimi ja pelaajien pisteet. Pelistä tippuneiden pisteitä ei näytetä.
 
-Peli suljetaan ikkunan raksista.
+Peli suljetaan ikkunan raksista tai voittajanäkymästä Sulje-painikkeesta.
 
 ## Testien ajaminen
 
-Siirry komentorivillä kansioon ot-harjoitustyö-viikko5/Molkkymestari (muista purkaa .zip-paketti) ja suorita komento: 
+Siirry komentorivillä kansioon ot-harjoitustyö-viikko6/Molkkymestari (muista purkaa .zip-paketti) ja suorita komento: 
 ```
 mvn test
 ```

@@ -14,5 +14,6 @@
 |7.12|2|Selkeytetty luokkia koodikatselmointia varten|
 |8.12|3|Graafisen käyttöliittymän selkeyttämistä metodeihin jakamalla|
 |12.12|6|Parannuksia graafiseen käyttöliittymään, lisätty testilaajuutta, tehty javadoc viidestä luokasta ja niiden julkisista metodeista|
+|13.12|2|Arkkitehtuuridokumentin ja käyttöohjeen tekoa, release viikkopalautusta varten|
 
-Tunteja käytetty yhteensä: 36
+Tunteja käytetty yhteensä: 38

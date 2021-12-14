@@ -9,6 +9,8 @@ Alustava määrittelydokumentti: [vaatimusmäärittely](https://github.com/palov
 
 Alustava arkkitehtuurikuvaus: [arkkitehtuuri](https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+Alustava käyttöohje: [käyttöohje](https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
+
 [Tuntikirjanpito](https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
 ## Sovelluksen käynnistäminen ja toiminta
@@ -34,14 +36,19 @@ Siirry komentorivillä kansioon ot-harjoitustyö-viikko5/Molkkymestari (muista p
 mvn test
 ```
 
-testikattavuusraportin voi luoda samassa kansiossa komennolla: 
+testikattavuusraportin voi luoda samassa kansiossa komentoriviltä komennolla: 
 ```
 mvn test jacoco:report
 ```
+## Checkstyle ja JavaDoc
 
 Checkstyle raportin voi luoda komentoriviltä komennolla:
 ```
-
 mvn jxr:jxr checkstyle:checkstyle
 ```
 
+JavaDocin voi generoida komentoriviltä komennolla:
+
+```
+mvn javadoc:javadoc
+```

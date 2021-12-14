@@ -14,7 +14,11 @@ Alustava käyttöohje: [käyttöohje](https://github.com/palovpet/ot-harjoitusty
 [Tuntikirjanpito](https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
 ## Sovelluksen käynnistäminen ja toiminta
-Ladattuasi [releasen](https://github.com/palovpet/ot-harjoitustyo/releases/tag/viikko5) githubista (lähdekoodi ja .jar -tiedosto) siirry komentorivillä kansioon, johon .jar-loppuinen kansio tallentui (todennäköisesti Downloads-kansio). 
+Ladattuasi releasen githubista (lähdekoodi ja .jar -tiedosto) siirry komentorivillä kansioon, johon .jar-loppuinen kansio tallentui (todennäköisesti Downloads-kansio). 
+
+[Viikon 6 release](https://github.com/palovpet/ot-harjoitustyo/releases/tag/viikko6)
+
+[Viikon 5 release](https://github.com/palovpet/ot-harjoitustyo/releases/tag/viikko5)
 
 Suorita komentorivillä komento:  
 ```

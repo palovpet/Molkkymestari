@@ -1,10 +1,10 @@
-/**
- * Class provides methods for managing and getting information of Player-objects in a Mölkky-game. Acts as a bridge between Game and Player class.
- */
 package molkkymestari.domain;
 
 import java.util.ArrayList;
 
+/**
+ * Class provides methods for managing and getting information of Player-objects in a Mölkky-game. Acts as a bridge between Game and Player class.
+ */
 public class PlayerList {
     
     private ArrayList<Player> players;

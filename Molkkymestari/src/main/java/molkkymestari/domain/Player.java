@@ -1,10 +1,9 @@
+package molkkymestari.domain;
+
 /**
  * Class provides methods for adding players and 
  * updating and pulling players information in a Mölkky-game.
  */
-
-package molkkymestari.domain;
-
 public class Player {
     private String name;
     private int pointsInThisGame;

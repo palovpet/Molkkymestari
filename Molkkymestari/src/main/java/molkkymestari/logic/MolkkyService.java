@@ -5,7 +5,7 @@ import molkkymestari.domain.Game;
 /**
  * Class acts as a bridge between the GUI of Mölkkymestari-application
  * and the Game-class. It provides methods for accessing and modifying game-settings,
- *  documenting throws and accessing and editing information of players in a game.
+ *  documenting throws and accessing and editing information of players in a game. 
  */
 public class MolkkyService {
     

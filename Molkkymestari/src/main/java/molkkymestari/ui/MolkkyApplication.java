@@ -21,7 +21,7 @@ import javafx.scene.text.Font;
 /**
  * Class provides methods for the GUI of Mölkkymestari, which allows the end user
  * to edit and view game settings, players, and document the throws. Class has
- * five Scenes that each provide different functionalities.
+ * five Scenes that each provide different functionalities. 
  */
 public class MolkkyApplication extends Application{
     private MolkkyService service;

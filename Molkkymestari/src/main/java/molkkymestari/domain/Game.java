@@ -2,7 +2,7 @@ package molkkymestari.domain;
 
 /**
  * Class provides methods for a Mölkky-game. Methods contain ways to manage and get game settings, 
- * document the throws of players and manage and get information of the players of the game. 
+ * document the throws of players and manage and get information of the players of the game.  
  */
 public class Game {
 

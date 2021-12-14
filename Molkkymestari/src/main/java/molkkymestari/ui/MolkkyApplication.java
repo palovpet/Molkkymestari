@@ -25,7 +25,7 @@ import javafx.scene.text.Font;
 
 public class MolkkyApplication extends Application{
     private MolkkyService service;
-    private Scene staticsOrNewGame;
+//  private Scene staticsOrNewGame;
     private Scene addPlayersScene;
     private Scene gameSettingsScene;
     private Scene gameScene;
@@ -158,12 +158,16 @@ public class MolkkyApplication extends Application{
                         
         }); 
         
-        //Alkunäkymä        
+        /*Alkunäkymä vaihtoehdolla Uusi peli + tulostarkastelu - ei vielä toimi    
         VBox selectionsLayout = createStaticsOrNewGameScreen(window);
         staticsOrNewGame = new Scene(selectionsLayout);
         window.setTitle("Mölkkymestari");
         window.setScene(staticsOrNewGame);
-        window.show();       
+        window.show();*/
+        //Alkunäkymä joka menee suoraan pelaajien lisäys näkymään
+        window.setTitle("Mölkkymestari");
+        window.setScene(addPlayersScene);
+        window.show();
         
     }    
     
@@ -222,9 +226,9 @@ public class MolkkyApplication extends Application{
                 
         addedPlayers.setPadding(new Insets (20, 20, 20, 20));
         
-        AddPlayersLayout.getChildren().addAll(logo, new Label ("Tervetuloa pelaamaan Mölkkyä! "
-                + "Syötä yhdestä kymmeneen pelaajaa antamalla kenttään nimi tai nimimerkki yksi kerrallaan "
-                + "tallentaen Tallenna pelaaja-painiketta napsauttamalla\n\nPelaajat:\n"), addedPlayers, addPlayersField, buttons);
+        AddPlayersLayout.getChildren().addAll(logo, new Label ("Lisää Mölkkyyn osallistuvat 1-10 pelaajaa yksitellen kenttään, "
+                + "tallenna napsauttamalla Tallenna pelaaja -painiketta"
+                + "\n\nPelaajat:\n"), addedPlayers, addPlayersField, buttons);
 
         vBoxLayoutSettings(AddPlayersLayout); 
         return AddPlayersLayout;
@@ -314,18 +318,20 @@ public class MolkkyApplication extends Application{
         winnersName.setTextFill(Color.web("e91bd4", 0.8)); 
         
         Label playerPointTable = createPlayerPointTable();        
-        Button closeAndStartNew = createLilacButton("Lopeta peli ja palaa alkuun");       
+            
         Button closeMolkkymestari = createGrayButton("Sulje");
         
         closeMolkkymestari.setOnAction((event)-> {
             close();
         });
         
+        /* Paluu uusi peli ja tulokset vaihtoehdot-näkymään, ei vielä toimi
+        Button closeAndStartNew = createLilacButton("Lopeta peli ja palaa alkuun");  
         closeAndStartNew.setOnAction((event)-> {
             window.setScene(staticsOrNewGame);           
-        });   
+        });   */
             
-        winnerLayout.getChildren().addAll(logo, winnerFoundText, winnersName, playerPointTable, closeAndStartNew, closeMolkkymestari);
+        winnerLayout.getChildren().addAll(logo, winnerFoundText, winnersName, playerPointTable, /*closeAndStartNew,*/ closeMolkkymestari);
                    
         return winnerLayout;          
     }
@@ -366,7 +372,7 @@ public class MolkkyApplication extends Application{
      * @param VBox 
      */
     public void vBoxLayoutSettings(VBox VBox){
-        VBox.setPrefSize(700, 500);
+        VBox.setPrefSize(800, 500);
         VBox.setAlignment(Pos.TOP_CENTER);
         VBox.setSpacing(30);
     }

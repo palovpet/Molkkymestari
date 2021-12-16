@@ -25,7 +25,7 @@ import javafx.scene.text.Font;
  */
 public class MolkkyApplication extends Application{
     private MolkkyService service;
-//  private Scene staticsOrNewGame;
+    private Scene staticsOrNewGame;
     private Scene addPlayersScene;
     private Scene gameSettingsScene;
     private Scene gameScene;
@@ -158,16 +158,17 @@ public class MolkkyApplication extends Application{
                         
         }); 
         
-        /*Alkunäkymä vaihtoehdolla Uusi peli + tulostarkastelu - ei vielä toimi    
+        //Alkunäkymä vaihtoehdolla Uusi peli + tulostarkastelu - ei vielä toimi    
         VBox selectionsLayout = createStaticsOrNewGameScreen(window);
         staticsOrNewGame = new Scene(selectionsLayout);
         window.setTitle("Mölkkymestari");
         window.setScene(staticsOrNewGame);
-        window.show();*/
-        //Alkunäkymä joka menee suoraan pelaajien lisäys näkymään
+        window.show();
+        
+        /*Alkunäkymä joka menee suoraan pelaajien lisäys näkymään
         window.setTitle("Mölkkymestari");
         window.setScene(addPlayersScene);
-        window.show();
+        window.show();*/
         
     }    
     
@@ -325,13 +326,13 @@ public class MolkkyApplication extends Application{
             close();
         });
         
-        /* Paluu uusi peli ja tulokset vaihtoehdot-näkymään, ei vielä toimi
+        //Paluu uusi peli ja tulokset vaihtoehdot-näkymään, ei vielä toimi
         Button closeAndStartNew = createLilacButton("Lopeta peli ja palaa alkuun");  
         closeAndStartNew.setOnAction((event)-> {
             window.setScene(staticsOrNewGame);           
-        });   */
+        });   
             
-        winnerLayout.getChildren().addAll(logo, winnerFoundText, winnersName, playerPointTable, /*closeAndStartNew,*/ closeMolkkymestari);
+        winnerLayout.getChildren().addAll(logo, winnerFoundText, winnersName, playerPointTable, closeAndStartNew, closeMolkkymestari);
                    
         return winnerLayout;          
     }

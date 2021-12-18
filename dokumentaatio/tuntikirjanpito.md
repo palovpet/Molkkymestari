@@ -15,5 +15,7 @@
 |8.12|3|Graafisen käyttöliittymän selkeyttämistä metodeihin jakamalla|
 |12.12|6|Parannuksia graafiseen käyttöliittymään, lisätty testilaajuutta, tehty javadoc viidestä luokasta ja niiden julkisista metodeista|
 |13.12|2|Arkkitehtuuridokumentin ja käyttöohjeen tekoa, release viikkopalautusta varten|
+|16.12|2|Mahdollistettu uuden pelin aloitus kun edellinen päättyy|
+|17.12|3|Parannettu toimintavarmuutta virheellisten syötteiden osalta, kasvatettu testauslaajuutta, paranneltu metodien ja muuttujien nimiä|
 
-Tunteja käytetty yhteensä: 38
+Tunteja käytetty yhteensä: 43

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domain;
 
 import molkkymestari.domain.Game;
@@ -10,16 +5,10 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author palovpet
- */
-public class GameTest {   
-    
+public class GameTest {      
     Game game;
     Game onePlayerGame;
     Game noPlayersGame;
-  
     
     @Before
     public void setUp() {
@@ -34,46 +23,46 @@ public class GameTest {
                 
     }
     @Test
-    public void documentPointsFromThrowDocumentAWinnigThrowCorreclty() {
-        onePlayerGame.getPlayerWithIndex(0).setPointsInThisGame(49);
+    public void documentPointsFromThrowDocumentsWinnigThrowCorreclty() {
+        onePlayerGame.getPlayerWithIndex(0).setPoints(49);
         onePlayerGame.documentPointsFromThrow(1);
-        assertEquals(onePlayerGame.getPlayerWithIndex(0).getPointsInThisGame(), 50);
+        assertEquals(onePlayerGame.getPlayerWithIndex(0).getPoints(), 50);
     }
     
     @Test
     public void documentPointsFromThrowSetsTheWinnerFoundValue() {
-        this.documentPointsFromThrowDocumentAWinnigThrowCorreclty();
+        this.documentPointsFromThrowDocumentsWinnigThrowCorreclty();
         assertEquals(onePlayerGame.getWinnerFound(), true);
     }
     
     @Test
     public void documentPointsFromThrowSetsTheWinnerPlayer() {
-        this.documentPointsFromThrowDocumentAWinnigThrowCorreclty();
+        this.documentPointsFromThrowDocumentsWinnigThrowCorreclty();
         assertEquals(onePlayerGame.getWinner(), onePlayerGame.getPlayerWithIndex(0));
     }
     
     @Test
     public void documentPointsFromThrowAddsPoints() {
         onePlayerGame.documentPointsFromThrow(1);
-        assertEquals(onePlayerGame.getPlayerWithIndex(0).getPointsInThisGame(), 1);
+        assertEquals(onePlayerGame.getPlayerWithIndex(0).getPoints(), 1);
     }
         
     
     @Test
-    public void documentPointsFromThrowDocumentsBreakingAPointLimitCorrectly() {
-        onePlayerGame.getPlayerWithIndex(0).setPointsInThisGame(49);
+    public void documentPointsFromThrowDocumentsBreakingPointLimitCorrectly() {
+        onePlayerGame.getPlayerWithIndex(0).setPoints(49);
         onePlayerGame.documentPointsFromThrow(3);
-        assertEquals(onePlayerGame.getPlayerWithIndex(0).getPointsInThisGame(), 26);
+        assertEquals(onePlayerGame.getPlayerWithIndex(0).getPoints(), 26);
     }
     
     @Test
     public void documentPointsFromThrowAddsPointsDocumentsAMissCorrectly() {
         onePlayerGame.documentPointsFromThrow(0);
-        assertEquals(onePlayerGame.getPlayerWithIndex(0).getMissedThrowsInThisGame(), 1);
+        assertEquals(onePlayerGame.getPlayerWithIndex(0).getMissedThrows(), 1);
     }
     
     @Test
-    public void getWhosNextReturnsZeroIfThereIsNotNextPlayer() {
+    public void getWhosNextReturnsZeroIfThereIsNoNextPlayer() {
         game.updateWhosTurn();
         assertEquals(game.getWhosNextIndex(), 0);
     }
@@ -90,7 +79,7 @@ public class GameTest {
     }
     
     @Test
-    public void updateWhosTurnReuturnsToFirstIfThereIsNotANextPlayer() {
+    public void updateWhosTurnReuturnsToFirstIfThereIsNoNextPlayer() {
         game.updateWhosTurn();
         game.updateWhosTurn();
         assertEquals(game.getWhosTurnName(), "Testi-Timantti");
@@ -99,32 +88,32 @@ public class GameTest {
     
     @Test
     public void pointLimitPassedSetsPointsToZeroIfThatSettingIsSelected() {
-        game.setPointsToZeroWhenPointLimitPassedWithValue(true);
-        game.getPlayerWithIndex(1).setPointsInThisGame(49);
+        game.setPointsToZeroWhenPointLimitPassed(true);
+        game.getPlayerWithIndex(1).setPoints(49);
         game.pointLimitPassed(game.getPlayerWithIndex(1), 2);   
  
-        assertEquals(game.getPlayerWithIndex(1).getPointsInThisGame(), 0);
+        assertEquals(game.getPlayerWithIndex(1).getPoints(), 0);
     }
     
     @Test
     public void pointLimitPassedDividesByHalfIfThatSettingIsSelected() {
-        game.setPointsToZeroWhenPointLimitPassedWithValue(false);
-        game.getPlayerWithIndex(0).setPointsInThisGame(48);
+        game.setPointsToZeroWhenPointLimitPassed(false);
+        game.getPlayerWithIndex(0).setPoints(48);
         game.pointLimitPassed(game.getPlayerWithIndex(0), 4);
         
-        assertEquals(game.getPlayerWithIndex(0).getPointsInThisGame(), 26);
+        assertEquals(game.getPlayerWithIndex(0).getPoints(), 26);
     }
     
     @Test
-    public void missedThrowAddsOneIfThereAreLessThanTwpMissedThrows() {
-        game.getPlayerWithIndex(1).setMissedThrowsInThisGame(1);
+    public void missedThrowAddsOneIfThereAreLessThanTwoMissedThrows() {
+        game.getPlayerWithIndex(1).setMissedThrows(1);
         game.missedThrow(game.getPlayerWithIndex(1));
-        assertEquals(game.getPlayerWithIndex(1).getMissedThrowsInThisGame(), 2);
+        assertEquals(game.getPlayerWithIndex(1).getMissedThrows(), 2);
     }
     
     @Test
     public void thirdMissedThrowRemovesPlayer() {
-        onePlayerGame.getPlayerWithIndex(0).setMissedThrowsInThisGame(2);
+        onePlayerGame.getPlayerWithIndex(0).setMissedThrows(2);
         onePlayerGame.missedThrow(onePlayerGame.getPlayerWithIndex(0));
         assertEquals(onePlayerGame.getPlayerWithIndex(0), null);
     }
@@ -141,11 +130,11 @@ public class GameTest {
     
     @Test
     public void getPointsToZeroWhenPointLimitPassedWithValueReturnsThat() {
-        assertEquals(game.getPointsToZeroWhenPointLimitPassedWithValue(), false);
+        assertEquals(game.getPointsToZeroWhenPointLimitPassed(), false);
     }
     
     @Test
-    public void getWhosTurnIndexReturnsThat() {
+    public void getWhosTurnIndexReturnsZeroInTheBeginning() {
         assertEquals(game.getWhosTurnIndex(), 0);
     }
     
@@ -168,8 +157,8 @@ public class GameTest {
     
     @Test
     public void setPointsToZeroWhenPointLimitPassedWithValueDoesThat() {
-        game.setPointsToZeroWhenPointLimitPassedWithValue(true);
-        assertEquals(game.getPointsToZeroWhenPointLimitPassedWithValue(), true);
+        game.setPointsToZeroWhenPointLimitPassed(true);
+        assertEquals(game.getPointsToZeroWhenPointLimitPassed(), true);
     }
     
     @Test
@@ -187,8 +176,8 @@ public class GameTest {
     @Test
     public void getWinnerFoundReturnsFalseWhenGameBegins() {
         assertEquals(game.getWinnerFound(), false);
-    }
-    
+    } 
+
     @Test
     public void getWhosTurnReturnsFirstPlayersNameInTheBeginning() {
         assertEquals(game.getWhosTurnName(), "Testi-Timantti");

@@ -3,68 +3,64 @@ package molkkymestari.logic;
 import molkkymestari.domain.Game;
 
 /**
- * Class acts as a bridge between the GUI of Mölkkymestari-application
- * and the Game-class. It provides methods for accessing and modifying game-settings,
- *  documenting throws and accessing and editing information of players in a game. 
+ * Class acts as a bridge between the GUI of Mölkkymestari-application and the 
+ * Game-class. It provides methods for accessing and modifying game-settings, 
+ * documenting throws and accessing and editing information of players in a game. 
  */
-public class MolkkyService {
-    
+public class MolkkyService {   
     private Game game;
     
     /**
      * Constructor that creates a new MolkkyService-object with a new Game-object.
      */
     public MolkkyService() {
-        game = new Game();
-    }
-    
+        this.game = new Game();
+    }    
     
     /**
      * Method for checking the point limit set for this game of Mölkky.
+     * 
+     * 
+     * 
      * @return integer value of point limit
      */ 
-    public int getPointLimit() {
-        
+    public int getPointLimit() {        
         return game.getPointLimit();
     }
     
     /**
      * Method for setting the point limit for this game of Mölkky.
-     * @param limit integet value of point limit
+     * @param limit integer value of point limit
      */
-    public void setPointLimit(int limit) {
-        
+    public void setPointLimit(int limit) {      
         game.setPointLimit(limit);
     }
     
     /**
-     * Method for setting the action of what happens if the set point limit is passed. If
-     * true is selected, players points will go to zero and if false is selected, points
-     * will be divided by half.
+     * Method for setting the action of what happens if the set point limit is 
+     * passed. If true is selected, players points will go to zero and if false
+     * is selected, points will be divided by half.
      * @param value boolean value
      */
-    public void setPointsToZeroWhenPointLimitPassedWithValue(boolean value) {
-        
-        game.setPointsToZeroWhenPointLimitPassedWithValue(value);
+    public void setPointsToZeroWhenPointLimitPassed(boolean value) {        
+        game.setPointsToZeroWhenPointLimitPassed(value);
     }
     
     /**
-     * Method for checking the action of what happens if the set point limit is passed.
-     * True indicates that players points will be set to zero and false indicates that
-     * the points will be divided by half.
+     * Method for checking the action of what happens if the set point limit is 
+     * passed. True indicates that players points will be set to zero and false 
+     * indicates that the points will be divided by half.
      * @return boolean value
      */
-    public boolean getPointsToZeroWhenPointLimitPassedWithValue() {
-        
-        return game.getPointsToZeroWhenPointLimitPassedWithValue();
+    public boolean getPointsToZeroWhenPointLimitPassed() {        
+        return game.getPointsToZeroWhenPointLimitPassed();
     }
     
     /**
      * Method for adding a new player for this game of Mölkky
      * @param name name or nickname of the player
      */ 
-    public void addNewPlayer(String name) {
-        
+    public void addNewPlayer(String name) {        
         game.addNewPlayer(name);
     }
     
@@ -79,15 +75,16 @@ public class MolkkyService {
     /**
      * Method gets the players of this game of Mölkky in a list with names in 
      * each row.
-     * @return String-representation of Player-objects in the PlayerList-object of this Game
+     * @return String-representation of Player-objects in the PlayerList-object 
+     * of this Game.
      */
-    public String getPlayersToPrint() {
-        
+    public String getPlayersToPrint() {        
         return game.getPlayersToString();
     }
     
     /**
-     * Method for getting the players name with the index of that player in this game of Mölkky.
+     * Method for getting the players name with the index of that player in this
+     * game of Mölkky.
      * @param index the index of the Player-object in this game
      * @return the String-representation of the Player-object
      */
@@ -96,20 +93,20 @@ public class MolkkyService {
     }
     
     /**
-     * MEthod for getting the players points in this game of Mölkky with the index of that player in this game.
+     * MEthod for getting the players points in this game of Mölkky with the index
+     * of that player in this game.
      * @param index the index of the Player-object in this game
      * @return points of that Player-object in this game as String
      */
     public String getPlayersPointsWithIndex(int index) {
-        return "" + game.getPlayerWithIndex(index).getPointsInThisGame();
+        return "" + game.getPlayerWithIndex(index).getPoints();
     }
     
     /**
      * Method for getting the name of the player whos turn is at that current time. 
      * @return the String-representation of the Player-object
      */
-    public String getWhosTurnName() {
-        
+    public String getWhosTurnName() {        
         return game.getWhosTurnName();
     }
     
@@ -118,8 +115,7 @@ public class MolkkyService {
      * who's turn it is after this current time.
      * @return the String-representation of the Player-object
      */
-    public String getWhosNextName() {
-        
+    public String getWhosNextName() {        
         return game.getWhosNextName();
     }
     
@@ -134,16 +130,33 @@ public class MolkkyService {
     
     /**
      * Method for documenting the points of the throw
-     * @param points the points recieved from throw as integer, 
+     * @param points the points received from throw as integer, 
      * zero represents a missed throw 
      */
-    public void documentThrow(int points) {
-        game.documentPointsFromThrow(points);
+    public void documentThrow(String points) {
+        if (this.checkIfInteger(points) == true) {
+            int pointsInteger = Integer.valueOf(points);            
+            if ((pointsInteger > 12) || (pointsInteger < 0)) {
+                return;
+            }            
+            game.documentPointsFromThrow(pointsInteger);
+        }
+    }
+    
+    public Boolean checkIfInteger(String value) {
+        try {
+            Integer.parseInt(value);       
+            return true;
+        
+        } catch (NumberFormatException ex) {
+            return false;
+        }
     }
     
     /**
      * Method gets the information whether the winner of this game has been found.
-     * Winner is the player who get exactly the amount of points that the point limit is.
+     * Winner is the player who get exactly the amount of points that the point 
+     * limit is.
      * @return boolean value of true if winner is found, and false if it hasn't
      */
     public boolean getWinnerFound() {
@@ -156,7 +169,5 @@ public class MolkkyService {
      */
     public String getWinnerName() {
         return game.getWinner().toString();
-    }
-    
-
+    } 
 }

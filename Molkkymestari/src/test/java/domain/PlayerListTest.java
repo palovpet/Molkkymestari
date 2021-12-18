@@ -26,8 +26,8 @@ public class PlayerListTest {
     
     @Test
     public void getPlayersPointsInThisGameReuturnsPoints() {
-        list.getPlayerWithIndex(0).setPointsInThisGame(10);
-        assertEquals(list.getPlayerWithIndex(0).getPointsInThisGame(), 10);
+        list.getPlayerWithIndex(0).setPoints(10);
+        assertEquals(list.getPlayerWithIndex(0).getPoints(), 10);
     }
     
     @Test
@@ -38,7 +38,7 @@ public class PlayerListTest {
     
     @Test
     public void getPlayerWithNameReturnsNullIfNoPlayerIsFound() {
-        assertEquals(emptyList.getPlayerWithName("Hukka"), null);
+        assertEquals(emptyList.getPlayerWithName("Testi-Tämäeilöydy"), null);
     }   
     
     @Test
@@ -48,8 +48,8 @@ public class PlayerListTest {
     
     @Test
     public void getHowManyPointsPlayerHasReturnsPoints() {
-        list.getPlayerWithIndex(0).setPointsInThisGame(10);
-        assertEquals(list.getPlayerWithIndex(0).getPointsInThisGame(), 10);
+        list.getPlayerWithIndex(0).setPoints(10);
+        assertEquals(list.getPlayerWithIndex(0).getPoints(), 10);
     }
     
     @Test
@@ -69,13 +69,10 @@ public class PlayerListTest {
     }
     
     @Test
-    public void removePlayerRemovesAPlayer() {
-        
+    public void removePlayerRemovesAPlayer() {      
         list.removePlayer(list.getPlayerWithIndex(0));
         assertEquals(list.getHowManyPlayers(), 1);
     }
-    
-     
     
     
 }

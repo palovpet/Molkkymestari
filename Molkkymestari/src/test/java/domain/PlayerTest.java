@@ -12,83 +12,66 @@ public class PlayerTest {
     @Before
     public void setUp() {
         player = new Player("Testi-Tahvo");
-        player.setIndexInThisGame(0);
-        player.setMissedThrowsInThisGame(1);
-        player.setPointsInThisGame(10);
+        player.setIndex(0);
+        player.setMissedThrows(1);
+        player.setPoints(10);
     }
     
     @Test
-    public void getIndexInThisGameReturnsIndexInThisName(){
-        assertEquals(player.getIndexInThisGame(), 0);
+    public void getIndexReturnsIndex(){
+        assertEquals(player.getIndex(), 0);
     }
     
     @Test
-    public void setIndexInThisGameSetsTheIndexInThisGame(){
-        int newIndex = 1;
-        player.setIndexInThisGame(newIndex);
-        assertEquals(player.getIndexInThisGame(), newIndex);
-    }
-    @Test
-    public void setIndexInThisGameWontSetNegativeIndex(){
-        player.setIndexInThisGame(-1);
-        assertEquals(player.getIndexInThisGame(), 0);
+    public void setIndexSetsTheIndexIn(){
+        player.setIndex(1);
+        assertEquals(player.getIndex(), 1);
     }
     
     @Test
-    public void getMissedThrowsInThisGameReturnsMissedThrowsInThisGame(){
-        assertEquals(player.getMissedThrowsInThisGame(), 1);
+    public void setIndexWontSetNegativeIndex(){
+        player.setIndex(-1);
+        assertEquals(player.getIndex(), 0);
     }
     
     @Test
-    public void setMissedThrowsInThisGameSetsMissedThrowsInThisGame(){
+    public void getMissedThrowsReturnsMissedThrowse(){
+        assertEquals(player.getMissedThrows(), 1);
+    }
+    
+    @Test
+    public void setMissedThrowsSetsMissedThrows(){
         int newValueForMissedThrows = 2;
-        player.setMissedThrowsInThisGame(newValueForMissedThrows);
-        assertEquals(player.getMissedThrowsInThisGame(), newValueForMissedThrows);
+        player.setMissedThrows(newValueForMissedThrows);
+        assertEquals(player.getMissedThrows(), newValueForMissedThrows);
     }
     @Test
-    public void setMissedThrowsInThisGameWontSetNegativeMissedThrowsInThisGame(){
-        player.setMissedThrowsInThisGame(-1);
-        assertEquals(player.getMissedThrowsInThisGame(), 1);
-    }
-    
-    @Test
-    public void getPointsInThisGameReturnsPointsInThisGame(){
-        assertEquals(player.getPointsInThisGame(), 10);
+    public void setMissedThrowsWontSetNegativeMissedThrows(){
+        player.setMissedThrows(-1);
+        assertEquals(player.getMissedThrows(), 1);
     }
     
     @Test
-    public void setPointsInThisGameSetsPointsInThisGame(){
-        int points = 5;
-        player.setPointsInThisGame(points);
-        assertEquals(player.getPointsInThisGame(), 5);
+    public void getPointsInGameReturnsPoints(){
+        assertEquals(player.getPoints(), 10);
     }
     
     @Test
-    public void setPointsInThisGameWontSetNegativePoints(){
-        int points = -1;
-        player.setPointsInThisGame(points);
-        assertEquals(player.getPointsInThisGame(), 10);
+    public void setPointsSetsPoints(){
+        player.setPoints(5);
+        assertEquals(player.getPoints(), 5);
+    }
+    
+    @Test
+    public void setPointsWontSetNegativePoints(){
+        player.setPoints(-1);
+        assertEquals(player.getPoints(), 10);
     }
     
     @Test
     public void addPointsFromThrowAddsPoints(){
-        int points = 5;
-        player.addPointsFromThrow(points);
-        assertEquals(player.getPointsInThisGame(), 15);
-    }
-    
-    @Test
-    public void addPointsFromThrowWontAddNegativePoints(){
-        int points = -5;
-        player.addPointsFromThrow(points);
-        assertEquals(player.getPointsInThisGame(), 10);
-    }
-    
-    @Test
-    public void addPointsFromThrowWontAddPointsBiggerThanTwelve(){
-        int points = 13;
-        player.addPointsFromThrow(points);
-        assertEquals(player.getPointsInThisGame(), 10);
+        player.addPoints(5);
+        assertEquals(player.getPoints(), 15);
     }
     
     @Test

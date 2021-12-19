@@ -7,7 +7,7 @@ MolkkyService-luokan testit testaavat välillisesti myös muiden luokkien toimin
 
 ## Testauskattavuus
 
-Poislukien käyttöliittymäkerroksen, ohjelman testauksen rivikattavuus on 93% ja haaraumakattavuus 90%. Automaatiotestauksella on pyritty kattamaan kaikki ohjelman käyttämisen kannalta olennaiset toiminnallisuudet.
+Poislukien käyttöliittymäkerroksen, ohjelman testauksen rivikattavuus on 94% ja haaraumakattavuus 92%. Automaatiotestauksella on pyritty kattamaan kaikki ohjelman käyttämisen kannalta olennaiset toiminnallisuudet.
 <img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/testauskattavuus.png" width="700">
 
 ## Järjestelmätestaus

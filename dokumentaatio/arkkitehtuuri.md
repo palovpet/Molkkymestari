@@ -5,10 +5,11 @@ Ohjelma on jaettu itsenäisiin kerroksiin, jotka ovat vuorovaikutuksessa toisten
 
 <img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/pakkauskaavio.png" width="200">
 
-Pakkaus molkkymestari.ui on sovelluksen käyttöliittymäkerros, se sisältää JavaFX:llä toteutetun käyttöliittymän. Sovelluslogiikka ja JavFaX:n käynnistämiseen tarvittavat Main ja Paaohjelma -luokat ovat pakkauksessa molkkymestari.logic. Sovelluslogiikan käyttämät toimintoja, kuten peliä ja pelaajia kuvaavat luokat ovat molkkymestari.domain -pakkauksessa.
+Pakkaus molkkymestari.ui on sovelluksen käyttöliittymäkerros, se sisältää JavaFX:llä toteutetun käyttöliittymän. Sovelluslogiikka ja JavFaX:n käynnistämiseen tarvittava Main-luokka ovat pakkauksessa molkkymestari.logic. Sovelluslogiikan käyttämät toimintoja, kuten peliä ja pelaajia kuvaavat luokat ovat molkkymestari.domain -pakkauksessa.
 
 ## Käyttöliittymä
-Käyttöliittymässä on neljä erillistä Scene-oliona toteutettua näkymää:
+Käyttöliittymässä on viisi erillistä Scene-oliona toteutettua näkymää:
+- Alkunäyttö
 - Pelaajien lisääminen
 - Peliasetusten valinta
 - Pelinäkymä
@@ -28,10 +29,15 @@ Peliin ja pelaajiin liittyvät toiminnot tehdään kaikki MolkkyService-luokan o
 - Pelivuorossa ja seuraavana pelivuorossa olevan pelaajan lukeminen
 - Heiton kirjaaminen
 
-## Luokkakaavio
-
-<img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/luokkakaavio.png" width="800">
+### Luokkakaavio
+<img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/luokkakaavio.png" width="600">
 
 ## Päätoiminnallisuuksia sekvenssikaavioina
 Tässä sekvenssikaaviossa kuvataan hutiheitossa tapahtuvat toiminnot
 <img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/sekvenssikaavio.png" width="1000">
+
+- Pisterajan asettaminen (30 tai 50) ja lukeminen
+- Asetuksen mikä toiminto pelaajan pisteille tehdään, mikäli hän heitollaan ylittää pisterajan (pelaajan pisteet nollataan tai puolitetaan) valinta, sekä asetuksen lukeminen
+- Uuden pelaajan lisääminen
+- Pelivuorossa ja seuraavana pelivuorossa olevan pelaajan lukeminen
+- Heiton kirjaaminen

@@ -30,14 +30,16 @@ Peliin ja pelaajiin liittyvät toiminnot tehdään kaikki MolkkyService-luokan o
 - Heiton kirjaaminen
 
 ### Luokkakaavio
-<img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/luokkakaavio.png" width="600">
+<img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/luokkakaavio.png" width="1000">
 
 ## Päätoiminnallisuuksia sekvenssikaavioina
-Tässä sekvenssikaaviossa kuvataan hutiheitossa tapahtuvat toiminnot
-<img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/sekvenssikaavio.png" width="1000">
+### Uuden pelaajan lisääminen
 
-- Pisterajan asettaminen (30 tai 50) ja lukeminen
-- Asetuksen mikä toiminto pelaajan pisteille tehdään, mikäli hän heitollaan ylittää pisterajan (pelaajan pisteet nollataan tai puolitetaan) valinta, sekä asetuksen lukeminen
-- Uuden pelaajan lisääminen
-- Pelivuorossa ja seuraavana pelivuorossa olevan pelaajan lukeminen
-- Heiton kirjaaminen
+<img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/addPlayer.png" width="1000">
+
+### Peliasetusten muuttaminen ja tarkastelu
+
+<img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/gameSettings.png" width="1000">
+
+### Heiton kirjaaminen
+<img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/documentThrow.png" width="1000">

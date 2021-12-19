@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Popup;
 
 /**
  * Class provides methods for the GUI of Mölkkymestari, which allows the end user
@@ -25,7 +26,7 @@ import javafx.scene.text.Font;
  */
 public class MolkkyApplication extends Application{
     private MolkkyService service;
-    private Scene staticsOrNewGame;
+    private Scene startScene;
     private Scene addPlayersScene;
     private Scene gameSettingsScene;
     private Scene gameScene;
@@ -58,7 +59,7 @@ public class MolkkyApplication extends Application{
         addedPlayers.setMinSize(200, 200);
         
         TextField addPlayersField = new TextField();
-        addPlayersField.setStyle("-fx-background-color: #e6d0dc;");
+        addPlayersField.setStyle("-fx-background-color: #ECB8F2;");
         addPlayersField.setMinSize(150, 50);
         addPlayersField.setMaxSize(300, 100);
         
@@ -200,13 +201,13 @@ public class MolkkyApplication extends Application{
         }); 
         
         VBox selectionsLayout
-                = createStaticsOrNewGameScreen(window, addedPlayers, 
+                = createStartScreen(window, addedPlayers, 
                 pointLimitButton, pointLimitBrokenButton, whosTurn, whosTurnPoints, 
                 whosTurnNext, pointsToDocument);
         
-        staticsOrNewGame = new Scene(selectionsLayout);
+        startScene = new Scene(selectionsLayout);
         window.setTitle("Mölkkymestari");
-        window.setScene(staticsOrNewGame);
+        window.setScene(startScene);
         window.show();
         
     }    
@@ -229,23 +230,23 @@ public class MolkkyApplication extends Application{
      * @param whosTurnPoints
      * @param whosTurnNext
      * @param pointsToDocument
-     * @return VBox layout for the staticsOrNewGame-Scene
+     * @return VBox layout for the startScene-Scene
      * @throws IOException 
      */
-    public VBox createStaticsOrNewGameScreen(Stage window, Label addedPlayers, 
+    public VBox createStartSceneScreen(Stage window, Label addedPlayers, 
             Button pointLimitButton, Button pointLimitBrokenButton, Label whosTurn, 
             Label whosTurnPoints, Label whosTurnNext, TextField pointsToDocument) 
             throws IOException  {
         
-        VBox staticsOrNewGameLayout = new VBox();
-        vBoxLayoutSettings(staticsOrNewGameLayout);       
+        VBox startSceneLayout = new VBox();
+        vBoxLayoutSettings(startSceneLayout);       
         Button newGame = createPinkButton("Uusi peli");
-        Button statics = createGrayButton("Tulokset");     
+            
         Image bigLogoImage = new Image("file:logo.png");
         ImageView bigLogoImageView = new ImageView(bigLogoImage); 
  
-        staticsOrNewGameLayout.getChildren().add(bigLogoImageView);
-        staticsOrNewGameLayout.getChildren().addAll(newGame, statics);
+        startSceneLayout.getChildren().add(bigLogoImageView);
+        startSceneLayout.getChildren().addAll(newGame);
         
         newGame.setOnAction((event)-> {
             service = new MolkkyService();
@@ -255,8 +256,8 @@ public class MolkkyApplication extends Application{
             
             window.setScene(addPlayersScene);
         });
-        
-        return staticsOrNewGameLayout;
+
+        return startSceneLayout;
     }
     
     /**
@@ -275,18 +276,20 @@ public class MolkkyApplication extends Application{
         Label logo = createLogo();       
         HBox buttons = new HBox();
         
+        Label infoText = new Label("Lisää Mölkkyyn osallistuvat 1-10 pelaajaa "
+                + "yksitellen kenttään, tallenna napsauttamalla "
+                + "Tallenna pelaaja -painiketta.\nNimimerkki voi sisältää "
+                + "kirjaimia ja numeroita, sen on oltava 3 - 20 merkkiä pitkä.");
+        Label headerPlayers = new Label("\nPelaajat:\n");
+        
         buttons.getChildren().addAll(savePlayer, newGame);
         buttons.setAlignment(Pos.CENTER);
         buttons.setSpacing(30);
                 
         addedPlayers.setPadding(new Insets (20, 20, 20, 20));
         
-        AddPlayersLayout.getChildren().addAll(logo, new Label 
-        ("Lisää Mölkkyyn osallistuvat 1-10 pelaajaa yksitellen kenttään, "
-                + "tallenna napsauttamalla Tallenna pelaaja -painiketta.\n"
-                + "Nimimerkissä voi sisältää kirjaimia ja numeroita, sen on "
-                + "oltava 3 - 20 merkkiä pitkä."
-                + "\n\nPelaajat:\n"), addedPlayers, addPlayersField, buttons);
+        AddPlayersLayout.getChildren().addAll(logo, infoText, headerPlayers, 
+                addedPlayers, addPlayersField, buttons);
 
         vBoxLayoutSettings(AddPlayersLayout); 
         return AddPlayersLayout;
@@ -309,9 +312,10 @@ public class MolkkyApplication extends Application{
         
         VBox gameSettingsLayout = new VBox();       
         Label logo = createLogo();      
-        Label newGameText = new Label("Peliasetukset");
+        Label headerSettings = new Label("Peliasetukset");
+        Label infoSettings = new Label("Napsauta painikkeita muuttaaksesi asetuksia.");
  
-        gameSettingsLayout.getChildren().addAll(logo, newGameText, pointLimitButton, 
+        gameSettingsLayout.getChildren().addAll(logo, headerSettings, infoSettings, pointLimitButton, 
                 pointLimitBrokenButton, addMorePlayersButton, startGameButton);
         
         vBoxLayoutSettings(gameSettingsLayout);
@@ -361,7 +365,7 @@ public class MolkkyApplication extends Application{
         
         Button closeAndStartNewGame = createPinkButton("Lopeta peli ja palaa alkuun");  
         closeAndStartNewGame.setOnAction((event)-> {
-            window.setScene(staticsOrNewGame);           
+            window.setScene(startScene);           
         });  
            
         gameLayout.getChildren().addAll(logo, whosTurnInfo, pointsToDocument, 
@@ -399,7 +403,7 @@ public class MolkkyApplication extends Application{
         
         Button closeAndStartNew = createPinkButton("Lopeta peli ja palaa alkuun");  
         closeAndStartNew.setOnAction((event)-> {
-            window.setScene(staticsOrNewGame);           
+            window.setScene(startScene);           
         });   
             
         winnerLayout.getChildren().addAll(logo, winnerFoundText, winnersName, 
@@ -448,6 +452,7 @@ public class MolkkyApplication extends Application{
         VBox.setPrefSize(800, 600);
         VBox.setAlignment(Pos.TOP_CENTER);
         VBox.setSpacing(30);
+        VBox.setStyle("-fx-background-color: #F6E6FF");
     }
     
     /**

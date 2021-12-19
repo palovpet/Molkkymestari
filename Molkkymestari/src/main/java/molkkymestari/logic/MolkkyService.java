@@ -180,4 +180,11 @@ public class MolkkyService {
     public String getWinnerName() {
         return game.getWinner().toString();
     } 
+    
+    public Boolean checkIfNameIsAlreadyAdded(String name) {
+        if (game.checkIfPlayerIsInTheGame(name).equals(true)) {
+            return true;
+        }        
+        return false;
+    }
 }

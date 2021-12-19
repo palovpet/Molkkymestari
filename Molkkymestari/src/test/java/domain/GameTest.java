@@ -202,4 +202,14 @@ public class GameTest {
     public void getWhosNextNameReturnsCorrectInfoIfNoPlayersAreAdded() {
         assertEquals(noPlayersGame.getWhosNextName(), "Ei pelaajia");
     }
+    
+    @Test
+    public void checkIfPlayerIsInTheGameReturnsTrueIfThereIsAlreadyPlayerWithThatName() {
+        assertEquals(onePlayerGame.checkIfPlayerIsInTheGame("Testi-Tylsimys"), true);
+    }
+    
+    @Test
+    public void checkIfPlayerIsInTheGameReturnsFalseForoPlayers() {
+        assertEquals(noPlayersGame.checkIfPlayerIsInTheGame("Testi-Tylsimys"), false);
+    }
 }

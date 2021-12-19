@@ -99,4 +99,14 @@ public class MolkkyServiceTest {
     public void getPlayersToPrintReturnsPlayersSeparatedOnOwnRows() {
         assertEquals(service.getPlayersToPrint(), "Testi-Timjami\nTesti-Tatiana\n");
     }
+    
+    @Test
+    public void checkIfNameIsAlreadyAddedReturnsTrueIfPlayerIsFound() {
+        assertEquals(service.checkIfNameIsAlreadyAdded("Testi-Timjami"), true);
+    }
+    
+    @Test
+    public void checkIfNameIsAlreadyAddedReturnsFalseIfPlayerIsNotFound() {
+        assertEquals(service.checkIfNameIsAlreadyAdded("Testi-Tauno"), false);
+    }
 }

@@ -259,4 +259,13 @@ public class Game {
     public Player getWinner() {
         return winner;
     }
+    
+    public Boolean checkIfPlayerIsInTheGame(String name) {
+        Player player = playerList.getPlayerWithName(name);
+        if (player == null) {
+            return false;
+        }
+        
+        return true;
+    }
 }

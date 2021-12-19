@@ -104,17 +104,25 @@ public class MolkkyApplication extends Application{
         });       
         
         savePlayer.setOnAction((event) -> {
-            String name = addPlayersField.getText();
-           
-            if(name.matches("[a-zA-Z0-9]{3,20}")) {
-                service.addNewPlayer(name);
-                addPlayersField.clear();
-                addedPlayers.setText(service.getPlayersToPrint());
-            } else {
-                addPlayersField.setText("Anna kunnollinen nimi!");
+            if (service.getHowManyPlayers() >= 10 ) {
+                addPlayersField.setText("Pelissä on jo 10 pelaajaa.");
+                return;
             }
-            
-            
+              
+            String name = addPlayersField.getText();
+            if(!(name.matches("[a-zA-Z0-9]{3,20}"))) {
+                addPlayersField.setText("Anna kunnollinen nimi!");
+                return;
+            }
+                  
+            if (service.checkIfNameIsAlreadyAdded(name).equals(true)) {
+                addPlayersField.setText("Nimimerkki on jo käytetty");
+                return;
+            } 
+                
+            service.addNewPlayer(name);
+            addPlayersField.clear();
+            addedPlayers.setText(service.getPlayersToPrint());                    
         });
         
         //2: GameSettings-näkymän painikkeiden toiminnot        
@@ -177,7 +185,13 @@ public class MolkkyApplication extends Application{
                   window.setScene(winnerScene);              
                 }                
                 
-                pointsToDocument.clear();                
+                pointsToDocument.clear();
+                if(service.getHowManyPlayers()== 0) {
+                    whosTurn.setText("Ei pelaajia");
+                    whosTurnPoints.setText("0");
+                    whosTurnNext.setText("Ei pelaajia"); 
+                   return;
+                }
                 whosTurnPoints.setText
         (service.getPlayersPointsWithIndex(service.getWhosTurnIndex()));
                 whosTurn.setText(service.getWhosTurnName());
@@ -431,7 +445,7 @@ public class MolkkyApplication extends Application{
      * @param VBox 
      */
     public void vBoxLayoutSettings(VBox VBox){
-        VBox.setPrefSize(800, 500);
+        VBox.setPrefSize(800, 600);
         VBox.setAlignment(Pos.TOP_CENTER);
         VBox.setSpacing(30);
     }

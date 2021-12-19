@@ -52,7 +52,7 @@ public class MolkkyApplication extends Application{
     @Override
     public void start(Stage window) throws IOException {   
         // ELEMENTIT JA ASETTELU
-        // 1: AddPlayers-näkymän toimintoelementit      
+        // 1: AddPlayers-näkymän toimintoelementit    
         Label addedPlayers = new Label();
         addedPlayers.setText(service.getPlayersToPrint());
         addedPlayers.setMinSize(200, 200);
@@ -160,8 +160,14 @@ public class MolkkyApplication extends Application{
                 pointsToDocument.setText("Pelaajat puuttuu! Palaa alkuun.");
                 return;
             }
-            
             String pointsString = pointsToDocument.getText();
+            
+            if (service.checkIfValidNumber(pointsString).equals(false)) {
+                pointsToDocument.setText("Virheellinen syöte");
+                return;
+            }
+            
+            
             service.documentThrow(pointsString);
                 
             if(service.getWinnerFound() == true) { 
@@ -468,7 +474,7 @@ public class MolkkyApplication extends Application{
         
         return button;
     }
-
+    
     /**
      * Method is used to clear all Button-, Label- and TextField -objects that 
      * contain information about the game that ended, in the event of player 

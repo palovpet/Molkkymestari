@@ -84,4 +84,19 @@ public class MolkkyServiceTest {
         service.documentThrow("6");
         assertEquals(service.getWhosNextName(), "Testi-Timjami");
     }
+    
+    @Test
+    public void checkIValidNumberReturnsFalseForNonIntegers() {
+        assertEquals(service.checkIfValidNumber("piste"), false);
+    }
+    
+    @Test
+    public void getPlayersNameWithIndexReuturnsThat() {
+        assertEquals(service.getPlayersNameWithIndex(1), "Testi-Tatiana");
+    }
+    
+    @Test
+    public void getPlayersToPrintReturnsPlayersSeparatedOnOwnRows() {
+        assertEquals(service.getPlayersToPrint(), "Testi-Timjami\nTesti-Tatiana\n");
+    }
 }

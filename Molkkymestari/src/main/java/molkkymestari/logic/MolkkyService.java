@@ -134,13 +134,11 @@ public class MolkkyService {
      * zero represents a missed throw 
      */
     public void documentThrow(String points) {
-        if (this.checkIfInteger(points) == true) {
-            int pointsInteger = Integer.valueOf(points);            
-            if ((pointsInteger > 12) || (pointsInteger < 0)) {
-                return;
-            }            
-            game.documentPointsFromThrow(pointsInteger);
-        }
+        if (this.checkIfValidNumber(points) == true) {
+            game.documentPointsFromThrow(Integer.valueOf(points));
+        }            
+            
+        
     }
     
     public Boolean checkIfInteger(String value) {
@@ -151,6 +149,18 @@ public class MolkkyService {
         } catch (NumberFormatException ex) {
             return false;
         }
+    }
+    
+    public Boolean checkIfValidNumber(String points) {
+        if (this.checkIfInteger(points).equals(false)) {
+            return false;
+        }
+        int pointsInteger = Integer.valueOf(points);            
+            if ((pointsInteger > 12) || (pointsInteger < 0)) {
+                return false;
+            }
+            
+            return true;
     }
     
     /**

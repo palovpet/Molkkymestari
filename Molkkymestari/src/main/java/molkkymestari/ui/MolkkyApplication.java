@@ -201,7 +201,7 @@ public class MolkkyApplication extends Application{
         }); 
         
         VBox selectionsLayout
-                = createStartScreen(window, addedPlayers, 
+                = createStartScene(window, addedPlayers, 
                 pointLimitButton, pointLimitBrokenButton, whosTurn, whosTurnPoints, 
                 whosTurnNext, pointsToDocument);
         
@@ -233,7 +233,7 @@ public class MolkkyApplication extends Application{
      * @return VBox layout for the startScene-Scene
      * @throws IOException 
      */
-    public VBox createStartSceneScreen(Stage window, Label addedPlayers, 
+    public VBox createStartScene(Stage window, Label addedPlayers, 
             Button pointLimitButton, Button pointLimitBrokenButton, Label whosTurn, 
             Label whosTurnPoints, Label whosTurnNext, TextField pointsToDocument) 
             throws IOException  {
@@ -456,7 +456,7 @@ public class MolkkyApplication extends Application{
     }
     
     /**
-     * MEthod for creating a gray button. Gray button represents a button that
+     * Method for creating a gray button. Gray button represents a button that
      * doesn't have a functionality in it yet.
      * @param text text in the button
      * @return gray Button-object

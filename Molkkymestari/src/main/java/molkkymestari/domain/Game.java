@@ -260,6 +260,11 @@ public class Game {
         return winner;
     }
     
+    /**
+     * Method for checking if the player with this name is already in the game.
+     * @param name name as String
+     * @return boolean
+     */
     public Boolean checkIfPlayerIsInTheGame(String name) {
         Player player = playerList.getPlayerWithName(name);
         if (player == null) {

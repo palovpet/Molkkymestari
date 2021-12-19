@@ -140,7 +140,11 @@ public class MolkkyService {
             
         
     }
-    
+    /**
+     * Method checks if String is integer, returns true if it is and false if not.
+     * @param value String to be checked
+     * @return boolean
+     */
     public Boolean checkIfInteger(String value) {
         try {
             Integer.parseInt(value);       
@@ -151,16 +155,22 @@ public class MolkkyService {
         }
     }
     
+    /**
+     * Checks that points as String have integer value and are allowed numbers 
+     * (between 0 - 12).
+     * @param points points as String
+     * @return boolean
+     */
     public Boolean checkIfValidNumber(String points) {
         if (this.checkIfInteger(points).equals(false)) {
             return false;
         }
         int pointsInteger = Integer.valueOf(points);            
-            if ((pointsInteger > 12) || (pointsInteger < 0)) {
-                return false;
-            }
+        if ((pointsInteger > 12) || (pointsInteger < 0)) {
+            return false;
+        }
             
-            return true;
+        return true;
     }
     
     /**
@@ -181,6 +191,11 @@ public class MolkkyService {
         return game.getWinner().toString();
     } 
     
+    /**
+     * Method checks if there is already a player with the name in this game.
+     * @param name name as String
+     * @return boolean
+     */
     public Boolean checkIfNameIsAlreadyAdded(String name) {
         if (game.checkIfPlayerIsInTheGame(name).equals(true)) {
             return true;

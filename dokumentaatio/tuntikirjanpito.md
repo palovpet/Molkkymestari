@@ -18,5 +18,6 @@
 |16.12|2|Mahdollistettu uuden pelin aloitus kun edellinen päättyy|
 |17.12|3|Parannettu toimintavarmuutta virheellisten syötteiden osalta, kasvatettu testauslaajuutta, paranneltu metodien ja muuttujien nimiä|
 |18.12|4|Lisää pieniä parannuksia järjestelmätestauksen pohjalta, testaus- ja arkkitehtuuridokumenttien tekoa|
+|20.12|5|Pieniä parannuksia käyttöliittymän visuaalisuuteen, dokumentaation tekemistä|
 
-Tunteja käytetty yhteensä: 47
+Tunteja käytetty yhteensä: 52

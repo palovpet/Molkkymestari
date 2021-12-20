@@ -109,4 +109,13 @@ public class MolkkyServiceTest {
     public void checkIfNameIsAlreadyAddedReturnsFalseIfPlayerIsNotFound() {
         assertEquals(service.checkIfNameIsAlreadyAdded("Testi-Tauno"), false);
     }
+    
+    @Test
+    public void createPointTableCreatesPointTable() {
+        service.documentThrow("3");
+        service.documentThrow("5");
+        System.out.println(service.createPlayerPointTable());
+        assertEquals(service.createPlayerPointTable(), " Pistetaulukko\n "
+                + "Pelaaja: Testi-Timjami, pisteitä:  3\n Pelaaja: Testi-Tatiana, pisteitä:  5");
+    }
 }

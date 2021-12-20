@@ -132,6 +132,10 @@ public class MolkkyService {
         return game.getWhosTurnIndex();
     }
     
+    public int getMissedThrowsInRowWithIndex(int index) {
+        return game.getPlayerWithIndex(index).getMissedThrowsInRow();
+    }
+    
     /**
      * Method for documenting the points of the throw
      * @param points the points received from throw as integer, 
@@ -207,47 +211,15 @@ public class MolkkyService {
         return false;
     }
     
-    public String generateComment(String points) {
-        String name = game.getWhosTurnName();
-        String comment = "";
-        
-        if (points.equals("0")) {
-            
-            if(game.getPlayerWithIndex(game.getWhosTurnIndex()).getMissedThrowsInRow() == 2) {
-                comment = "Hitsin pimpulat " + name + ", kolmas huti eli putoat pelistä :(";
-                return comment;
-            }
-            
-            comment = "Hupsista " + name + ", nyt meni huti :(";
-            return comment;
-        }    
-        
-        Random randomizer = new Random();
-        int randomNumber = randomizer.nextInt(4);
-        
-        if (randomNumber == 0) {
-            comment = "Huisi heitto " + name + "!";
-        }
-        if (randomNumber == 1) {
-            comment = name + " osuu jälleen! <3";
-        }
-        if (randomNumber == 2) {
-            comment = "Ja yleisö huutaa: " + name + ", " + name + ", " + name + "!";
-        }
-        if (randomNumber == 3) {
-            comment = name + " on liekeissä!!! :-o ";
-        }
-        if (randomNumber == 4) {
-            comment = name + " nappaa pisteet jälleen!";
-        }
-        
-        return comment;
-    }
-    
+    /**
+     * Method creates a player point table to be shown or printed. Contains all
+     * the players actively included in the game with their points at that moment.
+     * @return 
+     */
     public String createPlayerPointTable() {
         String playersAndPoints = " Pistetaulukko";
                 
-        for(int index = 0; index < getHowManyPlayers(); index ++) {           
+        for (int index = 0; index < getHowManyPlayers(); index++) {           
             playersAndPoints = playersAndPoints + "\n Pelaaja: " + 
                     getPlayersNameWithIndex(index) + ", pisteitä:  " + 
                     getPlayersPointsWithIndex(index);

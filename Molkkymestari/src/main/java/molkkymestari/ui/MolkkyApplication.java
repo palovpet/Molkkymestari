@@ -2,6 +2,7 @@ package molkkymestari.ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import molkkymestari.logic.MolkkyService;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -182,7 +183,7 @@ public class MolkkyApplication extends Application{
                 return;
             }
             
-            commentLabel.setText(service.generateComment(pointsString));
+            commentLabel.setText(generateComment(pointsString));
             commentLabel.setTextFill(Color.web("ef2684", 0.8));
             
             service.documentThrow(pointsString);
@@ -439,6 +440,49 @@ public class MolkkyApplication extends Application{
     }  
     
     /**
+     * Generates random comments about players throws. For missed throw a sad comment
+     * is generated, for else a happy comment.
+     * @param points points from the throw
+     * @return String representation of the comment
+     */
+    public String generateComment(String points) {
+        String name = service.getWhosTurnName();
+        String comment = "";
+        
+        if (points.equals("0")) {
+            
+            if(service.getMissedThrowsInRowWithIndex(service.getWhosTurnIndex()) == 2) {
+                comment = "Hitsin pimpulat " + name + ", kolmas huti eli putoat pelistä :(";
+                return comment;
+            }
+            
+            comment = "Hupsista " + name + ", nyt meni huti :(";
+            return comment;
+        }    
+        
+        Random randomizer = new Random();
+        int randomNumber = randomizer.nextInt(4);
+        
+        if (randomNumber == 0) {
+            comment = "Huisi heitto " + name + "!";
+        }
+        if (randomNumber == 1) {
+            comment = name + " osuu jälleen! <3";
+        }
+        if (randomNumber == 2) {
+            comment = "Ja yleisö huutaa: " + name + ", " + name + ", " + name + "!";
+        }
+        if (randomNumber == 3) {
+            comment = name + " on liekeissä!!! :-o ";
+        }
+        if (randomNumber == 4) {
+            comment = name + " nappaa pisteet jälleen!";
+        }
+        
+        return comment;
+    }
+    
+    /**
      * Method used to give correct visual settings for all of the Layout VBoxes 
      * that are used in Scenes.
      * @param VBox 
@@ -450,6 +494,12 @@ public class MolkkyApplication extends Application{
         VBox.setStyle("-fx-background-color: #fbe8ff; ");
     }
     
+    /**
+     * Creates a button with the hexcolourcode given
+     * @param text the text to be shown in the button
+     * @param colour hexcolour code as String
+     * @return Button-object with specified colour and text
+     */
     public Button createButtonWithColour(String text, String colour) {
         Button button = new Button(text);
         button.setStyle("-fx-background-color: " + colour);

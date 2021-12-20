@@ -1,7 +1,7 @@
 package molkkymestari.domain;
 
 /**
- * Class provides methods for a Mölkky-game. Methods contain ways to manage and 
+ * Class provides methods for documenting a Mölkky-game. Methods contain ways to manage and 
  * get game settings, document the throws of players and manage and get 
  * information of the players of the game.  
  */
@@ -195,21 +195,16 @@ public class Game {
         Player playerWhosTurn = playerList.getPlayerWithIndex(whosTurn);
         
         if (points == 0) {
-            missedThrow(playerWhosTurn);
-            updateWhosTurn();
-            return;
-            
+            missedThrow(playerWhosTurn);  
+            return;          
         }
-        
         playerWhosTurn.setMissedThrowsInRow(0);
         
         if ((playerWhosTurn.getPoints() + points) < pointLimit) {
             playerWhosTurn.addPoints(points);
             
         } else if ((playerWhosTurn.getPoints() + points) == pointLimit) {
-            playerWhosTurn.addPoints(points);
-            winnerFound = true;
-            winner = playerWhosTurn;
+            winnerFound(playerWhosTurn, points);
 
         } else if ((playerWhosTurn.getPoints() + points) > this.pointLimit) {
             pointLimitPassed(playerWhosTurn, points);
@@ -217,6 +212,18 @@ public class Game {
         }
         
         updateWhosTurn();
+    }
+    
+    /**
+     * Method for documenting a winning throw. Sets winner found to true, and
+     * the player whos turn it was to be the winner.
+     * @param player Player-object whos turn it was
+     * @param points points thrown as integer
+     */
+    public void winnerFound(Player player, int points) {
+        player.addPoints(points);
+        winnerFound = true;
+        winner = player;
     }
     
     /**
@@ -257,6 +264,8 @@ public class Game {
         } else {
             player.setMissedThrowsInRow((player.getMissedThrowsInRow() + 1));
         }
+        
+        updateWhosTurn();
     }
     
     public boolean getWinnerFound() {

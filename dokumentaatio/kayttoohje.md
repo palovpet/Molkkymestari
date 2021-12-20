@@ -8,12 +8,12 @@ Avautuvassa ikunassa napsautetaan Uusi peli -painiketta.
 ### Pelaajien lisääminen
 <img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/lisaa_pelaaja2.png" width="500">
 
-Syötä kenttään pelaajien nimi tai nimimerkki yksitellen, tallenna pelaaja napsauttamalla Tallenna pelaaja -painiketta. Nimimerkin on oltava 3-20 merkkiä pitkä, se voi sisältää kirjaimia tai numertoita. Lisätyt pelaajat tulevat näkyviin ruudun keskiosaan. Pelaajia pitää lisätä vähintään yksi, maksimi pelaajamäärä on kymmenen. Lisättyäsi haluamasi pelaajat napsauta Peliasetuksiin-painiketta. Pelivuorot ovat siinä järjestyksessä, missä pelaajat lisätään.
+Ohjelma pyytää ensin syöttämään pelaajat. Anna vähintään yhden pelaajan nimi, syöttämällä kenttään pelaajien nimi tai nimimerkki yksitellen, tallenna pelaaja napsauttamalla Tallenna pelaaja -painiketta. Nimimerkin on oltava 3-20 merkkiä pitkä, se voi sisältää kirjaimia tai numertoita. Lisätyt pelaajat tulevat näkyviin ruudun keskiosaan. Pelaajia pitää lisätä vähintään yksi, maksimi pelaajamäärä on kymmenen. Pelivuorot ovat siinä järjestyksessä, missä pelaajat lisätään. Lisättyäsi vähintään yhden pelaajan napsauta Peliasetuksiin-painiketta. 
 
 ### Peliasetukset
 <img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/peliasetukset2.png" width="500">
 
-Tee haluamasi asetukset pian alkavaan mölkkypeliin. Pisterajaa voi vaihtaa kolmenkymmenen ja viidenkymmenen välillä napsauttamalla painiketta. Pisterajaksi jää se, joka näytöllä painikkeessa näkyy. Pisterajan ylittämisestä aiheutuva toiminto toimii vastaavalla tavalla. Voit palata lisäämään uusia pelaajia Palaa lisäämään pelaajia -painikkeella, tai aloittaa pelin Aloita-peli painikkeella.
+Avautuvassa näkymässä voit valita, pelataanko mölkkyä viiteenkymmeneen vai kolmeenkymmeneen pisteesen, sekä puolitetaanko vai nollataanko pelaajan pisteet jos hän ylittää pisterajan. Valinnat tehdään napsauttamalla painikkeita, jolloin asetukset vaihtuvat. Tee haluamasi asetukset pian alkavaan mölkkypeliin ja napsauta sitten Aloita peli -painiketta. Tarvittaessa voit palata edelliseen näkymään lisäämään pelaajia Palaa lisäämään pelajia -painikkeesta. 
 
 ### Pelinäkymä
 <img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/pelinakyma2.png" width="500">

@@ -17,7 +17,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Popup;
 
 /**
  * Class provides methods for the GUI of Mölkkymestari, which allows the end user
@@ -32,6 +31,12 @@ public class MolkkyApplication extends Application{
     private Scene gameScene;
     private Scene winnerScene;  
     
+    private String backgroundColour;
+    private String buttonColourLight;
+    private String buttonColourDark;
+    private String textColour;
+    private String textFieldColour;
+    
     public static void main(String[] args) {  
         launch(MolkkyApplication.class);
     }
@@ -42,7 +47,12 @@ public class MolkkyApplication extends Application{
      */
     @Override
     public void init() throws Exception {
-        service = new MolkkyService();   
+        service = new MolkkyService();
+        String backgroundColour;
+        String buttonColourLight;
+        String buttonColourDark;
+        String textColour;
+        String textFieldColour;
     }
     
     /**
@@ -92,10 +102,11 @@ public class MolkkyApplication extends Application{
         Label whosTurnNext = new Label(" ");                 
         TextField pointsToDocument = new TextField();
         Button documentButton = createLilacButton("Kirjaa");
+        Label commentLabel = new Label();
         
         // 3: Game-näkymän asettelu
         VBox gameLayout = createGameLayout(window, whosTurn, whosTurnPoints, 
-                whosTurnNext, pointsToDocument, documentButton);
+                whosTurnNext, pointsToDocument, documentButton, commentLabel);
         gameScene = new Scene(gameLayout);    
         
         //ELEMENTTIEN TOIMINNOT        
@@ -176,9 +187,9 @@ public class MolkkyApplication extends Application{
                 return;
             }
             
-            
+            commentLabel.setText(service.generateComment(pointsString));
             service.documentThrow(pointsString);
-                
+           
             if(service.getWinnerFound() == true) { 
                     
                   VBox winnerLayout = createWinnerLayout(window);
@@ -339,7 +350,7 @@ public class MolkkyApplication extends Application{
      */
     public VBox createGameLayout(Stage window, Label whosTurn, Label whosTurnPoints, 
             Label whosTurnNext, TextField pointsToDocument, 
-        Button documentButton) {
+            Button documentButton, Label commentLabel) {
         VBox gameLayout = new VBox();         
         Label logo = createLogo();       
         Label whosTurnText = new Label("Pelivuorossa: ");
@@ -369,7 +380,7 @@ public class MolkkyApplication extends Application{
         });  
            
         gameLayout.getChildren().addAll(logo, whosTurnInfo, pointsToDocument, 
-                documentButton, whosNextInfo, closeAndStartNewGame);
+                documentButton, commentLabel, whosNextInfo, closeAndStartNewGame);
                 
         vBoxLayoutSettings(gameLayout);
         return gameLayout;

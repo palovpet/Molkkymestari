@@ -1,6 +1,7 @@
 package molkkymestari.logic;
 
 import molkkymestari.domain.Game;
+import java.util.Random;
 
 /**
  * Class acts as a bridge between the GUI of Mölkkymestari-application and the 
@@ -201,5 +202,42 @@ public class MolkkyService {
             return true;
         }        
         return false;
+    }
+    
+    public String generateComment(String points) {
+        String name = game.getWhosTurnName();
+        String comment = "";
+        
+        if (points.equals("0")) {
+            
+            if(game.getPlayerWithIndex(game.getWhosTurnIndex()).getMissedThrows() == 2) {
+                comment = "Hitsin pimpulat " + name + ", kolmas huti eli putoat pelistä :(";
+                return comment;
+            }
+            
+            comment = "Hupsista " + name + ", nyt meni huti :(";
+            return comment;
+        }    
+        
+        Random randomizer = new Random();
+        int randomNumber = randomizer.nextInt(4);
+        
+        if (randomNumber == 0) {
+            comment = "Huisi heitto " + name + "!";
+        }
+        if (randomNumber == 1) {
+            comment = name + " osuu jälleen! <3";
+        }
+        if (randomNumber == 2) {
+            comment = "Ja yleisö huutaa: " + name + ", " + name + ", " + name + "!";
+        }
+        if (randomNumber == 3) {
+            comment = name + " on liekeissä!!! :o";
+        }
+        if (randomNumber == 4) {
+            comment = name + " nappaa pisteet jälleen!";
+        }
+        
+        return comment;
     }
 }

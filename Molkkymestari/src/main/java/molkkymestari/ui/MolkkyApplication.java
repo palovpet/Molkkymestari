@@ -118,7 +118,7 @@ public class MolkkyApplication extends Application{
             }
               
             String name = addPlayersField.getText();
-            if(!(name.matches("[a-zA-Z0-9]{3,20}"))) {
+            if(!(name.matches("[a-öA-Ö0-9]{3,20}"))) {
                 addPlayersField.setText("Anna kunnollinen nimi!");
                 return;
             }
@@ -292,6 +292,7 @@ public class MolkkyApplication extends Application{
         buttons.setSpacing(30);
                 
         addedPlayers.setPadding(new Insets (20, 20, 20, 20));
+        addedPlayers.setTextFill(Color.web("ef2684", 0.8));
         
         AddPlayersLayout.getChildren().addAll(logo, infoText, headerPlayers, 
                 addedPlayers, addPlayersField, buttons);
@@ -446,7 +447,7 @@ public class MolkkyApplication extends Application{
         VBox.setPrefSize(800, 600);
         VBox.setAlignment(Pos.TOP_CENTER);
         VBox.setSpacing(30);
-        VBox.setStyle("-fx-background-color: #f4eefd; ");
+        VBox.setStyle("-fx-background-color: #fbe8ff; ");
     }
     
     public Button createButtonWithColour(String text, String colour) {

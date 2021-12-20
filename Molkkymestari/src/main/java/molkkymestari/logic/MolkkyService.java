@@ -20,9 +20,6 @@ public class MolkkyService {
     
     /**
      * Method for checking the point limit set for this game of Mölkky.
-     * 
-     * 
-     * 
      * @return integer value of point limit
      */ 
     public int getPointLimit() {        
@@ -94,7 +91,7 @@ public class MolkkyService {
     }
     
     /**
-     * MEthod for getting the players points in this game of Mölkky with the index
+     * Method for getting the players points in this game of Mölkky with the index
      * of that player in this game.
      * @param index the index of the Player-object in this game
      * @return points of that Player-object in this game as String
@@ -102,6 +99,12 @@ public class MolkkyService {
     public String getPlayersPointsWithIndex(int index) {
         return "" + game.getPlayerWithIndex(index).getPoints();
     }
+    /**
+     * Method for getting the players missed throws in this game of Mölkky with 
+     * the index of that player in this game.
+     * @param index the index of the Player-object in this game
+     * @return missed trhows of that Player-object in this game as String
+     */
     
     /**
      * Method for getting the name of the player whos turn is at that current time. 
@@ -210,7 +213,7 @@ public class MolkkyService {
         
         if (points.equals("0")) {
             
-            if(game.getPlayerWithIndex(game.getWhosTurnIndex()).getMissedThrows() == 2) {
+            if(game.getPlayerWithIndex(game.getWhosTurnIndex()).getMissedThrowsInRow() == 2) {
                 comment = "Hitsin pimpulat " + name + ", kolmas huti eli putoat pelistä :(";
                 return comment;
             }
@@ -239,5 +242,19 @@ public class MolkkyService {
         }
         
         return comment;
+    }
+    
+    public String createPlayerPointTable() {
+        String playersAndPoints = "";
+                
+        for(int index = 0; index < getHowManyPlayers(); index ++) {           
+            playersAndPoints = playersAndPoints + "\n Pelaaja: " + 
+                    getPlayersNameWithIndex(index) + ", pisteitä:  " + 
+                    getPlayersPointsWithIndex(index);
+        }
+        playersAndPoints = " Pistetaulukko" + playersAndPoints;     
+        
+        
+        return playersAndPoints;
     }
 }

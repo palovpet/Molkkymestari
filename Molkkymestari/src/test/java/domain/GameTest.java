@@ -58,7 +58,7 @@ public class GameTest {
     @Test
     public void documentPointsFromThrowAddsPointsDocumentsAMissCorrectly() {
         onePlayerGame.documentPointsFromThrow(0);
-        assertEquals(onePlayerGame.getPlayerWithIndex(0).getMissedThrows(), 1);
+        assertEquals(onePlayerGame.getPlayerWithIndex(0).getMissedThrowsInRow(), 1);
     }
     
     @Test
@@ -106,14 +106,14 @@ public class GameTest {
     
     @Test
     public void missedThrowAddsOneIfThereAreLessThanTwoMissedThrows() {
-        game.getPlayerWithIndex(1).setMissedThrows(1);
+        game.getPlayerWithIndex(1).setMissedThrowsInRow(1);
         game.missedThrow(game.getPlayerWithIndex(1));
-        assertEquals(game.getPlayerWithIndex(1).getMissedThrows(), 2);
+        assertEquals(game.getPlayerWithIndex(1).getMissedThrowsInRow(), 2);
     }
     
     @Test
     public void thirdMissedThrowRemovesPlayer() {
-        onePlayerGame.getPlayerWithIndex(0).setMissedThrows(2);
+        onePlayerGame.getPlayerWithIndex(0).setMissedThrowsInRow(2);
         onePlayerGame.missedThrow(onePlayerGame.getPlayerWithIndex(0));
         assertEquals(onePlayerGame.getPlayerWithIndex(0), null);
     }

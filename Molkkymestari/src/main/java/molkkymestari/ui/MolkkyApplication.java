@@ -1,5 +1,6 @@
 package molkkymestari.ui;
 
+import java.io.File;
 import java.io.IOException;
 import molkkymestari.logic.MolkkyService;
 import javafx.application.Application;
@@ -31,12 +32,6 @@ public class MolkkyApplication extends Application{
     private Scene gameScene;
     private Scene winnerScene;  
     
-    private String backgroundColour;
-    private String buttonColourLight;
-    private String buttonColourDark;
-    private String textColour;
-    private String textFieldColour;
-    
     public static void main(String[] args) {  
         launch(MolkkyApplication.class);
     }
@@ -47,12 +42,7 @@ public class MolkkyApplication extends Application{
      */
     @Override
     public void init() throws Exception {
-        service = new MolkkyService();
-        String backgroundColour;
-        String buttonColourLight;
-        String buttonColourDark;
-        String textColour;
-        String textFieldColour;
+        service = new MolkkyService();       
     }
     
     /**
@@ -61,7 +51,11 @@ public class MolkkyApplication extends Application{
      * @throws IOException 
      */
     @Override
-    public void start(Stage window) throws IOException {   
+    public void start(Stage window) throws IOException { 
+        String buttonColourLight = "#DDAADD; ";
+        String buttonColourDark = "#D76FB0; ";
+        String textFieldColour = "#ECB8F2; ";
+        
         // ELEMENTIT JA ASETTELU
         // 1: AddPlayers-näkymän toimintoelementit    
         Label addedPlayers = new Label();
@@ -69,12 +63,12 @@ public class MolkkyApplication extends Application{
         addedPlayers.setMinSize(200, 200);
         
         TextField addPlayersField = new TextField();
-        addPlayersField.setStyle("-fx-background-color: #ECB8F2;");
+        addPlayersField.setStyle("-fx-background-color: "+ textFieldColour);
         addPlayersField.setMinSize(150, 50);
         addPlayersField.setMaxSize(300, 100);
         
-        Button savePlayer = createLilacButton("Tallenna pelaaja"); 
-        Button toSettingsButton = createPinkButton("Peliasetuksiin");
+        Button savePlayer = createButtonWithColour("Tallenna pelaaja", buttonColourLight); 
+        Button toSettingsButton = createButtonWithColour("Peliasetuksiin", buttonColourDark);
   
         // 1: AddPlayers-näkymän asettelu        
         VBox addPlayersLayout = createAddPlayersLayout(window, addedPlayers, 
@@ -83,13 +77,13 @@ public class MolkkyApplication extends Application{
         
         // 2: GameSettings-näkymän toimintoelementit         
         Button pointLimitButton = 
-                createLilacButton("Pisteraja: " + service.getPointLimit());      
+                createButtonWithColour("Pisteraja: " + service.getPointLimit(), buttonColourLight);      
         Button pointLimitBrokenButton = 
-                createLilacButton("Pisteet puolitetaan pisterajan ylittyessä"); 
+                createButtonWithColour("Pisteet puolitetaan pisterajan ylittyessä", buttonColourLight); 
         Button startGameButton = 
-                createPinkButton ("Aloita peli");
+                createButtonWithColour("Aloita peli", buttonColourDark);
         Button addMorePlayersButton = 
-                createPinkButton("Palaa lisäämään pelaajia");
+                createButtonWithColour("Palaa lisäämään pelaajia", buttonColourDark);
         
         // 2: GameSettings-näkymän asettelu     
         VBox gameSettingsLayout = createGameSettingsLayout(window, pointLimitButton, 
@@ -101,12 +95,14 @@ public class MolkkyApplication extends Application{
         Label whosTurnPoints = new Label("0");
         Label whosTurnNext = new Label(" ");                 
         TextField pointsToDocument = new TextField();
-        Button documentButton = createLilacButton("Kirjaa");
+        pointsToDocument.setStyle("-fx-background-color: " + textFieldColour);
+        Button documentButton = createButtonWithColour("Kirjaa", buttonColourLight);
         Label commentLabel = new Label();
+        Button closeAndStartNewGame = createButtonWithColour("Lopeta peli ja palaa alkuun", buttonColourDark); 
         
         // 3: Game-näkymän asettelu
         VBox gameLayout = createGameLayout(window, whosTurn, whosTurnPoints, 
-                whosTurnNext, pointsToDocument, documentButton, commentLabel);
+                whosTurnNext, pointsToDocument, documentButton, commentLabel, closeAndStartNewGame);
         gameScene = new Scene(gameLayout);    
         
         //ELEMENTTIEN TOIMINNOT        
@@ -142,11 +138,11 @@ public class MolkkyApplication extends Application{
             if(service.getPointLimit() == 50){
                 service.setPointLimit(30);
                 pointLimitButton.setText("Pisteraja: 30");
+                
             } else if (service.getPointLimit() == 30){
                 service.setPointLimit(50);
                 pointLimitButton.setText("Pisteraja: 50");
-            }
-            
+            }            
         }));
         
         pointLimitBrokenButton.setOnAction((event ->{
@@ -154,27 +150,25 @@ public class MolkkyApplication extends Application{
                 service.setPointsToZeroWhenPointLimitPassed(true);
                 pointLimitBrokenButton.setText("Pisteet nollataan "
                         + "pisterajan ylittyessä");
+                
             } else if(service.getPointsToZeroWhenPointLimitPassed() == true){
                 service.setPointsToZeroWhenPointLimitPassed(false);
                 pointLimitBrokenButton.setText("Pisteet puolitetaan "
                         + "pisterajan ylittyessä");
-            }
-            
+            }            
         }));
         
         startGameButton.setOnAction((event) -> {
             window.setScene(gameScene);
             whosTurn.setText(service.getWhosTurnName());
-            whosTurnNext.setText(service.getWhosNextName());
-            
+            whosTurnNext.setText(service.getWhosNextName());           
         });
         
         addMorePlayersButton.setOnAction((event) -> {
             window.setScene(addPlayersScene);
         });
         
-        //3: Game-näkymän painikkeiden toiminnot
-        
+        //3: Game-näkymän painikkeiden toiminnot       
         documentButton.setOnAction((event) -> { 
             if (service.getHowManyPlayers() == 0) {
                 pointsToDocument.setText("Pelaajat puuttuu! Palaa alkuun.");
@@ -184,37 +178,42 @@ public class MolkkyApplication extends Application{
             
             if (service.checkIfValidNumber(pointsString).equals(false)) {
                 pointsToDocument.setText("Virheellinen syöte");
+ 
                 return;
             }
             
             commentLabel.setText(service.generateComment(pointsString));
+            commentLabel.setTextFill(Color.web("ef2684", 0.8));
+            
             service.documentThrow(pointsString);
            
-            if(service.getWinnerFound() == true) { 
-                    
-                  VBox winnerLayout = createWinnerLayout(window);
-                  winnerScene = new Scene(winnerLayout);
-                  window.setScene(winnerScene);              
-                }                
+            if(service.getWinnerFound() == true) {               
+                Button closeAndRestart = createButtonWithColour("Lopeta peli ja palaa alkuun", buttonColourDark);                   
+                VBox winnerLayout = createWinnerLayout(window, closeAndRestart);
+                winnerScene = new Scene(winnerLayout);
+                window.setScene(winnerScene);              
+            }                
                 
-                pointsToDocument.clear();
-                if(service.getHowManyPlayers()== 0) {
-                    whosTurn.setText("Ei pelaajia");
-                    whosTurnPoints.setText("0");
-                    whosTurnNext.setText("Ei pelaajia"); 
-                   return;
-                }
-                whosTurnPoints.setText
-        (service.getPlayersPointsWithIndex(service.getWhosTurnIndex()));
+            pointsToDocument.clear();
+            
+            if(service.getHowManyPlayers()== 0) {
+                whosTurn.setText("Ei pelaajia");
+                whosTurnPoints.setText("0");
+                whosTurnNext.setText("Ei pelaajia"); 
+                    
+               return;
+            }
+            
+                whosTurnPoints.setText(service.getPlayersPointsWithIndex(service.getWhosTurnIndex()));
                 whosTurn.setText(service.getWhosTurnName());
-                whosTurnNext.setText(service.getWhosNextName()); 
-                        
+                whosTurnNext.setText(service.getWhosNextName());                        
         }); 
         
-        VBox selectionsLayout
-                = createStartScene(window, addedPlayers, 
-                pointLimitButton, pointLimitBrokenButton, whosTurn, whosTurnPoints, 
-                whosTurnNext, pointsToDocument);
+        Image bigLogoImage = new Image("file:logo.png");
+        ImageView bigLogoImageView = new ImageView(bigLogoImage); 
+        
+        VBox selectionsLayout= createStartScene(window, bigLogoImageView, addedPlayers, pointLimitButton, 
+                pointLimitBrokenButton, whosTurn, whosTurnPoints, whosTurnNext, pointsToDocument);
         
         startScene = new Scene(selectionsLayout);
         window.setTitle("Mölkkymestari");
@@ -244,26 +243,20 @@ public class MolkkyApplication extends Application{
      * @return VBox layout for the startScene-Scene
      * @throws IOException 
      */
-    public VBox createStartScene(Stage window, Label addedPlayers, 
-            Button pointLimitButton, Button pointLimitBrokenButton, Label whosTurn, 
-            Label whosTurnPoints, Label whosTurnNext, TextField pointsToDocument) 
-            throws IOException  {
+    public VBox createStartScene(Stage window, ImageView bigLogoImageView, Label addedPlayers, Button pointLimitButton, 
+            Button pointLimitBrokenButton, Label whosTurn, Label whosTurnPoints, 
+            Label whosTurnNext, TextField pointsToDocument) throws IOException  {
         
         VBox startSceneLayout = new VBox();
         vBoxLayoutSettings(startSceneLayout);       
-        Button newGame = createPinkButton("Uusi peli");
-            
-        Image bigLogoImage = new Image("file:logo.png");
-        ImageView bigLogoImageView = new ImageView(bigLogoImage); 
- 
-        startSceneLayout.getChildren().add(bigLogoImageView);
-        startSceneLayout.getChildren().addAll(newGame);
+        Button newGame = createButtonWithColour("Uusi peli", "#D76FB0; ");
+        
+        startSceneLayout.getChildren().addAll(bigLogoImageView, newGame);
         
         newGame.setOnAction((event)-> {
             service = new MolkkyService();
-            resetButtonsForNewGame(addedPlayers, pointLimitButton, 
-                    pointLimitBrokenButton, whosTurn, whosTurnPoints, whosTurnNext, 
-                    pointsToDocument);          
+            resetButtonsForNewGame(addedPlayers, pointLimitButton, pointLimitBrokenButton, 
+                    whosTurn, whosTurnPoints, whosTurnNext, pointsToDocument);          
             
             window.setScene(addPlayersScene);
         });
@@ -281,8 +274,9 @@ public class MolkkyApplication extends Application{
      * @param newGame
      * @return VBox layout for the addPlayers-Scene
      */
-    public VBox createAddPlayersLayout(Stage window, Label addedPlayers, 
-            TextField addPlayersField, Button savePlayer, Button newGame) {
+    public VBox createAddPlayersLayout(Stage window, Label addedPlayers, TextField addPlayersField, 
+            Button savePlayer, Button newGame) {
+        
         VBox AddPlayersLayout = new VBox();        
         Label logo = createLogo();       
         HBox buttons = new HBox();
@@ -318,8 +312,7 @@ public class MolkkyApplication extends Application{
      * @return VBox layout for the gameSetting -Scene
      */
     public VBox createGameSettingsLayout(Stage window, Button pointLimitButton, 
-            Button pointLimitBrokenButton, Button startGameButton, 
-            Button addMorePlayersButton){      
+            Button pointLimitBrokenButton, Button startGameButton, Button addMorePlayersButton){      
         
         VBox gameSettingsLayout = new VBox();       
         Label logo = createLogo();      
@@ -332,30 +325,30 @@ public class MolkkyApplication extends Application{
         vBoxLayoutSettings(gameSettingsLayout);
         
         return gameSettingsLayout;
-
     }
     
     /**
-     * Method for creating the Scene for the game-screen. Shows which players turn 
-     * it is at that current time and their points that far. In the field the
-     *  end user documents the points from that players throw as a number between 
-     * 0-12. Below the point documentation field the next players name is shown.
+     * Method for creating the Scene for the game-screen.Shows which players turn 
+ it is at that current time and their points that far. In the field the
+  end user documents the points from that players throw as a number between 
+ 0-12. Below the point documentation field the next players name is shown.
      * @param window
      * @param whosTurn
      * @param whosTurnPoints
      * @param whosTurnNext
      * @param pointsToDocument
      * @param documentButton
+     * @param commentLabel
      * @return VBox layout for the gameLayout -Scene
      */
     public VBox createGameLayout(Stage window, Label whosTurn, Label whosTurnPoints, 
             Label whosTurnNext, TextField pointsToDocument, 
-            Button documentButton, Label commentLabel) {
+            Button documentButton, Label commentLabel, Button closeAndStartNewGame) {
         VBox gameLayout = new VBox();         
         Label logo = createLogo();       
         Label whosTurnText = new Label("Pelivuorossa: ");
         Label whosTurnPointsText = new Label(" - pisteet:  ");
-        whosTurn.setTextFill(Color.web("ef2684", 0.8)); 
+        whosTurn.setTextFill(Color.web("ef2684", 0.8));
         whosTurnPoints.setTextFill(Color.web("ef2684", 0.8)); 
         
         HBox whosTurnInfo = new HBox();      
@@ -363,8 +356,7 @@ public class MolkkyApplication extends Application{
         whosTurnInfo.getChildren().addAll(whosTurnText, whosTurn, 
                 whosTurnPointsText, whosTurnPoints);
         
-        
-        pointsToDocument.setStyle("-fx-background-color: #ecd4f8"); 
+         
         pointsToDocument.setMinSize(150, 50);
         pointsToDocument.setMaxSize(300, 100);
         
@@ -373,8 +365,7 @@ public class MolkkyApplication extends Application{
         whosNextInfo.setAlignment(Pos.CENTER);
         whosTurnNext.setTextFill(Color.web("ef2684", 0.8)); 
         whosNextInfo.getChildren().addAll(whosNextText, whosTurnNext);
-        
-        Button closeAndStartNewGame = createPinkButton("Lopeta peli ja palaa alkuun");  
+         
         closeAndStartNewGame.setOnAction((event)-> {
             window.setScene(startScene);           
         });  
@@ -392,7 +383,7 @@ public class MolkkyApplication extends Application{
      * @param window
      * @return VBox layout for the winner-Scene
      */
-    public VBox createWinnerLayout(Stage window) {
+    public VBox createWinnerLayout(Stage window, Button closeAndRestart) {
         VBox winnerLayout = new VBox();
         vBoxLayoutSettings(winnerLayout);     
         Label logo = createLogo();               
@@ -411,14 +402,13 @@ public class MolkkyApplication extends Application{
         closeMolkkymestari.setOnAction((event)-> {
             close();
         });
-        
-        Button closeAndStartNew = createPinkButton("Lopeta peli ja palaa alkuun");  
-        closeAndStartNew.setOnAction((event)-> {
+              
+        closeAndRestart.setOnAction((event)-> {
             window.setScene(startScene);           
         });   
             
         winnerLayout.getChildren().addAll(logo, winnerFoundText, winnersName, 
-                playerPointTable, closeAndStartNew, closeMolkkymestari);
+                playerPointTable, closeAndRestart, closeMolkkymestari);
                    
         return winnerLayout;          
     }
@@ -441,14 +431,7 @@ public class MolkkyApplication extends Application{
      * @return 
      */
     public Label createPlayerPointTable(){
-        String playersAndPoints = "";
-                
-        for(int index = 0; index < service.getHowManyPlayers(); index ++) {           
-            playersAndPoints = playersAndPoints + "\n" + 
-                    service.getPlayersNameWithIndex(index) + ": " + 
-                    service.getPlayersPointsWithIndex(index);
-        }
-        playersAndPoints = "Pistetaulukko" + playersAndPoints;     
+        String playersAndPoints = service.createPlayerPointTable();      
         Label playerPoints = new Label(playersAndPoints);
         
         return playerPoints;
@@ -463,44 +446,12 @@ public class MolkkyApplication extends Application{
         VBox.setPrefSize(800, 600);
         VBox.setAlignment(Pos.TOP_CENTER);
         VBox.setSpacing(30);
-        VBox.setStyle("-fx-background-color: #F6E6FF");
+        VBox.setStyle("-fx-background-color: #f4eefd; ");
     }
     
-    /**
-     * Method for creating a gray button. Gray button represents a button that
-     * doesn't have a functionality in it yet.
-     * @param text text in the button
-     * @return gray Button-object
-     */
-    public Button createGrayButton(String text){
+    public Button createButtonWithColour(String text, String colour) {
         Button button = new Button(text);
-        button.setStyle("-fx-background-color: #BBBBBB; ");
-        
-        return button;
-    }
-    
-    /**
-     * Method for creating a pink button. Pink button represents a button that
-     *  changes a Scene once clicked.
-     * @param text in the button
-     * @return pink Button-object
-     */
-    public Button createPinkButton(String text){
-        Button button = new Button(text);
-        button.setStyle("-fx-background-color: #D76FB0; ");
-        
-        return button;
-    }
-    
-    /**
-     * Method for creating a lilac button. Lilac button represents a button that
-     * has a functionality in the scene where it is.
-     * @param text in the button
-     * @return lilac Button-object
-     */
-    public Button createLilacButton(String text){
-        Button button = new Button(text);
-        button.setStyle("-fx-background-color: #DDAADD; ");
+        button.setStyle("-fx-background-color: " + colour);
         
         return button;
     }
@@ -521,6 +472,7 @@ public class MolkkyApplication extends Application{
     public void resetButtonsForNewGame(Label addedPlayers, Button pointLimitButton, 
             Button pointLimitBrokenButton, Label whosTurn, Label whosTurnPoints, 
             Label whosTurnNext, TextField pointsToDocument) {
+        
         addedPlayers.setText("");
         pointLimitButton.setText("Pisteraja: " + service.getPointLimit()); 
         pointLimitBrokenButton.setText("Pisteet puolitetaan pisterajan ylittyessä"); 

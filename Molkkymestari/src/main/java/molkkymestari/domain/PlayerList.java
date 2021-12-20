@@ -40,7 +40,7 @@ public class PlayerList {
         int indexForThisGame = players.indexOf(newPlayer);
         newPlayer.setIndex(indexForThisGame);        
         newPlayer.setPoints(0);
-        newPlayer.setMissedThrows(0);   
+        newPlayer.setMissedThrowsInRow(0);   
     }
     
     /**

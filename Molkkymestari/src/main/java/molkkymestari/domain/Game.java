@@ -190,13 +190,20 @@ public class Game {
     public void documentPointsFromThrow(int points) {       
         if (this.getHowManyPlayers() == 0) {
             return;
-        }               
+        } 
+        
         Player playerWhosTurn = playerList.getPlayerWithIndex(whosTurn);
         
         if (points == 0) {
             missedThrow(playerWhosTurn);
+            updateWhosTurn();
+            return;
             
-        } else if ((playerWhosTurn.getPoints() + points) < pointLimit) {
+        }
+        
+        playerWhosTurn.setMissedThrowsInRow(0);
+        
+        if ((playerWhosTurn.getPoints() + points) < pointLimit) {
             playerWhosTurn.addPoints(points);
             
         } else if ((playerWhosTurn.getPoints() + points) == pointLimit) {
@@ -244,11 +251,11 @@ public class Game {
      * throw.
      */
     public void missedThrow(Player player) {
-        if (player.getMissedThrows() == 2) {
+        if (player.getMissedThrowsInRow() == 2) {
             removePlayer(player);
                 
         } else {
-            player.setMissedThrows((player.getMissedThrows() + 1));
+            player.setMissedThrowsInRow((player.getMissedThrowsInRow() + 1));
         }
     }
     

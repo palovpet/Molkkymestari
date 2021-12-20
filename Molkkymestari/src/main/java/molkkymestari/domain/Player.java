@@ -8,7 +8,7 @@ public class Player {
     private String name;
     private int points;
     private int index;
-    private int missedThrows;
+    private int missedThrowsInRow;
     
     /**
      * Constructor for creating a new Player object.
@@ -56,19 +56,19 @@ public class Player {
         this.points += points;
     }
 
-    public int getMissedThrows() {      
-        return missedThrows;
+    public int getMissedThrowsInRow() {      
+        return missedThrowsInRow;
     }
     
     /**
      * Sets missed throws in a game, won't set a negative number
      * @param missedThrows value for missed throws in a game
      */   
-    public void setMissedThrows(int missedThrows) {       
-        if (missedThrows < 0) {         
+    public void setMissedThrowsInRow(int missedThrowsInRow) {       
+        if (missedThrowsInRow < 0) {         
             return;
         }
-        this.missedThrows = missedThrows;
+        this.missedThrowsInRow = missedThrowsInRow;
     }
     
     /**

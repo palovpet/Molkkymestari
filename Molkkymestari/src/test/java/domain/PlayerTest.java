@@ -13,7 +13,7 @@ public class PlayerTest {
     public void setUp() {
         player = new Player("Testi-Tahvo");
         player.setIndex(0);
-        player.setMissedThrows(1);
+        player.setMissedThrowsInRow(1);
         player.setPoints(10);
     }
     
@@ -36,19 +36,19 @@ public class PlayerTest {
     
     @Test
     public void getMissedThrowsReturnsMissedThrowse(){
-        assertEquals(player.getMissedThrows(), 1);
+        assertEquals(player.getMissedThrowsInRow(), 1);
     }
     
     @Test
     public void setMissedThrowsSetsMissedThrows(){
         int newValueForMissedThrows = 2;
-        player.setMissedThrows(newValueForMissedThrows);
-        assertEquals(player.getMissedThrows(), newValueForMissedThrows);
+        player.setMissedThrowsInRow(newValueForMissedThrows);
+        assertEquals(player.getMissedThrowsInRow(), newValueForMissedThrows);
     }
     @Test
     public void setMissedThrowsWontSetNegativeMissedThrows(){
-        player.setMissedThrows(-1);
-        assertEquals(player.getMissedThrows(), 1);
+        player.setMissedThrowsInRow(-1);
+        assertEquals(player.getMissedThrowsInRow(), 1);
     }
     
     @Test

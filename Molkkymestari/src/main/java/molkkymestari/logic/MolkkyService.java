@@ -235,7 +235,7 @@ public class MolkkyService {
             comment = "Ja yleisö huutaa: " + name + ", " + name + ", " + name + "!";
         }
         if (randomNumber == 3) {
-            comment = name + " on liekeissä!!! :o";
+            comment = name + " on liekeissä!!! :-o ";
         }
         if (randomNumber == 4) {
             comment = name + " nappaa pisteet jälleen!";
@@ -245,15 +245,13 @@ public class MolkkyService {
     }
     
     public String createPlayerPointTable() {
-        String playersAndPoints = "";
+        String playersAndPoints = " Pistetaulukko";
                 
         for(int index = 0; index < getHowManyPlayers(); index ++) {           
             playersAndPoints = playersAndPoints + "\n Pelaaja: " + 
                     getPlayersNameWithIndex(index) + ", pisteitä:  " + 
                     getPlayersPointsWithIndex(index);
-        }
-        playersAndPoints = " Pistetaulukko" + playersAndPoints;     
-        
+        }     
         
         return playersAndPoints;
     }

@@ -460,6 +460,10 @@ public class MolkkyApplication extends Application{
             return comment;
         }    
         
+        String str = "An :grinning:awesome :smiley:string &#128516;with a few :wink:emojis!";
+        String result = EmojiParser.parseToUnicode(str);
+        System.out.println(result);
+        
         Random randomizer = new Random();
         int randomNumber = randomizer.nextInt(4);
         

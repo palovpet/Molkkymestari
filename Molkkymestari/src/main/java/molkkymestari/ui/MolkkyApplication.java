@@ -1,6 +1,5 @@
 package molkkymestari.ui;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 import molkkymestari.logic.MolkkyService;
@@ -19,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import com.vdurmont.emoji.EmojiParser; 
 
 /**
  * Class provides methods for the GUI of Mölkkymestari, which allows the end user
@@ -184,7 +184,8 @@ public class MolkkyApplication extends Application{
             }
             
             commentLabel.setText(generateComment(pointsString));
-            commentLabel.setTextFill(Color.web("ef2684", 0.8));
+            commentLabel.setFont(new Font("comic sans", 20));
+            commentLabel.setTextFill(Color.web("c69fff", 0.8));
             
             service.documentThrow(pointsString);
            
@@ -214,7 +215,7 @@ public class MolkkyApplication extends Application{
         ImageView bigLogoImageView = new ImageView(bigLogoImage); 
         
         VBox selectionsLayout= createStartScene(window, bigLogoImageView, addedPlayers, pointLimitButton, 
-                pointLimitBrokenButton, whosTurn, whosTurnPoints, whosTurnNext, pointsToDocument);
+                pointLimitBrokenButton, whosTurn, whosTurnPoints, whosTurnNext, pointsToDocument, commentLabel);
         
         startScene = new Scene(selectionsLayout);
         window.setTitle("Mölkkymestari");
@@ -234,6 +235,7 @@ public class MolkkyApplication extends Application{
      * Method creates the first Scene that is shown to end user.Shows a logo
      * and with the click of a button the player can start a new game.
      * @param window
+     * @param bigLogoImageView
      * @param addedPlayers
      * @param pointLimitButton
      * @param pointLimitBrokenButton
@@ -241,12 +243,13 @@ public class MolkkyApplication extends Application{
      * @param whosTurnPoints
      * @param whosTurnNext
      * @param pointsToDocument
+     * @param commentLabel
      * @return VBox layout for the startScene-Scene
      * @throws IOException 
      */
     public VBox createStartScene(Stage window, ImageView bigLogoImageView, Label addedPlayers, Button pointLimitButton, 
             Button pointLimitBrokenButton, Label whosTurn, Label whosTurnPoints, 
-            Label whosTurnNext, TextField pointsToDocument) throws IOException  {
+            Label whosTurnNext, TextField pointsToDocument, Label commentLabel) throws IOException  {
         
         VBox startSceneLayout = new VBox();
         vBoxLayoutSettings(startSceneLayout);       
@@ -257,7 +260,7 @@ public class MolkkyApplication extends Application{
         newGame.setOnAction((event)-> {
             service = new MolkkyService();
             resetButtonsForNewGame(addedPlayers, pointLimitButton, pointLimitBrokenButton, 
-                    whosTurn, whosTurnPoints, whosTurnNext, pointsToDocument);          
+                    whosTurn, whosTurnPoints, whosTurnNext, pointsToDocument, commentLabel);          
             
             window.setScene(addPlayersScene);
         });
@@ -287,6 +290,7 @@ public class MolkkyApplication extends Application{
                 + "Tallenna pelaaja -painiketta.\nNimimerkki voi sisältää "
                 + "kirjaimia ja numeroita, sen on oltava 3 - 20 merkkiä pitkä.");
         Label headerPlayers = new Label("\nPelaajat:\n");
+        subHeaderStyle(headerPlayers);
         
         buttons.getChildren().addAll(savePlayer, newGame);
         buttons.setAlignment(Pos.CENTER);
@@ -319,6 +323,7 @@ public class MolkkyApplication extends Application{
         VBox gameSettingsLayout = new VBox();       
         Label logo = createLogo();      
         Label headerSettings = new Label("Peliasetukset");
+        subHeaderStyle(headerSettings);
         Label infoSettings = new Label("Napsauta painikkeita muuttaaksesi asetuksia.");
  
         gameSettingsLayout.getChildren().addAll(logo, headerSettings, infoSettings, pointLimitButton, 
@@ -331,7 +336,7 @@ public class MolkkyApplication extends Application{
     
     /**
      * Method for creating the Scene for the game-screen.Shows which players turn 
- it is at that current time and their points that far. In the field the
+ it is at that current time and their points that far.In the field the
   end user documents the points from that players throw as a number between 
  0-12. Below the point documentation field the next players name is shown.
      * @param window
@@ -341,11 +346,13 @@ public class MolkkyApplication extends Application{
      * @param pointsToDocument
      * @param documentButton
      * @param commentLabel
+     * @param closeAndStartNewGame
      * @return VBox layout for the gameLayout -Scene
      */
     public VBox createGameLayout(Stage window, Label whosTurn, Label whosTurnPoints, 
             Label whosTurnNext, TextField pointsToDocument, 
             Button documentButton, Label commentLabel, Button closeAndStartNewGame) {
+        
         VBox gameLayout = new VBox();         
         Label logo = createLogo();       
         Label whosTurnText = new Label("Pelivuorossa: ");
@@ -380,21 +387,29 @@ public class MolkkyApplication extends Application{
     }
     
     /**
-     * Method for creating the Scene used to show the winner of the game.
-     * Has the name of the winner and the points of all the players in that game.
+     * Method for creating the Scene used to show the winner of the game.Has the name of the winner and the points of all the players in that game.
      * @param window
+     * @param closeAndRestart
      * @return VBox layout for the winner-Scene
      */
     public VBox createWinnerLayout(Stage window, Button closeAndRestart) {
         VBox winnerLayout = new VBox();
         vBoxLayoutSettings(winnerLayout);     
         Label logo = createLogo();               
-        Label winnerFoundText = new Label("PELIN VOITTAJA:");       
+        Label winnerFoundText = new Label("VOITTAJA ON: "); 
+        subHeaderStyle(winnerFoundText);
         Label winnersName = new Label("");
+        Label emoji = new Label(createEmoji("grin") + createEmoji("heart") + createEmoji("two_hearts"));
+        
+        emoji.setFont(new Font("impact", 35));
+        emoji.setTextFill(Color.web("e91bd4", 0.8)); 
         
         winnersName.setText(service.getWinnerName());       
         winnersName.setFont(new Font("impact", 35));
         winnersName.setTextFill(Color.web("e91bd4", 0.8)); 
+        
+        Label playersPointsHeader = new Label("Pistetaulukko:");
+        subHeaderStyle(playersPointsHeader);
         
         Label playerPointTable = createPlayerPointTable();        
             
@@ -409,8 +424,8 @@ public class MolkkyApplication extends Application{
             window.setScene(startScene);           
         });   
             
-        winnerLayout.getChildren().addAll(logo, winnerFoundText, winnersName, 
-                playerPointTable, closeAndRestart, closeMolkkymestari);
+        winnerLayout.getChildren().addAll(logo, winnerFoundText, winnersName, emoji,  
+                playersPointsHeader, playerPointTable, closeAndRestart, closeMolkkymestari);
                    
         return winnerLayout;          
     }
@@ -447,43 +462,51 @@ public class MolkkyApplication extends Application{
      */
     public String generateComment(String points) {
         String name = service.getWhosTurnName();
-        String comment = "";
+        String comment = "";   
         
         if (points.equals("0")) {
             
             if(service.getMissedThrowsInRowWithIndex(service.getWhosTurnIndex()) == 2) {
-                comment = "Hitsin pimpulat " + name + ", kolmas huti eli putoat pelistä :(";
+                comment = "Hitsin pimpulat " + name + ", kolmas huti eli putoat pelistä " + createEmoji("disappointed");
                 return comment;
             }
             
-            comment = "Hupsista " + name + ", nyt meni huti :(";
+            comment = "Hupsista " + name + ", nyt meni huti " + createEmoji("disappointed");
             return comment;
-        }    
-        
-        String str = "An :grinning:awesome :smiley:string &#128516;with a few :wink:emojis!";
-        String result = EmojiParser.parseToUnicode(str);
-        System.out.println(result);
-        
+        } 
+                
         Random randomizer = new Random();
-        int randomNumber = randomizer.nextInt(4);
+        int randomNumber = randomizer.nextInt(5);
         
         if (randomNumber == 0) {
-            comment = "Huisi heitto " + name + "!";
+            comment = "Huisi heitto " + name + "!" + createEmoji("grin");
         }
         if (randomNumber == 1) {
-            comment = name + " osuu jälleen! <3";
+            comment = name + " osuu jälleen! " + createEmoji("heart");
         }
         if (randomNumber == 2) {
-            comment = "Ja yleisö huutaa: " + name + ", " + name + ", " + name + "!";
+            comment = "Ja yleisö huutaa: " + name + ", " + name + ", " + name + "!" + createEmoji("two_hearts");
         }
         if (randomNumber == 3) {
-            comment = name + " on liekeissä!!! :-o ";
+            comment = name + " on liekeissä " + createEmoji("fire");
         }
         if (randomNumber == 4) {
-            comment = name + " nappaa pisteet jälleen!";
+            comment = name + " nappaa pisteet!" + createEmoji("blush");
         }
         
         return comment;
+    }
+    /**
+     * Method for creating an emoji from a String command.Only five emojis can
+     *  be created at this moment.
+     * @param emojiCommand available emoji commands: grin, blush, fire, heart, two_hearts, disappointed
+     * @return String object of the emoji
+     */
+    public String createEmoji(String emojiCommand) {
+        String emojiStr = ":" + emojiCommand + ":";
+        String emoji = EmojiParser.parseToUnicode(emojiStr);
+        
+        return emoji;
     }
     
     /**
@@ -526,7 +549,7 @@ public class MolkkyApplication extends Application{
      */
     public void resetButtonsForNewGame(Label addedPlayers, Button pointLimitButton, 
             Button pointLimitBrokenButton, Label whosTurn, Label whosTurnPoints, 
-            Label whosTurnNext, TextField pointsToDocument) {
+            Label whosTurnNext, TextField pointsToDocument, Label commentLabel) {
         
         addedPlayers.setText("");
         pointLimitButton.setText("Pisteraja: " + service.getPointLimit()); 
@@ -535,5 +558,15 @@ public class MolkkyApplication extends Application{
         whosTurnPoints.setText("0");
         whosTurnNext.setText("");   
         pointsToDocument.setText("");
+        commentLabel.setText("");
+    }
+    /**
+     * Sets font settings for infotexts.
+     * @param label 
+     */
+    public void subHeaderStyle(Label label) {       
+        
+        label.setTextFill(Color.web("5a2066", 0.8)); 
+        label.setFont((new Font("Impact", 18)));
     }
 }

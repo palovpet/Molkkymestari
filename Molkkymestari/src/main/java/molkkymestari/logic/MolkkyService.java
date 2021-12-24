@@ -217,7 +217,7 @@ public class MolkkyService {
      * @return 
      */
     public String createPlayerPointTable() {
-        String playersAndPoints = " Pistetaulukko";
+        String playersAndPoints = "";
                 
         for (int index = 0; index < getHowManyPlayers(); index++) {           
             playersAndPoints = playersAndPoints + "\n Pelaaja: " + 

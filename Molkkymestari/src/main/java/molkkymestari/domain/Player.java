@@ -62,7 +62,7 @@ public class Player {
     
     /**
      * Sets missed throws in a game, won't set a negative number
-     * @param missedThrows value for missed throws in a game
+     * @param missedThrowsInRow integer value of missed throws in row to be set
      */   
     public void setMissedThrowsInRow(int missedThrowsInRow) {       
         if (missedThrowsInRow < 0) {         
@@ -72,7 +72,7 @@ public class Player {
     }
     
     /**
-     * toStringe presentation for Player objects.
+     * toString presentation for Player objects.
      * @return the name given for the player with creation
      */  
     @Override

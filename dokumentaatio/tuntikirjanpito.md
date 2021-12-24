@@ -19,5 +19,8 @@
 |17.12|3|Parannettu toimintavarmuutta virheellisten syötteiden osalta, kasvatettu testauslaajuutta, paranneltu metodien ja muuttujien nimiä|
 |18.12|4|Lisää pieniä parannuksia järjestelmätestauksen pohjalta, testaus- ja arkkitehtuuridokumenttien tekoa|
 |20.12|5|Pieniä parannuksia käyttöliittymän visuaalisuuteen, dokumentaation tekemistä|
+|23.12|3|Lisätty ulkoinen kirjasto emojeista, täydennetty sovellusta niitä hyödyntäen|
+|24.12|6|Troubleshoottausta ja vihdoin saatu kuvat toimimaan sovelluksessa, hienosäätöä ja viimeistelyä sovellukseen ja dokumentaatioon|
 
-Tunteja käytetty yhteensä: 52
+
+Tunteja käytetty yhteensä: 61

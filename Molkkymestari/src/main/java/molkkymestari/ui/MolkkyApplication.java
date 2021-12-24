@@ -69,6 +69,7 @@ public class MolkkyApplication extends Application{
         addPlayersField.setMaxSize(300, 100);
         
         Button savePlayer = createButtonWithColour("Tallenna pelaaja", buttonColourLight); 
+        
         Button toSettingsButton = createButtonWithColour("Peliasetuksiin", buttonColourDark);
   
         // 1: AddPlayers-näkymän asettelu        
@@ -78,11 +79,14 @@ public class MolkkyApplication extends Application{
         
         // 2: GameSettings-näkymän toimintoelementit         
         Button pointLimitButton = 
-                createButtonWithColour("Pisteraja: " + service.getPointLimit(), buttonColourLight);      
+                createButtonWithColour("Pisteraja: " + service.getPointLimit(), buttonColourLight); 
+        
         Button pointLimitBrokenButton = 
-                createButtonWithColour("Pisteet puolitetaan pisterajan ylittyessä", buttonColourLight); 
+                createButtonWithColour("Pisteet puolitetaan pisterajan ylittyessä", buttonColourLight);
+        
         Button startGameButton = 
                 createButtonWithColour("Aloita peli", buttonColourDark);
+        
         Button addMorePlayersButton = 
                 createButtonWithColour("Palaa lisäämään pelaajia", buttonColourDark);
         
@@ -93,12 +97,18 @@ public class MolkkyApplication extends Application{
         
         // 3: Game-näkymän toimintoelementit     
         Label whosTurn = new Label(" ");
+        
         Label whosTurnPoints = new Label("0");
-        Label whosTurnNext = new Label(" ");                 
+        
+        Label whosTurnNext = new Label(" ");
+        
         TextField pointsToDocument = new TextField();
         pointsToDocument.setStyle("-fx-background-color: " + textFieldColour);
+        
         Button documentButton = createButtonWithColour("Kirjaa", buttonColourLight);
+        
         Label commentLabel = new Label();
+        
         Button closeAndStartNewGame = createButtonWithColour("Lopeta peli ja palaa alkuun", buttonColourDark); 
         
         // 3: Game-näkymän asettelu
@@ -364,8 +374,7 @@ public class MolkkyApplication extends Application{
         HBox whosTurnInfo = new HBox();      
         whosTurnInfo.setAlignment(Pos.CENTER);
         whosTurnInfo.getChildren().addAll(whosTurnText, whosTurn, 
-                whosTurnPointsText, whosTurnPoints);
-        
+                whosTurnPointsText, whosTurnPoints);        
          
         pointsToDocument.setMinSize(150, 50);
         pointsToDocument.setMaxSize(300, 100);
@@ -440,8 +449,7 @@ public class MolkkyApplication extends Application{
         Image logoImage = new Image("/images/smallLogo.jpg");
         ImageView logoImageView = new ImageView(logoImage);
         
-        Label logoLabel = new Label("");
-        
+        Label logoLabel = new Label("");      
         logoLabel.setGraphic(logoImageView);
         
         return logoLabel;      
@@ -551,6 +559,7 @@ public class MolkkyApplication extends Application{
      * @param whosTurnPoints
      * @param whosTurnNext
      * @param pointsToDocument 
+     * @param commentLabel 
      */
     public void resetButtonsForNewGame(Label addedPlayers, Button pointLimitButton, 
             Button pointLimitBrokenButton, Label whosTurn, Label whosTurnPoints, 
@@ -566,7 +575,7 @@ public class MolkkyApplication extends Application{
         commentLabel.setText("");
     }
     /**
-     * Sets font settings for infotexts.
+     * Sets font settings for subheaders.
      * @param label 
      */
     public void subHeaderStyle(Label label) {       

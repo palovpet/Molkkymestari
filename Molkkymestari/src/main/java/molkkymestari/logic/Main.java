@@ -2,21 +2,14 @@ package molkkymestari.logic;
 
 import molkkymestari.ui.MolkkyApplication;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 /**
- *
- * @author palovpet
+ * Main-class needed to launch the Application, because of JavaFX.
  */
 public class Main {
 
     /**
-     * @param args the command line arguments
+     * Method launches MolkkyApplicatio class, which contains the GUI.
+     * @param args 
      */
     public static void main(String[] args) {
         MolkkyApplication.main(args);

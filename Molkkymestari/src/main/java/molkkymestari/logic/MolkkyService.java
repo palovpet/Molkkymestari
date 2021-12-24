@@ -1,7 +1,6 @@
 package molkkymestari.logic;
 
 import molkkymestari.domain.Game;
-import java.util.Random;
 
 /**
  * Class acts as a bridge between the GUI of Mölkkymestari-application and the 
@@ -103,11 +102,11 @@ public class MolkkyService {
      * Method for getting the players missed throws in this game of Mölkky with 
      * the index of that player in this game.
      * @param index the index of the Player-object in this game
-     * @return missed trhows of that Player-object in this game as String
+     * @return missed throws of that Player-object in this game as String
      */
     
     /**
-     * Method for getting the name of the player whos turn is at that current time. 
+     * Method for getting the name of the player who's turn is at that current time. 
      * @return the String-representation of the Player-object
      */
     public String getWhosTurnName() {        
@@ -124,7 +123,7 @@ public class MolkkyService {
     }
     
     /**
-     * Method for getting the index in this game of Mölkky of the player whos turn
+     * Method for getting the index in this game of Mölkky of the player who's turn
      * it is at this current time.
      * @return the index of that Player-object in this game as integer
      */
@@ -133,9 +132,9 @@ public class MolkkyService {
     }
     
     /**
-     * Methos returns the count of missed throws in row for the player with this index. 
+     * Method returns the count of missed throws in row for the player with this index. 
      * @param index index given for player in this game
-     * @return integer value of how many missed trhows has the player had in a row.
+     * @return integer value of how many missed throws has the player had in a row.
      */
     public int getMissedThrowsInRowWithIndex(int index) {
         return game.getPlayerWithIndex(index).getMissedThrowsInRow();
@@ -179,11 +178,7 @@ public class MolkkyService {
             return false;
         }
         int pointsInteger = Integer.valueOf(points);            
-        if ((pointsInteger > 12) || (pointsInteger < 0)) {
-            return false;
-        }
-            
-        return true;
+        return !((pointsInteger > 12) || (pointsInteger < 0));
     }
     
     /**
@@ -210,10 +205,7 @@ public class MolkkyService {
      * @return boolean
      */
     public Boolean checkIfNameIsAlreadyAdded(String name) {
-        if (game.checkIfPlayerIsInTheGame(name).equals(true)) {
-            return true;
-        }        
-        return false;
+        return game.checkIfPlayerIsInTheGame(name).equals(true);
     }
     
     /**

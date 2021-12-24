@@ -90,7 +90,7 @@ public class Game {
     
     /**
      * Removes a player from the game. Updates the remaining players indexes in 
-     * this game, and the information of whos turn it is.
+     * this game, and the information of who's turn it is.
      * @param player the Player-object to be removed.
      */
     public void removePlayer(Player player) {   
@@ -216,8 +216,8 @@ public class Game {
     
     /**
      * Method for documenting a winning throw. Sets winner found to true, and
-     * the player whos turn it was to be the winner.
-     * @param player Player-object whos turn it was
+     * the player who's turn it was to be the winner.
+     * @param player Player-object who's turn it was
      * @param points points thrown as integer
      */
     public void winnerFound(Player player, int points) {
@@ -283,10 +283,6 @@ public class Game {
      */
     public Boolean checkIfPlayerIsInTheGame(String name) {
         Player player = playerList.getPlayerWithName(name);
-        if (player == null) {
-            return false;
-        }
-        
-        return true;
+        return player != null;
     }
 }

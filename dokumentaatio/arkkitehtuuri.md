@@ -18,7 +18,7 @@ Käyttöliittymässä on viisi erillistä Scene-oliona toteutettua näkymää:
 Jokainen näkymä on yksi kerrallaan sovelluksen Stageen sijoitettuna, eli näkyvissä. Käyttöliittymän toteutus on luokassa molkkymestari.ui.Molkkyapplication. Toteutettu käyttöliittymä on eristetty sovelluslogiikasta, käyttöliittymä kutsuu sovelluslogiikan luokkia MölkkyService-luokasta luodun MölkkyService-olion metodien kautta.
 
 ## Sovelluslogiikka
-Sovelluslogiikan data-elementtejä ovat MolkkyService-luokka joka vastaa viestin välittämisestä graafisen käyttöliittymän ja sovelluslogiikan välilä, sekä domain-pakkauksen luokat Game, PlayerList ja Player.
+Sovelluslogiikan data-elementtejä ovat MolkkyService-luokka joka vastaa viestin välittämisestä graafisen käyttöliittymän ja sovelluslogiikan välillä, sekä domain-pakkauksen luokat Game, PlayerList ja Player.
 
 Player-luokan oliot edustavat yksittäistä pelaajaa. Luokassa on olennaiset toiminnot pelaajan tietojen hallintaa ja tarkastelua varten. PlayerList-luokan olio vastaa yhteen peliin osallistuvasta joukosta pelaajia, ja se tarjoaa medodit pelaajajoukon hallintaa ja tietojen käsittelyä varten. Game-luokan olio vastaa yksittäisen pelin asetuksista, sekä pelin kulkuun liittyvistä toiminnoista. Yksittäisene Game-olioon linkittyy aina yksittäinen PlayerList-olio, johon taas voi linkittyä 0-10 Player-oliota. 
 

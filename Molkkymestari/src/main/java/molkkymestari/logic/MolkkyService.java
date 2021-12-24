@@ -132,6 +132,11 @@ public class MolkkyService {
         return game.getWhosTurnIndex();
     }
     
+    /**
+     * Methos returns the count of missed throws in row for the player with this index. 
+     * @param index index given for player in this game
+     * @return integer value of how many missed trhows has the player had in a row.
+     */
     public int getMissedThrowsInRowWithIndex(int index) {
         return game.getPlayerWithIndex(index).getMissedThrowsInRow();
     }

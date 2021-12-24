@@ -109,6 +109,7 @@ public class MolkkyApplication extends Application{
         //ELEMENTTIEN TOIMINNOT        
         // 1: AddPlayers-näkymän painikkeiden toiminnot
         toSettingsButton.setOnAction((event) -> {
+            addPlayersField.clear();
             window.setScene(gameSettingsScene);
         });       
         
@@ -211,7 +212,7 @@ public class MolkkyApplication extends Application{
                 whosTurnNext.setText(service.getWhosNextName());                        
         }); 
         
-        Image bigLogoImage = new Image("/images/logo.png");
+        Image bigLogoImage = new Image("/images/logo.jpg");
         ImageView bigLogoImageView = new ImageView(bigLogoImage);        
         
         VBox selectionsLayout= createStartScene(window, bigLogoImageView, addedPlayers, pointLimitButton, 
@@ -435,9 +436,13 @@ public class MolkkyApplication extends Application{
      * @return logo as a Label object
      */
     public Label createLogo() {
-        Label logoLabel = new Label("Mölkkymestari");        
-        logoLabel.setFont((new Font("Impact", 32)));
-        logoLabel.setTextFill(Color.web("712a95", 0.8)); 
+        
+        Image logoImage = new Image("/images/smallLogo.jpg");
+        ImageView logoImageView = new ImageView(logoImage);
+        
+        Label logoLabel = new Label("");
+        
+        logoLabel.setGraphic(logoImageView);
         
         return logoLabel;      
     }

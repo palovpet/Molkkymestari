@@ -114,8 +114,9 @@ public class MolkkyServiceTest {
     public void createPointTableCreatesPointTable() {
         service.documentThrow("3");
         service.documentThrow("5");
-        System.out.println(service.createPlayerPointTable());
-        assertEquals(service.createPlayerPointTable(), " Pistetaulukko\n "
-                + "Pelaaja: Testi-Timjami, pisteitä:  3\n Pelaaja: Testi-Tatiana, pisteitä:  5");
+        
+        assertEquals(service.createPlayerPointTable(), "\n" +
+            " Pelaaja: Testi-Timjami, pisteitä:  3\n" +
+            " Pelaaja: Testi-Tatiana, pisteitä:  5");
     }
 }

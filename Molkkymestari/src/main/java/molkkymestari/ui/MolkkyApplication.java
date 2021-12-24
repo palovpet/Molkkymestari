@@ -211,8 +211,8 @@ public class MolkkyApplication extends Application{
                 whosTurnNext.setText(service.getWhosNextName());                        
         }); 
         
-        Image bigLogoImage = new Image("file:logo.png");
-        ImageView bigLogoImageView = new ImageView(bigLogoImage); 
+        Image bigLogoImage = new Image("/images/logo.png");
+        ImageView bigLogoImageView = new ImageView(bigLogoImage);        
         
         VBox selectionsLayout= createStartScene(window, bigLogoImageView, addedPlayers, pointLimitButton, 
                 pointLimitBrokenButton, whosTurn, whosTurnPoints, whosTurnNext, pointsToDocument, commentLabel);

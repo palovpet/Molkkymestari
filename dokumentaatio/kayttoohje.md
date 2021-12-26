@@ -1,6 +1,6 @@
 # Käyttöohje
 ### Ohjelman käynnistäminen
-Ladattuasi loppupalautus -nimisen releasen githubista ohjelman voi käynnistää komentoriviltä komennolla
+Ladattuasi [loppupalautus](https://github.com/palovpet/ot-harjoitustyo/releases/tag/loppupalautus) releasen githubista ohjelman voi käynnistää komentoriviltä komennolla:
 ```
 java -jar Molkkymestari.jar
 ```

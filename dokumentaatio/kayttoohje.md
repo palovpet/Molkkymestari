@@ -1,7 +1,8 @@
 # Käyttöohje
+### Ohjelman käynnistäminen
 Ohjelman voi käynnistää komentoriviltä komennolla
 ```
-java -jar Molkkymestari-1.0-SNAPSHOT.jar
+java -jar Molkkymestari.jar
 ```
 
 Avautuvassa näkymässä napsautetaan Uusi peli -painiketta. 

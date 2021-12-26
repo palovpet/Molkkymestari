@@ -34,7 +34,7 @@ Peliin ja pelaajiin liittyvät toiminnot tehdään kaikki MolkkyService-luokan o
 
 ## Päätoiminnallisuuksia sekvenssikaavioina
 ### Uuden pelaajan lisääminen
-Käyttäjä kirjoittaa pelaajan nimen tai nimimerkin kenttään ja painaa Tallenna pelaaja -painiketta. Painikkeen painamiseen reagoiva taphtumankäsittelijä tarkistaa, että annettu nimi on haluttua muotoa, ja ettei samaa nimeä ole jo lisätty kyseiseen peliin. Mikäli virheellinen syöte havaitaan, käyttäjälle näytetään virheviesti. Oikean muotoinen nimi luo uuden Player-olion, joka tallennetaan PlayerList -olioon, joka on kyseistä peliä kuvaavan Game-olion muuttuja. Game-olio taasen on sovelluslogiikasta vastaavan MolkkyService-luokan muuttuja. 
+Käyttäjä kirjoittaa pelaajan nimen tai nimimerkin kenttään ja painaa Tallenna pelaaja -painiketta. Painikkeen painamiseen reagoiva tapahtumankäsittelijä tarkistaa, että annettu nimi on haluttua muotoa, ja ettei samaa nimeä ole jo lisätty kyseiseen peliin. Mikäli virheellinen syöte havaitaan, käyttäjälle näytetään virheviesti. Oikean muotoinen nimi luo uuden Player-olion, joka tallennetaan PlayerList -olioon, joka on kyseistä peliä kuvaavan Game-olion muuttuja. Game-olio taasen on sovelluslogiikasta vastaavan MolkkyService-luokan muuttuja. 
 
 <img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/addPlayer.png" width="1000">
 

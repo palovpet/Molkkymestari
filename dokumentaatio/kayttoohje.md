@@ -1,6 +1,6 @@
 # Käyttöohje
 ### Ohjelman käynnistäminen
-Ohjelman voi käynnistää komentoriviltä komennolla
+Ladattuasi loppupalautus -nimisen releasen githubista ohjelman voi käynnistää komentoriviltä komennolla
 ```
 java -jar Molkkymestari.jar
 ```

@@ -5,7 +5,8 @@ Ladattuasi [loppupalautus](https://github.com/palovpet/ot-harjoitustyo/releases/
 java -jar Molkkymestari.jar
 ```
 
-Avautuvassa näkymässä napsautetaan Uusi peli -painiketta. 
+Ohjelma avautuu ikkunaan, avautuvassa näkymässä napsautetaan Uusi peli -painiketta. 
+
 ### Pelaajien lisääminen
 <img src="https://github.com/palovpet/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/lisaa_pelaaja_final.png" width="500">
 

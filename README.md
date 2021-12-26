@@ -17,6 +17,8 @@ Mölkky on perinteinen Suomalainen seurapeli, joka on monille tuttu etenkin kes�
 
 ## Releaset
 
+[Loppupalautus](https://github.com/palovpet/ot-harjoitustyo/releases/tag/loppupalautus)
+
 [Viikon 6 release](https://github.com/palovpet/ot-harjoitustyo/releases/tag/viikko6)
 
 [Viikon 5 release](https://github.com/palovpet/ot-harjoitustyo/releases/tag/viikko5)
@@ -28,19 +30,19 @@ Ladattuasi releasen githubista (lähdekoodi ja .jar -tiedosto) siirry komentoriv
 
 Suorita komentorivillä komento:  
 ```
-java -jar Molkkymestari-1.0-SNAPSHOT.jar
+java -jar Molkkymestari.jar
 ```
 
 
 ## Testien ajaminen ja testauskattavuus
 
-Siirry komentorivillä kansioon ot-harjoitustyö-viikko6/Molkkymestari (muista purkaa .zip-paketti) ja suorita komento: 
+Testit voi ajaa komennolla: 
 
 ```
 mvn test
 ```
 
-testikattavuusraportin voi luoda samassa kansiossa komentoriviltä komennolla: 
+ ja testikattavuusraportin luoda komennolla: 
 ```
 mvn test jacoco:report
 ```
